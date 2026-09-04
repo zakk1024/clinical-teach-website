@@ -1,0 +1,16 @@
+
+== 站體頁面 console errors == 無
+PASS [M1] 核取框點擊→localStorage 寫入＋進度條即時重算 :: before=0% after=20%
+PASS [M2] 答對：回饋 DOM 狀態由空變「正確」（點擊前後可測） :: feedback=✓ 正確|correct
+PASS [M2] 答錯：回饋 DOM 狀態由空變「不正確」 :: feedback=✗ 不正確——看看提示階梯|wrong
+PASS [M8] 提示階梯：答錯自動展開 L1＋點擊展開 L2（DOM class 狀態改變） :: l1_shown=True l2_shown=True
+PASS [M9] 拖曳配對：drop 後 zone 狀態改變＋回饋正確 :: before='拖到這裡' after='細胞間脂質（灰漿）' fb=✓ 配對正確|correct
+PASS [M12] 捲動→閱讀進度線 width 單向增大 :: mid=30.0441% bottom=96.3616%
+PASS [M3] 前一模組全達標→鎖由顯示翻轉隱藏 :: before=block after=none
+PASS [M1] reload 後進度條保留（localStorage 持久化） :: pct=100%
+PASS [M11] 書籤點擊→class＋localStorage 狀態改變 :: before=False after=True
+PASS [M10] 註冊表驅動路徑卡：第二門課未經框架改動自動渲染（擴充斷言實測） :: cards=3 course2_cards=1
+PASS [M6] 連擊數字＋7 格圓點：今日點亮 :: count=1 dots_on=1
+PASS [M11] 首頁收藏架反映收藏狀態（li 非 empty）
+PASS [M5] 印章槽：達標模組點亮（class awarded）
+PASS [M13] 全模組達標→證書入口由 hidden 變可見 :: ready=1 display=block
