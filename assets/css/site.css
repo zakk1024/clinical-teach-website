@@ -1,0 +1,134 @@
+/* ============================================================
+   Medical-Aesthetic Teaching Site — 全站樣式（框架層）
+   視覺基線（映射表第 11 行）：淺底＋單一 --accent token＋無襯線＋150–300ms 單次動效。
+   排除清單：無終端機視窗元素、無等寬字體族、無黑底綠字。
+   ============================================================ */
+
+:root {
+  --bg: #faf8f5;          /* 米白淺底 */
+  --surface: #ffffff;      /* 卡片面 */
+  --ink: #1c1a17;          /* 墨黑字 */
+  --ink-soft: #6b645c;     /* 次級字 */
+  --hairline: #e6e0d8;     /* 細線 */
+  --accent: #b4553f;       /* 唯一強調色 token（Joseph Berry 克制調色盤；品牌色定案前佔位） */
+  --warn: #8c4a4a;         /* 低飽和暖紅（M2 錯誤回饋） */
+  --ease: cubic-bezier(.22,.61,.36,1);
+  --dur: 220ms;            /* 動效節奏：單次播放，150–300ms */
+}
+
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--ink);
+  font-family: "Inter", "Helvetica Neue", "Segoe UI", "PingFang TC", "Noto Sans TC", sans-serif;
+  font-size: 16px;
+  line-height: 1.7;
+}
+h1, h2, h3 { letter-spacing: -0.01em; line-height: 1.25; }
+a { color: var(--accent); text-decoration: none; }
+
+/* ---- M12：頂部 2px 閱讀進度線（捲動填充，--accent） ---- */
+#m12-scroll-progress {
+  position: fixed; top: 0; left: 0; height: 2px; width: 0;
+  background: var(--accent); z-index: 50;
+}
+/* ---- M12：章節進入視窗單次位移淡入（150–300ms） ---- */
+.reveal { opacity: 0; transform: translateY(14px); }
+.reveal.revealed {
+  opacity: 1; transform: none;
+  transition: opacity var(--dur) var(--ease), transform var(--dur) var(--ease);
+}
+
+.wrap { max-width: 860px; margin: 0 auto; padding: 72px 28px 120px; }
+.topbar { display: flex; justify-content: space-between; align-items: baseline; padding: 24px 28px 0; max-width: 860px; margin: 0 auto; }
+.topbar .brand { font-weight: 700; letter-spacing: .02em; }
+.topbar nav a { margin-left: 20px; color: var(--ink-soft); }
+
+/* ---- 卡片（Khan 式模組化層級） ---- */
+.card {
+  background: var(--surface); border: 1px solid var(--hairline);
+  border-radius: 14px; padding: 26px 28px; margin: 18px 0;
+}
+.card h3 { margin-top: 0; }
+.muted { color: var(--ink-soft); font-size: 14px; }
+
+/* ---- M1：模組卡頂部細進度條（實心細線＋百分比） ---- */
+.m1-progress { display: flex; align-items: center; gap: 12px; margin-bottom: 18px; }
+.m1-progress .bar { flex: 1; height: 2px; background: var(--hairline); position: relative; }
+.m1-progress .bar > span { position: absolute; left: 0; top: 0; height: 2px; background: var(--accent); display: block; }
+.m1-progress .pct { font-size: 13px; color: var(--ink-soft); min-width: 40px; text-align: right; }
+
+/* ---- M1：標記完成核取框 ---- */
+.m1-check { display: flex; align-items: center; gap: 10px; padding: 10px 0; border-top: 1px solid var(--hairline); cursor: pointer; }
+.m1-check input { accent-color: var(--accent); width: 15px; height: 15px; cursor: pointer; }
+
+/* ---- M11：書籤細線圖標（模組卡右上角） ---- */
+.m11-bookmark { position: absolute; top: 18px; right: 18px; background: none; border: 0; padding: 4px; cursor: pointer; color: var(--ink-soft); }
+.m11-bookmark.saved { color: var(--accent); }
+.card { position: relative; }
+
+/* ---- M3：鎖狀態 ---- */
+.m3-lock-note { display: none; color: var(--ink-soft); font-size: 14px; border: 1px dashed var(--hairline); border-radius: 10px; padding: 10px 14px; margin-top: 12px; }
+.card.locked .m3-lock-note { display: block; }
+.card.locked .lock-svg { vertical-align: -3px; margin-right: 6px; }
+
+/* ---- M2：測驗卡即時回饋 ---- */
+.quiz-q { padding: 18px 0; border-top: 1px solid var(--hairline); }
+.quiz-q:first-of-type { border-top: 0; }
+.quiz-q[hidden] { display: none; }
+.opts { display: flex; flex-direction: column; gap: 8px; margin: 12px 0; }
+.opt { display: flex; gap: 10px; align-items: center; border: 1px solid var(--hairline); border-radius: 10px; padding: 10px 14px; cursor: pointer; }
+.opt input { accent-color: var(--accent); }
+.btn {
+  font: inherit; font-weight: 600; color: #fff; background: var(--accent);
+  border: 0; border-radius: 10px; padding: 9px 20px; cursor: pointer;
+}
+.btn.ghost { background: none; color: var(--accent); border: 1px solid var(--accent); font-weight: 600; }
+.feedback { margin-top: 10px; font-weight: 600; min-height: 24px; }
+.feedback.ok { color: var(--accent); }
+.feedback.bad { color: var(--warn); }
+.feedback.show { animation: nudge 200ms var(--ease) 1; } /* 單次 200ms 位移＋淡入（Joseph Berry 節奏） */
+@keyframes nudge { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: none; } }
+
+/* ---- M8：提示階梯（逐級展開、單次淡入） ---- */
+.hint-ladder { margin-top: 10px; }
+.hint-ladder button { font: inherit; background: none; border: 0; color: var(--accent); cursor: pointer; padding: 2px 0; display: block; text-align: left; }
+.hint-ladder button:disabled { color: var(--ink-soft); cursor: default; }
+.hint-ladder .hint { display: none; border-left: 2px solid var(--accent); padding: 6px 14px; margin: 8px 0; animation: nudge 250ms var(--ease) 1; }
+.hint-ladder .hint.shown { display: block; }
+
+/* ---- M9：配對題拖曳 ---- */
+.match-row { display: flex; gap: 12px; align-items: center; margin: 8px 0; }
+.match-left { border: 1px solid var(--hairline); border-radius: 10px; padding: 8px 14px; min-width: 220px; }
+.drop-zone { border: 1px dashed var(--hairline); border-radius: 10px; padding: 8px 14px; min-width: 220px; color: var(--ink-soft); }
+.drop-zone.over { border-color: var(--accent); }
+.drag-chip { display: inline-block; border: 1px solid var(--accent); color: var(--accent); border-radius: 999px; padding: 4px 14px; margin: 4px; cursor: grab; }
+.drag-chip.placed { visibility: hidden; }
+.drag-chip.selected { background: var(--accent); color: #fff; }
+
+/* ---- M5：印章槽（單色線條 SVG，獲得時單次 300ms 描邊） ---- */
+.seal-row { display: flex; gap: 18px; margin: 22px 0 8px; }
+.seal-slot { width: 54px; height: 54px; opacity: .28; }
+.seal-slot.awarded { opacity: 1; }
+.seal-slot.awarded svg { stroke-dasharray: 220; animation: draw 300ms var(--ease) 1 forwards; }
+@keyframes draw { from { stroke-dashoffset: 220; } to { stroke-dashoffset: 0; } }
+
+/* ---- M6：連擊數字＋7 格圓點日曆 ---- */
+.streak-row { display: flex; align-items: center; gap: 14px; margin: 18px 0; }
+.streak-count { font-size: 30px; font-weight: 700; color: var(--accent); }
+.streak-dots { display: flex; gap: 8px; }
+.streak-dots i { width: 10px; height: 10px; border-radius: 50%; background: var(--hairline); display: block; }
+.streak-dots i.on { background: var(--accent); }
+
+/* ---- M10：路徑卡 ---- */
+.path-card .num { font-size: 13px; font-weight: 700; color: var(--ink-soft); letter-spacing: .12em; }
+.path-card .next-step { margin-top: 14px; }
+
+/* ---- M13：證書 ---- */
+.cert-sheet { background: #fffdf9; border: 1px solid var(--hairline); border-radius: 4px; padding: 64px 56px; text-align: center; }
+.cert-sheet input { font: inherit; font-weight: 700; text-align: center; border: 0; border-bottom: 1px solid var(--hairline); background: none; color: var(--ink); padding: 6px; width: 320px; }
+.cert-sheet .seal { margin-top: 30px; }
+
+@media print { .no-print { display: none; } .cert-sheet { border: 0; } }

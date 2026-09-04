@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<!-- 框架層骨架頁（新增課程時本檔零改動——課程内容由 content/courses/*.json 驅動） -->
+<html lang="zh-Hant">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>醫美教學站｜教學頁</title>
+<link rel="stylesheet" href="../assets/css/site.css">
+<script src="../assets/js/site.js" defer></script>
+</head>
+<body data-page="course">
+<div id="m12-scroll-progress" data-mid="M12" aria-hidden="true"></div>
+<header class="topbar"><span class="brand">Medical Aesthetic Teaching</span>
+<nav><a href="index.html">課程目錄</a><a href="course.html">示範課程</a></nav></header>
+<main class="wrap">
+  <h1 id="course-title" class="reveal"></h1>
+  <div id="module-zone"></div>
+  <!-- M13 證書入口：全部模組達標才出現 -->
+  <div id="m13-cert-entry" data-mid="M13" style="display:none">
+    <h2>領取結業證書</h2>
+    <input type="text" placeholder="輸入你的姓名" aria-label="姓名">
+    <button class="btn">生成證書</button>
+  </div>
+</main>
+</body>
+</html>

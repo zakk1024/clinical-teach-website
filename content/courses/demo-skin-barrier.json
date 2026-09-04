@@ -1,0 +1,62 @@
+{
+  "id": "demo-skin-barrier",
+  "title": "皮膚屏障基礎（示範課程）",
+  "modules": [
+    {
+      "id": "demo-skin-barrier",
+      "title": "模組 01｜皮膚屏障結構",
+      "locked_by_default": false,
+      "units": [
+        { "id": "unit-brick-mortar", "title": "磚塊與灰漿模型", "anchors": ["brick-mortar"],
+          "body": ["角質層經典的「磚塊與灰漿」（brick and mortar）模型：角質細胞是磚塊，細胞間脂質——神經醯胺、膽固醇、遊離脂肪酸——是灰漿。任何一環受損，屏障整體功能即下降。", "醫美操作（換臉、雷射）對屏障的影響，本質上都是對「灰漿」的暫時性拆除與重建；術後修護策略围绕脂質雙層的恢復窗口。"] },
+        { "id": "unit-tewl", "title": "經皮水分散失（TEWL）", "anchors": ["tewl"],
+          "body": ["TEWL（transepidermal water loss）量的是水分經角質層蒸散的速率，是目前最常用的客觀屏障功能指標。", "TEWL 越高代表屏障越留不住水——數值與屏障功能成反比。術後 TEWL 曲線的恢復速度，是評估療程恢復期的核心數據之一。"] }
+      ],
+      "questions": [
+        {
+          "id": "q1",
+          "type": "multiple_choice",
+          "prompt": "「磚塊與灰漿」模型中，構成「灰漿」_MAIN_ 成分的是？",
+          "options": ["角質細胞間脂質（神經醯胺、膽固醇、遊離脂肪酸）", "黑色素", "角蛋白", "膠原蛋白"],
+          "answer": 0,
+          "hints": [
+            "回想段落 §磚塊與灰漿：灰漿＝細胞「之間」的填充物（站內錨點 #brick-mortar）。",
+            "灰漿是脂質雙層結構，三大組成分屬同一類分子。",
+            "答案：角質細胞間脂質（神經醯胺、膽固醇、遊離脂肪酸）。"
+          ]
+        },
+        {
+          "id": "q2",
+          "type": "true_false",
+          "prompt": "TEWL 數值越高代表皮膚屏障功能越強。",
+          "options": ["對", "錯"],
+          "answer": 1,
+          "hints": [
+            "TEWL 量的是水分「escape」出去的速率（站內錨點 #tewl）。",
+            "跑掉的水分越多＝屏障越留不住東西。",
+            "答案：錯。TEWL 越高＝屏障功能越差。"
+          ]
+        }
+      ],
+      "match": {
+        "id": "match-1",
+        "pairs": [
+          { "left": "神經醯胺", "right": "細胞間脂質（灰漿）" },
+          { "left": "角質細胞", "right": "磚塊" },
+          { "left": "TEWL", "right": "屏障功能指標" }
+        ]
+      }
+    },
+    {
+      "id": "demo-chemical-peel",
+      "title": "模組 02｜換臉與屏障（佔位模組）",
+      "locked_by_default": true,
+      "units": [
+        { "id": "unit-peel-depth", "title": "換臉深度分級", "anchors": ["peel-depth"],
+          "body": ["換臉依作用深度分三級：極淺層（角質層）、淺層（乳頭層）、中層（网状層上段）。深度決定恢復期與併發症風險。", "本模組為示範佔位；正式課程内容由內容岗起草、使用者審核（Q4）。"] }
+      ],
+      "questions": [],
+      "match": null
+    }
+  ]
+}

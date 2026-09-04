@@ -1,0 +1,8 @@
+# 學習路徑編排（M10 資料層）；modules 順序陣列即 M3 硬門檻順序。
+# 新增一門課＝content/courses/ 加一個檔案＋courses.yml 索引加一行，本檔按路徑需要加行。
+paths:
+  - id: path-foundation
+    title: 醫美皮膚科學基礎路徑
+    modules:
+      - demo-skin-barrier
+      - demo-chemical-peel

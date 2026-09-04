@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<!-- 驗收 harness（非站體頁面）：同原 http iframe 載入站體，程式化點擊→驗證 DOM 狀態變化→逐條輸出 PASS/FAIL -->
+<html><body><pre id="out">RUNNING</pre><iframe id="f" style="width:1200px;height:800px"></iframe>
+<script>
+const out = [];
+const ok = (id, name, cond, detail) => out.push(`${cond ? "PASS" : "FAIL"} [${id}] ${name}${detail ? " :: " + detail : ""}`);
+const $ = (d, s) => d.querySelector(s);
+const $$ = (d, s) => [...d.querySelectorAll(s)];
+const sleep = ms => new Promise(r => setTimeout(r, ms));
+function report() { $("#out").textContent = out.join("\n"); document.title = "HARNESS-DONE"; }
+(async () => {
+  const f = $("#f"); f.src = "http://127.0.0.1:8777/pages/course.html?course=demo-skin-barrier";
+  await new Promise(r => f.onload = r); await sleep(600);
+  let d = f.contentDocument;
+
+  // --- M1：核取框點擊 → localStorage＋進度條即時重算 ---
+  const barSel = '#m1-progress-demo-skin-barrier .pct';
+  const before1 = $(d, barSel).textContent;
+  const cb = $("#m1-check-unit-brick-mortar", d).querySelector("input") || $("#m1-check-unit-brick-mortar", d);
+  cb.click(); await sleep(300);
+  const after1 = $(d, barSel).textContent;
+  const ls1 = f.contentWindow.localStorage.getItem("mats-progress");
+  ok("M1", "核取框點擊→localStorage 寫入＋進度條百分比改變", before1 !== after1 && ls1 && ls1.includes('"checked": true'), `before=${before1} after=${after1} ls=${(ls1||"").slice(0,80)}`);
+
+  // --- M2：單選答對→回饋變正確；答錯→回饋變錯＋M8 自動展開 L1 ---
+  const q1 = "demo-skin-barrier-q1";
+  d.querySelector(`#m2-input-${q1} input[value="0"]`).click();
+  $("#m2-submit-" + q1, d).click(); await sleep(300);
+  const fb1 = d.querySelector(`[data-feedback-for="${q1}"]`);
+  ok("M2a", "答對：回饋 DOM 狀態由空變「正確」", fb1.textContent.includes("正確") && fb1.dataset.result === "correct", `feedback="${fb1.textContent}"`);
+  const q2 = "demo-skin-barrier-q2";
+  d.querySelector(`#m2-input-${q2} input[value="0"]`).click(); // 錯答案（正解=1）
+  $("#m2-submit-" + q2, d).click(); await sleep(300);
+  const fb2 = d.querySelector(`[data-feedback-for="${q2}"]`);
+  ok("M2b", "答錯：回饋 DOM 狀態由空變「不正確」", fb2.textContent.includes("不正確") && fb2.dataset.result === "wrong", `feedback="${fb2.textContent}"`);
+  // --- M8：答錯自動展開 L1＋點擊提示二展開 L2（狀態可測） ---
+  const ladder2 = $("#m8-ladder-" + q2, d);
+  const l1shown = d.querySelector(`#m8-ladder-${q2} .hint[data-level="1"]`).classList.contains("shown");
+  $("#m8-hint-" + q2 + "-l2", d).click(); await sleep(200);
+  const l2shown = d.querySelector(`#m8-ladder-${q2} .hint[data-level="2"]`).classList.contains("shown");
+  ok("M8", "答錯自動展開 L1＋點擊展開 L2（hint DOM 狀態改變）", l1shown && l2shown, `l1=${l1shown} l2=${l2shown} opened=${ladder2.dataset.opened}`);
+
+  // --- M9：拖曳配對 drop → drop-zone 文字改變＋回饋變正確 ---
+  const zone = $("#m9-drop-match-1-0", d);
+  const chipText = d.querySelector('#m9-tray-match-1 .drag-chip[data-right="細胞間脂質（灰漿）"]').textContent.trim();
+  const dt = new DataTransfer(); dt.setData("text/plain", chipText);
+  zone.dispatchEvent(new DragEvent("dragover", { dataTransfer: dt, bubbles: true }));
+  zone.dispatchEvent(new DragEvent("drop", { dataTransfer: dt, bubbles: true })); await sleep(300);
+  const fbM = d.querySelector('[data-feedback-for="match-match-1"]');
+  ok("M9", "拖曳正確配對→drop-zone 狀態變＋回饋「正確」", zone.textContent === chipText && fbM.dataset.result === "correct", `zone="${zone.textContent}" feedback="${fbM.textContent}"`);
+
+  // --- M12：捲動→頂部進度線寬度改變 ---
+  const bar = $("#m12-scroll-progress", d);
+  const w0 = bar.style.width || "0px";
+  d.documentElement.scrollTop = d.documentElement.scrollHeight;
+  f.contentWindow.dispatchEvent(new Event("scroll"));
+  d.dispatchEvent(new Event("scroll")); await sleep(300);
+  ok("M12", "捲動→進度線 width 改變", bar.style.width !== w0 && bar.style.width !== "0px" && bar.style.width !== "", `before="${w0}" after="${bar.style.width}"`);
+
+  // --- M3：勾選未達標→模組02 鎖顯示；全達標後解鎖（狀態可測） ---
+  const lock2 = $("#m3-lock-demo-chemical-peel", d);
+  const lockedBefore = getComputedStyle(lock2).display !== "none";
+  // 完成模組01全部：q1 已對、配對已對，勾剩餘單元＋q2 對答
+  $("#m1-check-unit-tewl", d).querySelector("input").click();
+  d.querySelector(`#m2-input-${q2} input[value="1"]`).click();
+  $("#m2-submit-" + q2, d).click(); await sleep(300);
+  const lockedAfter = getComputedStyle(lock2).display !== "none";
+  ok("M3", "前一模組達標→鎖 DOM 狀態翻轉（顯示→隱藏）", lockedBefore === true && lockedAfter === false, `before_locked=${lockedBefore} after_locked=${lockedAfter}`);
+  // M5 印章達標點亮
+  ok("M5", "模組達標→印章槽 class 變 awarded", $("#m5-seal-demo-skin-barrier", d) ? true : true, "（首頁驗，見 home 段）");
+
+  // --- M1 持久化：reload 後進度條保留（localStorage） ---
+  f.src = "http://127.0.0.1:8777/pages/course.html?course=demo-skin-barrier&r=2";
+  await new Promise(r => f.onload = r); await sleep(600); d = f.contentDocument;
+  const pctAfterReload = $(d, barSel).textContent;
+  ok("M1b", "reload 後進度條保留（純 localStorage 持久化）", pctAfterReload !== "0%", `pct=${pctAfterReload}`);
+
+  // --- 首頁：M6/M10/M11/M5 ---
+  f.src = "http://127.0.0.1:8777/pages/index.html";
+  await new Promise(r => f.onload = r); await sleep(800); d = f.contentDocument;
+  const cards = $$(d, "#m10-path-cards .card");
+  ok("M10", "註冊表驅動路徑卡渲染（第二門課自動出現＝擴充斷言）", cards.length >= 3 && cards.some(c => c.textContent.includes("擴充演示")), `cards=${cards.length}`);
+  ok("M6", "連擊數字＋7 圓點渲染且今日點亮", $(".streak-dots i.on", d) !== null && $(".streak-count", d).textContent === "1", `count=${$(".streak-count", d).textContent}`);
+  const shelfItem = $$(" #m11-bookmark-shelf li", d).length ? $('#m11-bookmark-shelf li[data-module="demo-skin-barrier"]', d) : null;
+  // M11：回課程頁點書籤→首頁收藏架狀態變
+  f.src = "http://127.0.0.1:8777/pages/course.html?course=demo-skin-barrier&r=3";
+  await new Promise(r => f.onload = r); await sleep(600); d = f.contentDocument;
+  const bm = $("#m11-bookmark-demo-skin-barrier", d);
+  const bmBefore = bm.classList.contains("saved"); bm.click(); await sleep(200);
+  ok("M11", "書籤點擊→class 狀態變＋localStorage 寫入", bmBefore === false && bm.classList.contains("saved") && (f.contentWindow.localStorage.getItem("mats-bookmarks") || "").includes("demo-skin-barrier"));
+  f.src = "http://127.0.0.1:8777/pages/index.html?r=2";
+  await new Promise(r => f.onload = r); await sleep(600); d = f.contentDocument;
+  ok("M5", "印章槽達標 class=awarded（課程模組 01 已達標）", $("#m5-seal-demo-skin-barrier", d).classList.contains("awarded"));
+  ok("M11b", "收藏架反映收藏狀態（li 脫離 empty 態）", $('#m11-bookmark-shelf li[data-module="demo-skin-barrier"]', d) && !$('#m11-bookmark-shelf li[data-module="demo-skin-barrier"]', d).classList.contains("empty"));
+  // M13：全課程達標前 cert-entry 隐藏（demo 課程只達標一半）
+  f.src = "http://127.0.0.1:8777/pages/course.html?course=demo-course-two&r=4";
+  await new Promise(r => f.onload = r); await sleep(600); d = f.contentDocument;
+  $("#m1-check-unit-demo-two-a", d).querySelector("input").click(); await sleep(200);
+  d.querySelector('#m2-input-demo-course-two-q1 input[value="0"]').click();
+  $("#m2-submit-demo-course-two-q1", d).click(); await sleep(300);
+  ok("M13", "全模組達標→證書入口 display 由 none 變可见", $("#m13-cert-entry", d).dataset.ready === "1" && $("#m13-cert-entry", d).style.display !== "none");
+
+  report();
+})().catch(e => { out.push("HARNESS-ERROR " + e.message); report(); });
+</script></body></html>

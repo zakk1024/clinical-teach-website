@@ -1,0 +1,26 @@
+{
+  "$comment": "擴充斷言演示用第二門課：本檔＝content/ 加的一個檔案；courses.yml 索引加一行；框架層（骨架 HTML/JS/CSS）零改動。",
+  "id": "demo-course-two",
+  "title": "擴充演示課程（第二門課）",
+  "modules": [
+    {
+      "id": "demo-course-two-m1",
+      "title": "模組 01｜擴充演示",
+      "locked_by_default": false,
+      "units": [
+        { "id": "unit-demo-two-a", "title": "示範單元 A", "anchors": [], "body": ["這一課存在的唯一目的：驗證『新增一門課＝content/ 加一檔＋索引加一行，框架層 diff 零改動』。"] }
+      ],
+      "questions": [
+        {
+          "id": "q1",
+          "type": "true_false",
+          "prompt": "本課程僅由註冊表驅動，框架層未為它改動任何檔案。",
+          "options": ["對", "錯"],
+          "answer": 0,
+          "hints": ["提示一：看看 courses.yml。", "提示二：它只是索引加的一行。", "答案：對。"]
+        }
+      ],
+      "match": null
+    }
+  ]
+}

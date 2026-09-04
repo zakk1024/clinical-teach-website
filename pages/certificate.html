@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<!-- M13 證書頁（框架層骨架，對所有課程通用；姓名存 localStorage） -->
+<html lang="zh-Hant">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>結業證書｜Medical Aesthetic Teaching</title>
+<link rel="stylesheet" href="../assets/css/site.css">
+<style>@media print { nav, .no-print { display: none; } }</style>
+<script src="../assets/js/site.js" defer></script>
+</head>
+<body data-page="certificate">
+<div id="m12-scroll-progress" data-mid="M12" aria-hidden="true"></div>
+<main class="wrap">
+  <div class="cert-sheet" id="m13-certificate" data-mid="M13">
+    <p class="muted no-print"> Medical Aesthetic Teaching</p>
+    <h1>結業證書</h1>
+    <p>兹证明</p>
+    <input type="text" id="cert-name" placeholder="姓名" aria-label="姓名">
+    <p>完成學習路徑 <strong id="cert-course">——</strong></p>
+    <div class="seal"><svg width="72" height="72" viewBox="0 0 60 60" fill="none" stroke="currentColor" stroke-width="1.5" style="stroke-dasharray:220;animation:draw 300ms cubic-bezier(.22,.61,.36,1) 1 forwards"><circle cx="30" cy="30" r="24"/><text x="30" y="36" text-anchor="middle" font-size="12" stroke="none" fill="currentColor">✓</text></svg></div>
+    <p class="muted no-print">以瀏覽器列印可輸出為 PDF</p>
+  </div>
+</main>
+<script>
+// certificate 頁專用渲染（讀注册表＋localStorage；非互動機制，不動框架層）
+document.addEventListener("DOMContentLoaded", async () => {
+  const ls = k => { try { return JSON.parse(localStorage.getItem(k)) ?? ""; } catch { return ""; } };
+  const params = new URLSearchParams(location.search);
+  const courseId = params.get("course");
+  if (courseId) document.getElementById("cert-course").textContent = courseId;
+  const nameEl = document.getElementById("cert-name");
+  nameEl.value = ls("mats-name");
+  nameEl.addEventListener("input", () => localStorage.setItem("mats-name", JSON.stringify(nameEl.value)));
+});
+</script>
+</body>
+</html>

@@ -1,0 +1,7 @@
+{
+  "$comment": "M1/M4/M7 資料層 schema（映射表 M1、M4、M7 行）。運行時真資料存 localStorage（key: mats-progress）；本檔為 schema＋離線鏡像。points 欄位依 M4 保留但預設不渲染；users 欄位依 M7 佔位，不建排行榜 UI。",
+  "records": [
+    { "courseId": null, "moduleId": null, "unitId": null, "checked": false, "points": 0 }
+  ],
+  "users": []
+}
