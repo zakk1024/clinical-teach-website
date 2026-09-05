@@ -1,0 +1,98 @@
+{
+  "$comment": "課程 3／3：膠原蛋白增生劑全臉施打衛教課。內容層檔案：courses.yml 索引加一行，框架層零改動。互動點對照 M2/M8/M9（見 docs/reverse-map.md）。",
+  "id": "collagen-stimulator-full-face",
+  "title": "膠原蛋白增生劑全臉施打（PCL／PLLA 類）衛教課",
+  "sources": [
+    { "id": "src-fda-sculptra", "url": "https://www.fda.gov/medical-devices/recently-approved-devices/sculptra-p030050s039", "note": "FDA PMA P030050/S039：Sculptra（PLLA-SCA）2023-04-25 核准用於臉頰細紋與皺紋（FDA 監管來源）" },
+    { "id": "src-mohw-ellanse", "url": "https://www.taog.org.tw/news_contain_page.php?SN=13", "note": "台灣整容醫學會轉達衛福部函：衛部醫器輸字第 026659 號「洢蓮絲植入劑」（PCL／CMC）許可證與注射機構限制（衛福部來源）" },
+    { "id": "src-pmc-pcl", "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC7065466/", "note": "PMC7065466（Clin Cosmet Invest Dermatol）：PCL 微球懸浮於 CMC 水相載體、生物降解與膠原增生機制" },
+    { "id": "src-galderma-press", "url": "https://www.galderma.com/news/galderma-receives-fda-approval-sculptrar-cheek-wrinkles-0", "note": "原廠 Galderma 新聞稿：PLLA 注射後刺激自然膠原生成、療效持續達 2 年" },
+    { "id": "src-sanofi-press", "url": "https://www.news.sanofi.us/press-releases?item=118490", "note": "原廠（Sanofi-aventis U.S.）新聞稿：Sculptra Aesthetic 療程分次注射、間隔約 3 週、療效維持達 25 個月" },
+    { "id": "src-jcad-don", "url": "https://jcadonline.com/aesthetic-complications-delayed-nodules/", "note": "JCAD：遲發型結節（DONs）評估與管理（醫學文獻）" },
+    { "id": "src-fda-label", "url": "https://www.accessdata.fda.gov/cdrh_docs/pdf3/P030050S039C.pdf", "note": "Sculptra 官方仿單（FDA PMA P030050/S039 labeling）：5-5-5 術後按摩法則、遲發性丘疹／結節、數週漸進顯效、注射後至少 4 週評估追加療程" }
+  ],
+  "modules": [
+    {
+      "id": "collagen-stimulator-full-face-m1",
+      "title": "模組 01｜認識膠原蛋白增生劑",
+      "locked_by_default": false,
+      "units": [
+        { "id": "unit-what-is-biostimulator", "title": "膠原蛋白增生劑是什麼", "anchors": ["what-is-biostimulator"],
+          "body": [
+            "膠原蛋白增生劑（collagen biostimulator）是 injectable 植入劑：注射進皮膚後，刺激自身纖維母細胞新生膠原蛋白，效果漸進式顯現，而非單純物理填充。［src-galderma-press］",
+            "PLLA 類代表是 Sculptra（聚左旋乳酸，PLLA-SCA）；PCL 類代表是洢蓮絲（Ellansé）：30％ PCL 微球懸浮於 70％ CMC（羧甲基纖維素）水相凝膠載體，PCL 為可生物降解聚合物。［src-pmc-pcl］",
+            " Regulatory 定位：Sculptra 為 FDA 以 PMA 核准的醫療器材；台灣方面，衛福部函告「洢蓮絲植入劑」（衛部醫器輸字第 026659 號）應比照玻尿酸皮下植入物注射劑類產品，限醫療機構由醫事人員注射。［src-fda-sculptra］［src-mohw-ellanse］"
+          ] },
+        { "id": "unit-onset-and-schedule", "title": "療程節奏：漸進效果與分次注射", "anchors": ["onset-and-schedule"],
+          "body": [
+            "與玻尿酸「打完立即見效」不同，膠原蛋白增生劑的效果靠自身膠原慢慢生成，屬長效型療程；原廠臨床數據顯示療效可維持約 2 年（Sculptra 追蹤至末次注射後 25 個月）。［src-galderma-press］［src-sanofi-press］",
+            "原廠核准的療程是分次進行：Sculptra 臨床上以約 3 週間隔、至多 4 次注射完成一個療程——「全臉施打」通常是多點位、分次數的計畫型療程，不是單次見效的產品。［src-sanofi-press］",
+            "衛教重點：術後早期腫脹多為水分與注射創傷，不等於最終效果；真正的膠原新生以月計，衛教時要把期望值錨定在「漸進、自然」。"
+          ] },
+        { "id": "unit-aftercare-don", "title": "術後照護與遲發型結節", "anchors": ["aftercare-don"],
+          "body": [
+            "PLLA 類（Sculptra）官方仿單的術後按摩指令是「555」：依醫囑按摩治療區每次 5 分鐘、每天 5 次、連續 5 天，以幫助產物均勻分佈、協助自然外觀的矯正。［src-fda-label］",
+            "延遲出現的皮下丘疹與結節是仿明示列的術後反應：注射後數天至數月才出現、消退時間較長；初期評估須納入對生活品質的影響。［src-fda-label］［src-jcad-don］",
+            "出現紅、腫、硬結或延遲不退的腫脹應回診評估，不自行按摩或熱敷——這是術後衛教的紅旗項目。"
+          ] }
+      ],
+      "questions": [
+        {
+          "id": "m2-q1",
+          "type": "multiple_choice",
+          "prompt": "膠原蛋白增生劑（PCL／PLLA 類）的療效主要來自於——（單一選）",
+          "options": ["物理性填充體積，等同玻尿酸", "刺激自身纖維母細胞新生膠原蛋白", "麻酔成分造成的暫時性紅腫", "皮膚表面的化學換臉反應"],
+          "answer": 1,
+          "hints": [
+            "回想段落 §膠原蛋白增生劑是什麼（站内錨點 #what-is-biostimulator）。",
+            "題眼在「增生」二字：效果是誰製造的？",
+            "答案：刺激自身纖維母細胞新生膠原蛋白（見原廠 Galderma 官方新聞稿）。"
+          ]
+        },
+        {
+          "id": "m2-q2",
+          "type": "true_false",
+          "prompt": "打完全臉後立刻出現的腫脹，就等於最終療效。",
+          "options": ["對", "錯"],
+          "answer": 1,
+          "hints": [
+            "回想段落 §療程節奏（站内錨點 #onset-and-schedule）。",
+            "早期腫脹＝水分＋注射創傷；膠原生成以「月」為單位。",
+            "答案：錯。漸進式顯效，術後立即效果不等於最終效果。"
+          ]
+        },
+        {
+          "id": "m2-q3",
+          "type": "multiple_choice",
+          "prompt": "術後出現遲發型結節（DONs）正確的應對是——（單一選）",
+          "options": ["自己在家每天大力按摩把它揉散", "回診由醫事人員評估（見 #aftercare-don）", "熱敷加大劑中等待消失", "視為感染自行服用抗生素"],
+          "answer": 1,
+          "hints": [
+            "回想段落 §術後照護與遲發型結節（站内錨點 #aftercare-don）。",
+            "遲發型結節可能是遲發免疫反應，不是單純感染。",
+            "答案：回診由醫事人員評估——紅旗項目不自行處理。"
+          ]
+        }
+      ],
+      "match": {
+        "id": "m9-match-1",
+        "pairs": [
+          { "left": "PLLA（聚左旋乳酸）", "right": "Sculptra——FDA PMA 核准，療效可達約 2 年" },
+          { "left": "PCL 微球＋CMC 載體", "right": "洢蓮絲（Ellansé）——衛福部衛部醫器輸字第 026659 號" },
+          { "left": "「555」法則", "right": "PLLA 術後按摩：每天 5 次、每次 5 分鐘、連續 5 天" },
+          { "left": "遲發型結節（DONs）", "right": "術後數週至數年才出現的已知併發症" }
+        ]
+      }
+    }
+  ],
+  "source_map": {
+    "漸進式膠原新生、療效達約 2 年": "src-galderma-press",
+    "分次療程約 3 週間隔、維持達 25 個月": "src-sanofi-press",
+    "術後 555 按摩法則、遲發性結節為仿明示列反應": "src-fda-label",
+    "PCL 微球懸浮於 CMC 載體、生物降解": "src-pmc-pcl",
+    "FDA PMA 核准（2023-04-25）": "src-fda-sculptra",
+    "衛福部許可證 026659、限醫療機構注射": "src-mohw-ellanse",
+    "555 術後按摩法則": "src-fda-label",
+    "遲發型結節為已知併發症": "src-jcad-don"
+  }
+}

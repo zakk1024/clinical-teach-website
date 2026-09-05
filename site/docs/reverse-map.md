@@ -19,3 +19,6 @@
 | `m12-scroll-progress` 頂部 2px `--accent` 閱讀進度線＋章節單次淡入（150–300ms） | M12 |
 | `m13-cert-entry`／`m13-certificate` 全模組達標→證書入口（姓名 localStorage `mats-name`，列印為 PDF） | M13 |
 | 無凍結卡 UI、無補救道具欄位（M6 斷一天即斷連） | M14（棄·落點） |
+| `course-thread-lift.json` 測驗互動：`m2-input-thread-lift-basics-q1/q2`＋`m2-submit-*` 即時判定、`m8-ladder-*` 三級提示、`m9-drop/tray-match-1` 拖曳配對（皆由框架引擎渲染，內容層零框架改動） | M2＋M8＋M9 |
+| `collagen-stimulator-full-face`：`m2-q1`–`m2-q3`（單選＋是非）、`m8-ladder-*`/`m8-hint-*` 提示階梯、`m9-match-1` 拖曳配對 | M2／M8／M9（課程 3 回填） |
+| `nose-thread-lift`：`m2-q1`／`m2-q2`（單選＋是非，答錯展開提示階梯）、`m8-ladder-*`/`m8-hint-*` 三級提示、`m9-match-1` 拖曳配對 | M2／M8／M9（課程 1 回填） |

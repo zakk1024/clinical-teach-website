@@ -21,4 +21,6 @@
 `m11-bookmark-*`／`m11-bookmark-shelf`、`m12-scroll-progress`、`m13-cert-entry`。
 
 ## 跑法
-`cd site && python3 -m http.server 8080` → http://127.0.0.1:8080/pages/index.html
+`cd site && python3 -m http.server 8777` → http://127.0.0.1:8777/pages/index.html
+
+> 注意：雙擊直接開 harness.html 會白頁（file:// 沒起伺服器）。正確跑法：終端 A `python3 -m http.server 8777 --directory site`（從 repo 根目錄起），終端 B 跑 `python3 site/tests/run_harness.py`。

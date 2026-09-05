@@ -1,0 +1,74 @@
+{
+  "$comment": "課程 2／3：臉部提升埋線衛教課。schema 照 demo-skin-barrier.json；互動點＝M2（提交即判）＋M8（三級提示階梯）＋M9（拖曳配對）。每段醫療事實聲稱附可查證來源（醫學文獻 PubMed/PMC＋衛福部食藥署＋原廠官方；無大陸監管來源）。",
+  "id": "course-thread-lift",
+  "title": "臉部提升埋線（Thread Lift）衛教課",
+  "sources": [
+    "https://pubmed.ncbi.nlm.nih.gov/33821308/",
+    "https://pmc.ncbi.nlm.nih.gov/articles/PMC11086642/",
+    "https://pubmed.ncbi.nlm.nih.gov/25993611/",
+    "https://www.fda.gov.tw/tc/site.aspx?sid=11634",
+    "https://www.pdomax.com/"
+  ],
+  "modules": [
+    {
+      "id": "thread-lift-basics",
+      "title": "模組 01｜埋線是什麼：材質與作用原理",
+      "locked_by_default": false,
+      "units": [
+        { "id": "unit-what-is-thread", "title": "埋線在做什麼", "anchors": ["what-is-thread"],
+          "body": ["埋線（thread lift）是把細線經針或套管置入皮下，有倒鉤（cog／barb）的線靠倒鉤鉤住皮下組織產生立即提拉；無倒鉤的平滑線（mono）主要刺激膠原、改善質感。現流主流是可吸收倒鉤線——文獻回顧指出高品質可吸收倒鉤線在提拉與維持上已成為主流做法（來源：Clin Cosmet Investig Dermatol 2024 材料回顧，https://pmc.ncbi.nlm.nih.gov/articles/PMC11086642/）。"] },
+        { "id": "unit-materials", "title": "材質：PDO、PLLA、PCL 差在吸收時間", "anchors": ["materials"],
+          "body": ["同一篇材料回顧給出吸收時間對照：PDO 約 6–8 個月、PLLA 約 12 個月（維持效應文獻記約 18–24 個月）、PCL 約 1–1.5 年。可吸收線在體內逐步分解，相對不可吸收線，併發症統計顯示其線材外露與感覺異常風險顯著較低（來源：https://pmc.ncbi.nlm.nih.gov/articles/PMC11086642/ ；https://pubmed.ncbi.nlm.nih.gov/33821308/）。"] },
+        { "id": "unit-regulation", "title": "在臺灣怎麼認合法的線", "anchors": ["regulation"],
+          "body": ["植入體內的可吸收縫合線／拉提線材在臺灣屬醫療器材，須經衛生福利部食品藥物管理署醫療器材查驗登記核發許可證（衛署／衛部醫器輸製字），術前可請診所出示產品許可證字號（來源：衛福部食藥署醫療器材查驗登記專區，https://www.fda.gov.tw/tc/site.aspx?sid=11634 ）。美國市場則以 FDA clearance 為上市門檻，例如原廠 PDO Max 官方網站標示其 threads-in-cannula 持 FDA cleared K190245／K210871（來源：原廠官網 https://www.pdomax.com/ ）。"] }
+      ],
+      "questions": [
+        {
+          "id": "q1",
+          "type": "multiple_choice",
+          "prompt": "依統合分析（26 篇研究），臉部埋線最常見的併發症是？",
+          "options": ["腫脹（約 35%）", "感染（約 2%）", "線材外露（約 2%）", "永久神經損傷（約 20%）"],
+          "answer": 0,
+          "hints": [
+            "回想段落 §併發症統計的數字表（站內錨點 #complications）。",
+            "題幹問「最常見」——比較表裡那個最大的百分比。",
+            "答案：腫脹，統計發生率約 35%，是各併發症之首。"
+          ]
+        },
+        {
+          "id": "q2",
+          "type": "true_false",
+          "prompt": "相對於不可吸收線，可吸收線材的線材外露與感覺異常風險更低。",
+          "options": ["對", "錯"],
+          "answer": 0,
+          "hints": [
+            "回想段落 §材質：PDO、PLLA、PCL（站內錨點 #materials）與併發症統計（#complications）。",
+            "統合分析的分組比較：可吸收線外露 1.6% vs 不可吸收 7.6%、感覺異常 3.1% vs 11.7%。",
+            "答案：對。可吸收線兩項風險都顯著較低。"
+          ]
+        }
+      ],
+      "match": {
+        "id": "match-1",
+        "pairs": [
+          { "left": "PDO 線", "right": "吸收時間約 6–8 個月" },
+          { "left": "PLLA 線", "right": "吸收約 12 個月、維持效應約 18–24 個月" },
+          { "left": "衛福部食藥署查驗登記", "right": "線材在臺灣的合法醫療器材身份" }
+        ]
+      }
+    },
+    {
+      "id": "thread-lift-outcomes",
+      "title": "模組 02｜成效、併發症與期望管理",
+      "locked_by_default": true,
+      "units": [
+        { "id": "unit-results", "title": "成效：滿意度會隨時間衰減", "anchors": ["results"],
+          "body": ["最大規模的統合分析（26 篇、8,190 人）：術後當下滿意度約 98%，6 個月追蹤降至約 88%——「立即有效、但效果會衰減」要術前講清楚（來源：Aesthetic Plastic Surgery 統合分析，https://pubmed.ncbi.nlm.nih.gov/33821308/ ）。另一項 PDO 無結倒鉤線回顧性研究（31 例）報告 87% 滿意、併發症輕微且發生率低，對象是輕中度鬆弛族群（來源：Dermatologic Surgery，https://pubmed.ncbi.nlm.nih.gov/25993611/ ）。"] },
+        { "id": "unit-complications", "title": "併發症統計與高風險族群", "anchors": ["complications"],
+          "body": ["統合分析的合併發生率：腫脹約 35%、皮膚凹洞約 10%、感覺異常約 6%、可見或可觸及線材約 4%、感染約 2%、線材外露約 2%。50 歲以上族群皮膚凹洞（16% vs 5.6%）與感染（5.9% vs 0.7%）風險顯著較高——年齡是篩選條件之一（來源：https://pubmed.ncbi.nlm.nih.gov/33821308/ ）。"] }
+      ],
+      "questions": [],
+      "match": null
+    }
+  ]
+}
