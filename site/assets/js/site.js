@@ -189,7 +189,8 @@ function initScrollProgress() {
   const io = new IntersectionObserver(entries => {
     entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add("revealed"); io.unobserve(e.target); } }); // 單次播放
   }, { threshold: 0.18 });
-  document.querySelectorAll(".reveal").forEach(el => io.observe(el));
+  window.__observeReveals = (root) => (root || document).querySelectorAll(".reveal:not(.revealed)").forEach(el => io.observe(el)); // BUG-1 fix：渲染器注入的內容也要被觀察
+  window.__observeReveals();
 }
 
 /* ---------- M5：印章槽（模組達標→描邊動畫單次播放） ---------- */
@@ -303,10 +304,12 @@ async function bootCoursePage() {
   document.getElementById("course-title").textContent = course.title;
   const zone = document.getElementById("module-zone");
   course.modules.forEach(mod => zone.appendChild(renderModuleCard(course, mod)));
+  window.__observeReveals(); // BUG-1 fix: observe injected .reveal elements (async boot — observer must run AFTER injection)
   initBookmarks(); renderProgress(); renderLocks(); renderCertEntryForCourse(courseId); initStreak();
 }
 async function bootHomePage() {
   await renderHome();
+  window.__observeReveals(); // BUG-1 fix: observe injected .reveal elements
   initStreak();
 }
 document.addEventListener("DOMContentLoaded", () => {

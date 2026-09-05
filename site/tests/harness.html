@@ -1,17 +1,19 @@
 <!DOCTYPE html>
 <!-- 驗收 harness（非站體頁面）：同原 http iframe 載入站體，程式化點擊→驗證 DOM 狀態變化→逐條輸出 PASS/FAIL -->
-<html><body><pre id="out">RUNNING</pre><iframe id="f" style="width:1200px;height:800px"></iframe>
+<html><head><meta charset="utf-8"></head><body><pre id="out">RUNNING</pre><iframe id="f" style="width:1200px;height:800px"></iframe>
 <script>
 const out = [];
 const ok = (id, name, cond, detail) => out.push(`${cond ? "PASS" : "FAIL"} [${id}] ${name}${detail ? " :: " + detail : ""}`);
-const $ = (d, s) => d.querySelector(s);
-const $$ = (d, s) => [...d.querySelectorAll(s)];
+const DOC = (x) => x && typeof x === "object" && typeof x.querySelector === "function";
+const $ = (a, b) => (DOC(a) ? a : (b || document)).querySelector(typeof a === "string" ? a : b);
+const $$ = (a, b) => [...(DOC(a) ? a : (b || document)).querySelectorAll(typeof a === "string" ? a : b)];
 const sleep = ms => new Promise(r => setTimeout(r, ms));
+const waitDoc = async (f) => { for (let i=0;i<100;i++){ if (f.contentDocument) return f.contentDocument; await sleep(100);} throw new Error("iframe doc never loaded"); };
 function report() { $("#out").textContent = out.join("\n"); document.title = "HARNESS-DONE"; }
 (async () => {
   const f = $("#f"); f.src = "http://127.0.0.1:8777/pages/course.html?course=demo-skin-barrier";
   await new Promise(r => f.onload = r); await sleep(600);
-  let d = f.contentDocument;
+  let d = await waitDoc(f);
 
   // --- M1：核取框點擊 → localStorage＋進度條即時重算 ---
   const barSel = '#m1-progress-demo-skin-barrier .pct';
@@ -20,7 +22,7 @@ function report() { $("#out").textContent = out.join("\n"); document.title = "HA
   cb.click(); await sleep(300);
   const after1 = $(d, barSel).textContent;
   const ls1 = f.contentWindow.localStorage.getItem("mats-progress");
-  ok("M1", "核取框點擊→localStorage 寫入＋進度條百分比改變", before1 !== after1 && ls1 && ls1.includes('"checked": true'), `before=${before1} after=${after1} ls=${(ls1||"").slice(0,80)}`);
+  ok("M1", "核取框點擊→localStorage 寫入＋進度條百分比改變", before1 !== after1 && ls1 && (ls1.includes('"checked":true') || ls1.includes('"checked": true')), `before=${before1} after=${after1} ls=${(ls1||"").slice(0,80)}`);
 
   // --- M2：單選答對→回饋變正確；答錯→回饋變錯＋M8 自動展開 L1 ---
   const q1 = "demo-skin-barrier-q1";
@@ -61,7 +63,7 @@ function report() { $("#out").textContent = out.join("\n"); document.title = "HA
   const lock2 = $("#m3-lock-demo-chemical-peel", d);
   const lockedBefore = getComputedStyle(lock2).display !== "none";
   // 完成模組01全部：q1 已對、配對已對，勾剩餘單元＋q2 對答
-  $("#m1-check-unit-tewl", d).querySelector("input").click();
+  const tewl = $("#m1-check-unit-tewl", d); (tewl.querySelector("input") || tewl).click();
   d.querySelector(`#m2-input-${q2} input[value="1"]`).click();
   $("#m2-submit-" + q2, d).click(); await sleep(300);
   const lockedAfter = getComputedStyle(lock2).display !== "none";
