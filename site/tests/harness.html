@@ -66,6 +66,15 @@ function report() { $("#out").textContent = out.join("\n"); document.title = "HA
   const tewl = $("#m1-check-unit-tewl", d); (tewl.querySelector("input") || tewl).click();
   d.querySelector(`#m2-input-${q2} input[value="1"]`).click();
   $("#m2-submit-" + q2, d).click(); await sleep(300);
+  // 補齊另兩個配對（對齊 runner 序列：M3 斷言前模組01必須全數達標）
+  for (const [t, zi] of [["磚塊",1],["屏障功能指標",2]]) {
+    const chip = d.querySelector(`#m9-tray-match-1 .drag-chip[data-right="${t}"]`);
+    const z = d.querySelector(`#m9-drop-match-1-${zi}`);
+    const dt2 = new DataTransfer(); dt2.setData("text/plain", t);
+    z.dispatchEvent(new DragEvent("dragover", { dataTransfer: dt2, bubbles: true }));
+    z.dispatchEvent(new DragEvent("drop", { dataTransfer: dt2, bubbles: true }));
+  }
+  await sleep(300);
   const lockedAfter = getComputedStyle(lock2).display !== "none";
   ok("M3", "前一模組達標→鎖 DOM 狀態翻轉（顯示→隱藏）", lockedBefore === true && lockedAfter === false, `before_locked=${lockedBefore} after_locked=${lockedAfter}`);
   // M5 印章達標點亮
@@ -97,9 +106,9 @@ function report() { $("#out").textContent = out.join("\n"); document.title = "HA
   // M13：全課程達標前 cert-entry 隐藏（demo 課程只達標一半）
   f.src = "http://127.0.0.1:8777/pages/course.html?course=demo-course-two&r=4";
   await new Promise(r => f.onload = r); await sleep(600); d = f.contentDocument;
-  $("#m1-check-unit-demo-two-a", d).querySelector("input").click(); await sleep(200);
-  d.querySelector('#m2-input-demo-course-two-q1 input[value="0"]').click();
-  $("#m2-submit-demo-course-two-q1", d).click(); await sleep(300);
+  { const el0 = $("#m1-check-unit-demo-two-a", d); (el0.matches("input") ? el0 : el0.querySelector("input")).click(); } await sleep(200);
+  d.querySelector('#m2-input-demo-course-two-m1-q1 input[value="0"]').click();
+  $("#m2-submit-demo-course-two-m1-q1", d).click(); await sleep(300);
   ok("M13", "全模組達標→證書入口 display 由 none 變可见", $("#m13-cert-entry", d).dataset.ready === "1" && $("#m13-cert-entry", d).style.display !== "none");
 
   report();
