@@ -9,3 +9,5 @@ courses:
     file: /content/courses/nose-thread-lift.json
   - id: collagen-stimulator-full-face
     file: /content/courses/collagen-stimulator-full-face.json
+  - id: neofilera-pdlla-cmc
+    file: /content/courses/neofilera-pdlla-cmc.json

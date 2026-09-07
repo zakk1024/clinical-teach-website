@@ -134,6 +134,16 @@ async def main():
         disp = await page.evaluate("getComputedStyle(document.getElementById('m13-cert-entry')).display")
         ok("M13", "全模組達標→證書入口由 hidden 變可見", ready == "1" and disp != "none", f"ready={ready} display={disp}")
 
+        # M14：媒體渲染——neofilera 課頁 media[] 落地（img/video DOM 元素存在＋tier 標識渲染）
+        await page.goto(BASE + "/pages/course.html?course=neofilera-pdlla-cmc")
+        await page.wait_for_selector("figure[data-mid='M14']", state="attached", timeout=5000)
+        await page.goto(BASE + "/pages/course.html?course=neofilera-pdlla-cmc")
+        await page.wait_for_selector("#m1-progress-neofilera-m1", state="attached", timeout=5000)
+        nmedia = await page.evaluate("document.querySelectorAll('[data-mid=\\'M14\\']').length")
+        nvideo = await page.evaluate("document.querySelectorAll('[data-mid=\\'M14\\'] video').length")
+        nimg = await page.evaluate("document.querySelectorAll('[data-mid=\\'M14\\'] img').length")
+        nbadge = await page.evaluate("document.querySelectorAll('[data-mid=\\'M14\\'] .tier-badge').length")
+        ok("M14", "neofilera 媒體區塊渲染：DOM 元素>0＋video/img 標籤＋tier 標識", nmedia > 0 and nvideo > 0 and nimg > 0 and nbadge == nmedia, f"blocks={nmedia} video={nvideo} img={nimg} badges={nbadge}")
         # 排除清單 grep 自驗（CSS 無 monospace 字體族、無 #00ff00 系綠）
         print("\n== 站體頁面 console errors ==", errs or "無")
         print("\n".join(RESULTS))

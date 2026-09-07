@@ -1,0 +1,11 @@
+source_path,site_path,size_MiB,format,consent_flag,tier,sha256_site_copy
+/Users/zakk/Desktop/yujin/neofilera/01_SOURCE_MEDIA/before_after_images/IMG_8050.JPG,site/assets/media/images/neofilera_ba_01.jpg,1.27,jpeg,user-granted,free,5381b11b53e32f0d
+/Users/zakk/Desktop/yujin/neofilera/01_SOURCE_MEDIA/before_after_images/IMG_8051.JPG,site/assets/media/images/neofilera_ba_02.jpg,1.16,jpeg,user-granted,free,14e56696cf9d5b46
+/Users/zakk/Desktop/yujin/neofilera/01_SOURCE_MEDIA/before_after_images/IMG_8052.JPG,site/assets/media/images/neofilera_ba_03.jpg,1.24,jpeg,user-granted,free,050792f0d856bb9a
+/Users/zakk/Desktop/yujin/neofilera/01_SOURCE_MEDIA/before_after_images/IMG_2207.HEIC,site/assets/media/images/neofilera_ba_04.jpg,1.06,jpeg,user-granted,free,aa919d26698c78a4
+/Users/zakk/Desktop/yujin/neofilera/01_SOURCE_MEDIA/before_after_images/IMG_2208.HEIC,site/assets/media/images/neofilera_ba_05.jpg,0.90,jpeg,user-granted,free,7ddf8a44b541b314
+/Users/zakk/Desktop/yujin/neofilera/01_SOURCE_MEDIA/procedure_videos/IMG_6488.MOV,site/assets/media/videos/neofilera_vid_01.mp4,0.93,h264,user-granted,paid,ba761d4d6770fdc3
+/Users/zakk/Desktop/yujin/neofilera/01_SOURCE_MEDIA/procedure_videos/IMG_8537.MOV,site/assets/media/videos/neofilera_vid_02.mp4,1.00,h264,user-granted,paid,725ddac4b6fe50d0
+/Users/zakk/Desktop/yujin/neofilera/01_SOURCE_MEDIA/procedure_videos/83E3E36C-0654-419B-9075-10D18D59E31D.MOV,site/assets/media/videos/neofilera_vid_03.mp4,1.21,h264,user-granted,paid,d15a6cd08b4b9914
+/Users/zakk/Desktop/yujin/neofilera/01_SOURCE_MEDIA/anatomy_images/IMG_2331_anatomy_sagittal.png,site/assets/media/images/neofilera_ana_01.png,0.33,png,user-granted,free,90ead444aa3e60e0
+/Users/zakk/Desktop/yujin/neofilera/01_SOURCE_MEDIA/anatomy_images/IMG_2332_anatomy_front.png,site/assets/media/images/neofilera_ana_02.png,0.56,png,user-granted,free,94dc67d55d93c26f

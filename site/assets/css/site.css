@@ -132,3 +132,17 @@ a { color: var(--accent); text-decoration: none; }
 .cert-sheet .seal { margin-top: 30px; }
 
 @media print { .no-print { display: none; } .cert-sheet { border: 0; } }
+
+/* M14: media */
+.media-block { margin: 20px 0; }
+.media-block img { max-width: 420px; max-height: 420px; border-radius: 4px; border: 1px solid var(--hairline); }
+.media-block video { max-width: 420px; max-height: 420px; border-radius: 4px; }
+.ba-pair { display: flex; gap: 8px; align-items: center; }
+.ba-sep { font-size: 20px; }
+.media-block figcaption { margin-top: 6px; font-size: 13px; display: flex; gap: 8px; }
+.tier-badge { padding: 1px 8px; border-radius: 3px; border: 1px solid var(--hairline); }
+.tier-regulatory { border-color: #2e7d32; }
+.tier-literature-extrapolated { border-color: #b8860b; }
+.tier-clinical-experience { border-color: #8e24aa; }
+.aud-badge { padding: 1px 8px; border-radius: 3px; border: 1px dashed var(--hairline); }
+.consent-badge { padding: 1px 8px; border-radius: 3px; border: 1px solid #c62828; color: #c62828; }

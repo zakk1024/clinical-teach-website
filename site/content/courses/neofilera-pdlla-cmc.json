@@ -1,0 +1,429 @@
+{
+  "$comment": "NeoFilera（PDLLA＋CMC 膠原蛋白增生劑）課程草稿。骨架遷就站體 schema（見 demo-skin-barrier.json / collagen-stimulator-full-face.json）；新增 media[]（本棒留空陣列，渲染器支援由另一棒做）、claims[].evidence_tier、off-label 章節標記。草稿區產出，未入 site/content，待使用者審核。",
+  "id": "neofilera-pdlla-cmc",
+  "title": "NeoFilera（PDLLA＋CMC）證據分層與臨床界線",
+  "sources": [
+    {
+      "id": "src-tfda-008439",
+      "url": "https://www.fda.gov.tw/tc/includes/GetFile.ashx?id=f638785741435833859&type=1",
+      "note": "TFDA 妮芙蕾皮下填補劑上市後安全監視計畫書，許可證衛部醫器製字第008439號，型號 S-100/S-200；核準適應症僅鼻唇溝皺褶矯正；延遲性結節、肉芽腫、血管併發症併明列監視清單"
+    },
+    {
+      "id": "src-su-2026",
+      "url": "https://doi.org/10.3390/polym18010084",
+      "note": "Su et al., Polymers 2026, 18:84——NeoFilera 與 AestheFill/Juvelook/Sculptra 理化對照（唯一一篇直接對照論文）"
+    },
+    {
+      "id": "src-lee-2025",
+      "url": "https://doi.org/10.1007/s13770-024-00681-x",
+      "note": "Lee et al., Tissue Eng Regen Med 2025, 22(4):505-513——自製 CMC-PLA 顆粒體外模型，非 NeoFilera 成品研究"
+    },
+    {
+      "id": "src-pmc11434839",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC11434839/",
+      "note": "Polymers 2024, 16:2583——PDLLA 皮膚科學文獻回顧：無定形結構、降解、粒徑與巨細胞/肉芽腫、併發症清單與 Oxford 證據分級"
+    },
+    {
+      "id": "src-pmc11626391",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC11626391/",
+      "note": "PDLLA 微珠重組與美學使用專家共識聲明（2024）"
+    },
+    {
+      "id": "src-pmc12594308",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC12594308/",
+      "note": "PCL（Ellansé 系）先導研究——同類機制、非同產品，引用僅限一般機制"
+    },
+    {
+      "id": "src-pubmed32485052",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/32485052/",
+      "note": "PCL 填充劑併發症回顧性研究（1,111 例）"
+    },
+    {
+      "id": "src-fda-fillers",
+      "url": "https://www.fda.gov/medical-devices/aesthetic-cosmetic-devices/fda-approved-dermal-fillers",
+      "note": "US FDA 核準填充劑清單——無 NeoFilera、無任何 PDLLA 類證照"
+    },
+    {
+      "id": "src-owner-cases",
+      "url": "project://neofilera/01_SOURCE_MEDIA",
+      "note": "owner（Zack）自有案例素材（IMG_8050-8052 術前後對照、療程影片）——PRIVATE/RESTRICTED，僅限核準脈絡"
+    }
+  ],
+  "media": [
+    {
+      "type": "before-after",
+      "source": "/Users/zakk/Desktop/yujin/neofilera/01_SOURCE_MEDIA/before_after_images/IMG_8050.JPG",
+      "site_path": "site/assets/media/images/neofilera_ba_01.jpg",
+      "size_MiB": "1.27",
+      "format": "jpeg",
+      "consent_flag": "user-granted",
+      "audience_tier": "free"
+    },
+    {
+      "type": "before-after",
+      "source": "/Users/zakk/Desktop/yujin/neofilera/01_SOURCE_MEDIA/before_after_images/IMG_8051.JPG",
+      "site_path": "site/assets/media/images/neofilera_ba_02.jpg",
+      "size_MiB": "1.16",
+      "format": "jpeg",
+      "consent_flag": "user-granted",
+      "audience_tier": "free"
+    },
+    {
+      "type": "before-after",
+      "source": "/Users/zakk/Desktop/yujin/neofilera/01_SOURCE_MEDIA/before_after_images/IMG_8052.JPG",
+      "site_path": "site/assets/media/images/neofilera_ba_03.jpg",
+      "size_MiB": "1.24",
+      "format": "jpeg",
+      "consent_flag": "user-granted",
+      "audience_tier": "free"
+    },
+    {
+      "type": "before-after",
+      "source": "/Users/zakk/Desktop/yujin/neofilera/01_SOURCE_MEDIA/before_after_images/IMG_2207.HEIC",
+      "site_path": "site/assets/media/images/neofilera_ba_04.jpg",
+      "size_MiB": "1.06",
+      "format": "jpeg",
+      "consent_flag": "user-granted",
+      "audience_tier": "free"
+    },
+    {
+      "type": "before-after",
+      "source": "/Users/zakk/Desktop/yujin/neofilera/01_SOURCE_MEDIA/before_after_images/IMG_2208.HEIC",
+      "site_path": "site/assets/media/images/neofilera_ba_05.jpg",
+      "size_MiB": "0.90",
+      "format": "jpeg",
+      "consent_flag": "user-granted",
+      "audience_tier": "free"
+    },
+    {
+      "type": "video",
+      "source": "/Users/zakk/Desktop/yujin/neofilera/01_SOURCE_MEDIA/procedure_videos/IMG_6488.MOV",
+      "site_path": "site/assets/media/videos/neofilera_vid_01.mp4",
+      "size_MiB": "0.93",
+      "format": "h264",
+      "consent_flag": "user-granted",
+      "audience_tier": "paid"
+    },
+    {
+      "type": "video",
+      "source": "/Users/zakk/Desktop/yujin/neofilera/01_SOURCE_MEDIA/procedure_videos/IMG_8537.MOV",
+      "site_path": "site/assets/media/videos/neofilera_vid_02.mp4",
+      "size_MiB": "1.00",
+      "format": "h264",
+      "consent_flag": "user-granted",
+      "audience_tier": "paid"
+    },
+    {
+      "type": "video",
+      "source": "/Users/zakk/Desktop/yujin/neofilera/01_SOURCE_MEDIA/procedure_videos/83E3E36C-0654-419B-9075-10D18D59E31D.MOV",
+      "site_path": "site/assets/media/videos/neofilera_vid_03.mp4",
+      "size_MiB": "1.21",
+      "format": "h264",
+      "consent_flag": "user-granted",
+      "audience_tier": "paid"
+    },
+    {
+      "type": "illustration",
+      "source": "/Users/zakk/Desktop/yujin/neofilera/01_SOURCE_MEDIA/anatomy_images/IMG_2331_anatomy_sagittal.png",
+      "site_path": "site/assets/media/images/neofilera_ana_01.png",
+      "size_MiB": "0.33",
+      "format": "png",
+      "consent_flag": "user-granted",
+      "audience_tier": "free"
+    },
+    {
+      "type": "illustration",
+      "source": "/Users/zakk/Desktop/yujin/neofilera/01_SOURCE_MEDIA/anatomy_images/IMG_2332_anatomy_front.png",
+      "site_path": "site/assets/media/images/neofilera_ana_02.png",
+      "size_MiB": "0.56",
+      "format": "png",
+      "consent_flag": "user-granted",
+      "audience_tier": "free"
+    }
+  ],
+  "claims": [
+    {
+      "id": "claim-tfda-indication",
+      "claim": "NeoFilera（妮芙蕾）TFDA 核準適應症只有鼻唇溝皺褶矯正（衛部醫器製字第008439號）",
+      "tier": "regulatory",
+      "source": "src-tfda-008439"
+    },
+    {
+      "id": "claim-surveillance-list",
+      "claim": "延遲性結節（注射後 1-14 個月、可長達兩年）、肉芽腫、血管併發症/失明明列於 TFDA 上市後安全監視清單",
+      "tier": "regulatory",
+      "source": "src-tfda-008439"
+    },
+    {
+      "id": "claim-no-fda-clearance",
+      "claim": "US FDA 核準填充劑清單無 NeoFilera，PDLLA 家族無一張 FDA 證照；可驗證清單封頂為 TFDA＋Thailand＋ISO 13485",
+      "tier": "regulatory",
+      "source": "src-fda-fillers"
+    },
+    {
+      "id": "claim-formulation",
+      "claim": "NeoFilera 為 PDLLA＋CMC 製式（非 PCL）；同為 PDLLA/CMC，材料物性仍不完全相同",
+      "tier": "literature-extrapolated",
+      "source": "src-su-2026"
+    },
+    {
+      "id": "claim-particle-size",
+      "claim": "在該 SEM/image analysis 條件下，NeoFilera 顆粒平均約 25 μm（25.03±4.86），相對均一、表面較平滑",
+      "tier": "literature-extrapolated",
+      "source": "src-su-2026"
+    },
+    {
+      "id": "claim-reconstitution",
+      "claim": "在研究採用的統一 powder-to-water 比例下，NeoFilera 重組時間較短（140.7±32.9 秒）；不可視為臨床 IFU 準備時間",
+      "tier": "literature-extrapolated",
+      "source": "src-su-2026"
+    },
+    {
+      "id": "claim-cmc-mechanism",
+      "claim": "自製 CMC-PLA 顆粒體外模型顯示較高纖維母細胞黏附與傷口癒合相關分泌因子——機制線索，非產品臨床療效",
+      "tier": "literature-extrapolated",
+      "source": "src-lee-2025"
+    },
+    {
+      "id": "claim-particle-immunology",
+      "claim": "粒徑 <20 μm 易被吞噬誘發巨細胞/肉芽腫反應；重組分散不足是結節/瘀血/水腫的潛在原因",
+      "tier": "literature-extrapolated",
+      "source": "src-pmc11626391"
+    },
+    {
+      "id": "claim-pcl-general-mechanism",
+      "claim": "同家族/同機制文獻（AestheFill/Juvelook/PCL 系）支持「機械力→纖維母細胞→膠原蛋白增生」的一般機制",
+      "tier": "literature-extrapolated",
+      "source": "src-pmc12594308"
+    },
+    {
+      "id": "claim-eye-strategy",
+      "claim": "眼下/上下眼眶區的層次、配製濃度與案例選擇，是 owner 依組織目標形成的臨床策略，非標準 protocol、非核準適應症",
+      "tier": "clinical-experience",
+      "source": "src-owner-cases"
+    },
+    {
+      "id": "claim-eye-case-result",
+      "claim": "眼下單次治療後 1 個月為單一個案的定性對照，不量化療效、不宣稱普遍性",
+      "tier": "clinical-experience",
+      "source": "src-owner-cases"
+    }
+  ],
+  "modules": [
+    {
+      "id": "neofilera-m1",
+      "title": "模組 01｜NeoFilera 是什麼：製式與證照界線",
+      "locked_by_default": false,
+      "units": [
+        {
+          "id": "unit-formulation-and-license",
+          "title": "製式與核準適應症",
+          "anchors": [
+            "formulation-and-license"
+          ],
+          "media": [
+            {
+              "type": "illustration",
+              "source": "/Users/zakk/Desktop/yujin/neofilera/01_SOURCE_MEDIA/anatomy_images/IMG_2331_anatomy_sagittal.png",
+              "site_path": "site/assets/media/images/neofilera_ana_01.png",
+              "size_MiB": "0.33",
+              "format": "png",
+              "consent_flag": "user-granted",
+              "audience_tier": "free"
+            },
+            {
+              "type": "illustration",
+              "source": "/Users/zakk/Desktop/yujin/neofilera/01_SOURCE_MEDIA/anatomy_images/IMG_2332_anatomy_front.png",
+              "site_path": "site/assets/media/images/neofilera_ana_02.png",
+              "size_MiB": "0.56",
+              "format": "png",
+              "consent_flag": "user-granted",
+              "audience_tier": "free"
+            }
+          ],
+          "body": [
+            "NeoFilera 是 PDLLA＋CMC 的膠原蛋白增生劑製式；同門的 AestheFill、Juvelook 同屬 PLA 系家族，但在該對照論文的條件下，各品牌的粒徑分佈、滲透壓、黏度與重組行為並不完全相同［src-su-2026］。",
+            "證照界線：TFDA 核準適應症只有鼻唇溝皺褶矯正（衛部醫器製字第008439號）；US FDA 核準清單上沒有 NeoFilera，整個 PDLLA 家族無一張 FDA 證照［src-tfda-008439］［src-fda-fillers］。",
+            "本課所有療效宣稱一律分層標記：可引經據典者標 literature-extrapolated，owner 案例標 clinical-experience——因為目前沒有 NeoFilera 品牌專屬的臨床試驗/RCT。"
+          ]
+        },
+        {
+          "id": "unit-evidence-ladder",
+          "title": "證據階梯：測到的 ≠ 可宣稱的",
+          "anchors": [
+            "evidence-ladder"
+          ],
+          "media": [],
+          "body": [
+            "在該研究條件下，NeoFilera 顆粒平均約 25 μm、相對均一且表面較平滑；這是測得到的物性數據，不等於臨床結果［src-su-2026］。",
+            "機制線索：自製 CMC-PLA 顆粒體外模型顯示纖維母細胞黏附與修復因子表現較高——這是機制，不是這款產品的臨床療效［src-lee-2025］。",
+            "界線：粒徑與形貌「可能」影響手感與組織反應；「不易結節」「較不腫」「較安全」目前都是未經直接臨床證據支持的宣稱。"
+          ]
+        }
+      ],
+      "questions": [
+        {
+          "id": "m1-q1",
+          "type": "multiple_choice",
+          "prompt": "NeoFilera 目前唯一有監管文件背書的核準適應症是——（單一選）",
+          "options": [
+            "眼下年輕化",
+            "鼻唇溝皺褶矯正",
+            "全臉膠原增生",
+            "上眼皮凹陷"
+          ],
+          "answer": 1,
+          "hints": [
+            "回想段落 §製式與核準適應症（站內錨點 #formulation-and-license）。",
+            "監管來源是 TFDA 許可證衛部醫器製字第008439號的監視計畫書。",
+            "答案：鼻唇溝皺褶矯正——眼下等其他部位一律 off-label。"
+          ]
+        },
+        {
+          "id": "m1-q2",
+          "type": "true_false",
+          "prompt": "「NeoFilera 表面平滑所以不易結節」是一條有品牌專屬臨床證據支持的宣稱。",
+          "options": [
+            "對",
+            "錯"
+          ],
+          "answer": 1,
+          "hints": [
+            "回想段落 §證據階梯（站內錨點 #evidence-ladder）。",
+            "粒徑/形貌是測到的物性；「不易結節」是從機制推的宣稱。",
+            "答案：錯——無品牌專屬 RCT，只能標 literature-extrapolated 的機制界線內說法。"
+          ]
+        }
+      ],
+      "match": {
+        "id": "m1-match-1",
+        "pairs": [
+          {
+            "left": "TFDA 證照 008439",
+            "right": "唯一核準適應症：鼻唇溝"
+          },
+          {
+            "left": "Su et al. 2026 對照論文",
+            "right": "研究條件下平均約 25 μm 的物性數據"
+          },
+          {
+            "left": "Lee et al. 2025 體外模型",
+            "right": "CMC-PLA 機制線索，非產品療效"
+          },
+          {
+            "left": "owner 眼下案例",
+            "right": "clinical-experience，非標準 protocol"
+          }
+        ]
+      }
+    },
+    {
+      "id": "neofilera-m2",
+      "title": "模組 02｜併發症（不得省略）：延遲性結節、肉芽腫、血管",
+      "locked_by_default": false,
+      "units": [
+        {
+          "id": "unit-complications",
+          "title": "監視清單上的三張牌",
+          "anchors": [
+            "complications"
+          ],
+          "media": [],
+          "body": [
+            "TFDA 上市後安全監視計畫書明列：延遲性結節（注射後 1-14 個月出現、可長達兩年）、肉芽腫、血管併發症／失明［src-tfda-008439］。",
+            "機制上，粒徑 <20 μm 的顆粒易被吞噬而誘發巨細胞/肉芽腫反應；重組分散不足是結節、瘀血、水腫的潛在原因——所以重組是臨床變數，不是玄學［src-pmc11626391］［src-pmc11434839］。",
+            "同類規模的安全紀錄（PCL 系 1,111 例回顧）顯示併發症罕見但存在；同族數據只能外推到「同類風險量級」，不能安在 NeoFilera 頭上宣稱自己品牌更低［src-pubmed32485052］。"
+          ]
+        }
+      ],
+      "questions": [
+        {
+          "id": "m2-q1",
+          "type": "multiple_choice",
+          "prompt": "注射後第 3 個月，治療區出現一個不紅不痛但持續不退的硬節。根據本課的證據階梯，正確的認知是——（單一選）",
+          "options": [
+            "一定是感染，自行服用抗生素即可",
+            "延遲性結節是監管監視清單上明列的已知併發症，應回診評估",
+            "證明產品有問題，廠商保證不會結節",
+            "與重組品質無關，與粒徑以外的機制無關"
+          ],
+          "answer": 1,
+          "hints": [
+            "回想段落 §監視清單上的三張牌（站內錨點 #complications）。",
+            "延遲性結節可在注射後 1-14 個月出現，屬 TFDA 監視清單項目。",
+            "答案：回診評估——這是已知併發症，不是保證書範圍。"
+          ]
+        }
+      ],
+      "match": null
+    },
+    {
+      "id": "neofilera-m3",
+      "title": "模組 03｜Off-label：眼下的臨床設計（owner 經驗）",
+      "locked_by_default": true,
+      "off_label": true,
+      "units": [
+        {
+          "id": "unit-offlabel-eye",
+          "title": "眼下的證據界線與臨床設計",
+          "anchors": [
+            "offlabel-eye"
+          ],
+          "off_label": true,
+          "media": [
+            {
+              "type": "before-after",
+              "source": "/Users/zakk/Desktop/yujin/neofilera/01_SOURCE_MEDIA/before_after_images/IMG_8050.JPG",
+              "site_path": "site/assets/media/images/neofilera_ba_01.jpg",
+              "size_MiB": "1.27",
+              "format": "jpeg",
+              "consent_flag": "user-granted",
+              "audience_tier": "free",
+              "images": [
+                "site/assets/media/images/neofilera_ba_01.jpg",
+                "site/assets/media/images/neofilera_ba_02.jpg",
+                "site/assets/media/images/neofilera_ba_03.jpg",
+                "site/assets/media/images/neofilera_ba_04.jpg",
+                "site/assets/media/images/neofilera_ba_05.jpg"
+              ]
+            },
+            {
+              "type": "video",
+              "source": "/Users/zakk/Desktop/yujin/neofilera/01_SOURCE_MEDIA/procedure_videos/IMG_6488.MOV",
+              "site_path": "site/assets/media/videos/neofilera_vid_01.mp4",
+              "size_MiB": "0.93",
+              "format": "h264",
+              "consent_flag": "user-granted",
+              "audience_tier": "paid"
+            },
+            {
+              "type": "video",
+              "source": "/Users/zakk/Desktop/yujin/neofilera/01_SOURCE_MEDIA/procedure_videos/IMG_8537.MOV",
+              "site_path": "site/assets/media/videos/neofilera_vid_02.mp4",
+              "size_MiB": "1.00",
+              "format": "h264",
+              "consent_flag": "user-granted",
+              "audience_tier": "paid"
+            },
+            {
+              "type": "video",
+              "source": "/Users/zakk/Desktop/yujin/neofilera/01_SOURCE_MEDIA/procedure_videos/83E3E36C-0654-419B-9075-10D18D59E31D.MOV",
+              "site_path": "site/assets/media/videos/neofilera_vid_03.mp4",
+              "size_MiB": "1.21",
+              "format": "h264",
+              "consent_flag": "user-granted",
+              "audience_tier": "paid"
+            }
+          ],
+          "body": [
+            "眼下一個月結果是 owner 單一個案的定性對照：單次治療、左右對照，不量化療效、不宣稱普遍性；不同個案的施打影片不得接成同一旅程［src-owner-cases］。",
+            "所以臨床設計要交代的是：組織目標 → 注射層次 → 配製濃度——這是 owner 的臨床策略（clinical-experience），不是標準 protocol，也不是核準適應症［src-owner-cases］。"
+          ]
+        }
+      ],
+      "questions": [],
+      "match": null
+    }
+  ],
+  "claims_tier_field": "evidence_tier"
+}

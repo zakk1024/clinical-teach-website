@@ -233,8 +233,28 @@ function unitSection(course, mod, u) {
   sec.className = "unit reveal";
   if (u.anchors && u.anchors[0]) sec.id = u.anchors[0];
   sec.innerHTML = `<h3 id="unit-${u.id}">${u.title}</h3>${(u.body || []).map(p => `<p>${p}</p>`).join("")}`;
+  (u.media || []).forEach(m => sec.appendChild(mediaBlock(m)));
   sec.appendChild(checkRow(course, mod, u.id, "讀完此單元"));
   return sec;
+}
+/* ---------- M14：媒體渲染（media[] → DOM；tier 標示渲染，非存取控制——靜態站誠實標示） ---------- */
+const TIER_LABEL = { regulatory: "證照層", "literature-extrapolated": "文獻層（外推）", "clinical-experience": "臨床經驗層" };
+const TIER_BADGE = { free: "免費層", paid: "付費層（標示）" };
+function mediaBlock(m) {
+  const fig = document.createElement("figure");
+  fig.className = "media-block"; fig.dataset.mid = "M14"; fig.dataset.tier = m.tier || m.audience_tier || "";
+  const src = m.src || m.file || "";
+  let inner = "";
+  if (m.type === "before-after") {
+    const parts = (m.images || [m.site_path, m.src_before, m.src_after].filter(Boolean));
+    inner = `<div class="ba-pair">${parts.map(s => `<img src="${s}" loading="lazy" alt="before/after">`).join('<span class="ba-sep">→</span>')}</div>`;
+  } else if (m.type === "video") {
+    inner = `<video src="${src}" controls preload="metadata" playsinline></video>`;
+  } else {
+    inner = `<img src="${src}" loading="lazy" alt="${m.alt || "illustration"}">`;
+  }
+  fig.innerHTML = `${inner}<figcaption><span class="tier-badge tier-${(m.tier||"").replace(/[^a-z-]/g,"")}">${TIER_LABEL[m.tier] || m.tier || ""}</span><span class="aud-badge">${TIER_BADGE[m.audience_tier === "paid" ? "paid" : "free"]}</span>${m.consent_flag === "verbal-pending" ? '<span class="consent-badge">同意書待補</span>' : ""}</figcaption>`;
+  return fig;
 }
 function checkRow(course, mod, unitId, title) {
   const row = document.createElement("label");
