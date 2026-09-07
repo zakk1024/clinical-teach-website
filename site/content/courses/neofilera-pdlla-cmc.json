@@ -53,7 +53,7 @@
     {
       "type": "before-after",
       "source": "/Users/zakk/Desktop/yujin/neofilera/01_SOURCE_MEDIA/before_after_images/IMG_8050.JPG",
-      "site_path": "site/assets/media/images/neofilera_ba_01.jpg",
+      "site_path": "/assets/media/images/neofilera_ba_01.jpg",
       "size_MiB": "1.27",
       "format": "jpeg",
       "consent_flag": "user-granted",
@@ -62,7 +62,7 @@
     {
       "type": "before-after",
       "source": "/Users/zakk/Desktop/yujin/neofilera/01_SOURCE_MEDIA/before_after_images/IMG_8051.JPG",
-      "site_path": "site/assets/media/images/neofilera_ba_02.jpg",
+      "site_path": "/assets/media/images/neofilera_ba_02.jpg",
       "size_MiB": "1.16",
       "format": "jpeg",
       "consent_flag": "user-granted",
@@ -71,7 +71,7 @@
     {
       "type": "before-after",
       "source": "/Users/zakk/Desktop/yujin/neofilera/01_SOURCE_MEDIA/before_after_images/IMG_8052.JPG",
-      "site_path": "site/assets/media/images/neofilera_ba_03.jpg",
+      "site_path": "/assets/media/images/neofilera_ba_03.jpg",
       "size_MiB": "1.24",
       "format": "jpeg",
       "consent_flag": "user-granted",
@@ -80,7 +80,7 @@
     {
       "type": "before-after",
       "source": "/Users/zakk/Desktop/yujin/neofilera/01_SOURCE_MEDIA/before_after_images/IMG_2207.HEIC",
-      "site_path": "site/assets/media/images/neofilera_ba_04.jpg",
+      "site_path": "/assets/media/images/neofilera_ba_04.jpg",
       "size_MiB": "1.06",
       "format": "jpeg",
       "consent_flag": "user-granted",
@@ -89,7 +89,7 @@
     {
       "type": "before-after",
       "source": "/Users/zakk/Desktop/yujin/neofilera/01_SOURCE_MEDIA/before_after_images/IMG_2208.HEIC",
-      "site_path": "site/assets/media/images/neofilera_ba_05.jpg",
+      "site_path": "/assets/media/images/neofilera_ba_05.jpg",
       "size_MiB": "0.90",
       "format": "jpeg",
       "consent_flag": "user-granted",
@@ -98,7 +98,7 @@
     {
       "type": "video",
       "source": "/Users/zakk/Desktop/yujin/neofilera/01_SOURCE_MEDIA/procedure_videos/IMG_6488.MOV",
-      "site_path": "site/assets/media/videos/neofilera_vid_01.mp4",
+      "site_path": "/assets/media/videos/neofilera_vid_01.mp4",
       "size_MiB": "0.93",
       "format": "h264",
       "consent_flag": "user-granted",
@@ -107,7 +107,7 @@
     {
       "type": "video",
       "source": "/Users/zakk/Desktop/yujin/neofilera/01_SOURCE_MEDIA/procedure_videos/IMG_8537.MOV",
-      "site_path": "site/assets/media/videos/neofilera_vid_02.mp4",
+      "site_path": "/assets/media/videos/neofilera_vid_02.mp4",
       "size_MiB": "1.00",
       "format": "h264",
       "consent_flag": "user-granted",
@@ -116,7 +116,7 @@
     {
       "type": "video",
       "source": "/Users/zakk/Desktop/yujin/neofilera/01_SOURCE_MEDIA/procedure_videos/83E3E36C-0654-419B-9075-10D18D59E31D.MOV",
-      "site_path": "site/assets/media/videos/neofilera_vid_03.mp4",
+      "site_path": "/assets/media/videos/neofilera_vid_03.mp4",
       "size_MiB": "1.21",
       "format": "h264",
       "consent_flag": "user-granted",
@@ -125,7 +125,7 @@
     {
       "type": "illustration",
       "source": "/Users/zakk/Desktop/yujin/neofilera/01_SOURCE_MEDIA/anatomy_images/IMG_2331_anatomy_sagittal.png",
-      "site_path": "site/assets/media/images/neofilera_ana_01.png",
+      "site_path": "/assets/media/images/neofilera_ana_01.png",
       "size_MiB": "0.33",
       "format": "png",
       "consent_flag": "user-granted",
@@ -134,7 +134,7 @@
     {
       "type": "illustration",
       "source": "/Users/zakk/Desktop/yujin/neofilera/01_SOURCE_MEDIA/anatomy_images/IMG_2332_anatomy_front.png",
-      "site_path": "site/assets/media/images/neofilera_ana_02.png",
+      "site_path": "/assets/media/images/neofilera_ana_02.png",
       "size_MiB": "0.56",
       "format": "png",
       "consent_flag": "user-granted",
@@ -225,7 +225,7 @@
             {
               "type": "illustration",
               "source": "/Users/zakk/Desktop/yujin/neofilera/01_SOURCE_MEDIA/anatomy_images/IMG_2331_anatomy_sagittal.png",
-              "site_path": "site/assets/media/images/neofilera_ana_01.png",
+              "site_path": "/assets/media/images/neofilera_ana_01.png",
               "size_MiB": "0.33",
               "format": "png",
               "consent_flag": "user-granted",
@@ -234,7 +234,7 @@
             {
               "type": "illustration",
               "source": "/Users/zakk/Desktop/yujin/neofilera/01_SOURCE_MEDIA/anatomy_images/IMG_2332_anatomy_front.png",
-              "site_path": "site/assets/media/images/neofilera_ana_02.png",
+              "site_path": "/assets/media/images/neofilera_ana_02.png",
               "size_MiB": "0.56",
               "format": "png",
               "consent_flag": "user-granted",
@@ -374,23 +374,23 @@
             {
               "type": "before-after",
               "source": "/Users/zakk/Desktop/yujin/neofilera/01_SOURCE_MEDIA/before_after_images/IMG_8050.JPG",
-              "site_path": "site/assets/media/images/neofilera_ba_01.jpg",
+              "site_path": "/assets/media/images/neofilera_ba_01.jpg",
               "size_MiB": "1.27",
               "format": "jpeg",
               "consent_flag": "user-granted",
               "audience_tier": "free",
               "images": [
-                "site/assets/media/images/neofilera_ba_01.jpg",
-                "site/assets/media/images/neofilera_ba_02.jpg",
-                "site/assets/media/images/neofilera_ba_03.jpg",
-                "site/assets/media/images/neofilera_ba_04.jpg",
-                "site/assets/media/images/neofilera_ba_05.jpg"
+                "/assets/media/images/neofilera_ba_01.jpg",
+                "/assets/media/images/neofilera_ba_02.jpg",
+                "/assets/media/images/neofilera_ba_03.jpg",
+                "/assets/media/images/neofilera_ba_04.jpg",
+                "/assets/media/images/neofilera_ba_05.jpg"
               ]
             },
             {
               "type": "video",
               "source": "/Users/zakk/Desktop/yujin/neofilera/01_SOURCE_MEDIA/procedure_videos/IMG_6488.MOV",
-              "site_path": "site/assets/media/videos/neofilera_vid_01.mp4",
+              "site_path": "/assets/media/videos/neofilera_vid_01.mp4",
               "size_MiB": "0.93",
               "format": "h264",
               "consent_flag": "user-granted",
@@ -399,7 +399,7 @@
             {
               "type": "video",
               "source": "/Users/zakk/Desktop/yujin/neofilera/01_SOURCE_MEDIA/procedure_videos/IMG_8537.MOV",
-              "site_path": "site/assets/media/videos/neofilera_vid_02.mp4",
+              "site_path": "/assets/media/videos/neofilera_vid_02.mp4",
               "size_MiB": "1.00",
               "format": "h264",
               "consent_flag": "user-granted",
@@ -408,7 +408,7 @@
             {
               "type": "video",
               "source": "/Users/zakk/Desktop/yujin/neofilera/01_SOURCE_MEDIA/procedure_videos/83E3E36C-0654-419B-9075-10D18D59E31D.MOV",
-              "site_path": "site/assets/media/videos/neofilera_vid_03.mp4",
+              "site_path": "/assets/media/videos/neofilera_vid_03.mp4",
               "size_MiB": "1.21",
               "format": "h264",
               "consent_flag": "user-granted",

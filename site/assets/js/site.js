@@ -243,7 +243,7 @@ const TIER_BADGE = { free: "免費層", paid: "付費層（標示）" };
 function mediaBlock(m) {
   const fig = document.createElement("figure");
   fig.className = "media-block"; fig.dataset.mid = "M14"; fig.dataset.tier = m.tier || m.audience_tier || "";
-  const src = m.src || m.file || "";
+  const src = m.site_path || m.src || m.file || "";
   let inner = "";
   if (m.type === "before-after") {
     const parts = (m.images || [m.site_path, m.src_before, m.src_after].filter(Boolean));

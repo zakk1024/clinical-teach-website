@@ -144,6 +144,16 @@ async def main():
         nimg = await page.evaluate("document.querySelectorAll('[data-mid=\\'M14\\'] img').length")
         nbadge = await page.evaluate("document.querySelectorAll('[data-mid=\\'M14\\'] .tier-badge').length")
         ok("M14", "neofilera 媒體區塊渲染：DOM 元素>0＋video/img 標籤＋tier 標識", nmedia > 0 and nvideo > 0 and nimg > 0 and nbadge == nmedia, f"blocks={nmedia} video={nvideo} img={nimg} badges={nbadge}")
+        # M14b 實測判（代理指標不算數——每張圖/影片實際解碼 naturalWidth>0，逐檔滾進視窗觸發 lazy）
+        decoded = await page.evaluate("""async () => {
+          const els = Array.from(document.querySelectorAll("figure[data-mid='M14'] img, figure[data-mid='M14'] video"));
+          let okn = 0;
+          for (const el of els) {
+            el.scrollIntoView(); await new Promise(r => setTimeout(r, 400));
+            if ((el.naturalWidth || el.videoWidth) > 0) okn++;
+          }
+          return okn; }""")
+        ok("M14b", "媒體實測判：逐檔解碼 naturalWidth>0（10/10）", decoded == 10, f"decoded={decoded}/10")
         # 排除清單 grep 自驗（CSS 無 monospace 字體族、無 #00ff00 系綠）
         print("\n== 站體頁面 console errors ==", errs or "無")
         print("\n".join(RESULTS))
