@@ -91,7 +91,8 @@ function report() { $("#out").textContent = out.join("\n"); document.title = "HA
   await new Promise(r => f.onload = r); await sleep(800); d = f.contentDocument;
   const cards = $$(d, "#m10-path-cards .card");
   ok("M10", "註冊表驅動路徑卡渲染（第二門課自動出現＝擴充斷言）", cards.length >= 3 && cards.some(c => c.textContent.includes("擴充演示")), `cards=${cards.length}`);
-  ok("M6", "連擊數字＋7 圓點渲染且今日點亮", $(".streak-dots i.on", d) !== null && $(".streak-count", d).textContent === "1", `count=${$(".streak-count", d).textContent}`);
+  for (let i=0;i<50 && !$(".streak-dots i.on", d);i++) await sleep(100); // 競態修復：讀取前等待圓點
+  ok("M6", "連擊數字＋7 圓點渲染且今日點亮（等待補齊後讀取）", $(".streak-dots i.on", d) !== null && $(".streak-count", d).textContent === "1", `count=${$(".streak-count", d).textContent}`);
   const shelfItem = $$(" #m11-bookmark-shelf li", d).length ? $('#m11-bookmark-shelf li[data-module="demo-skin-barrier"]', d) : null;
   // M11：回課程頁點書籤→首頁收藏架狀態變
   f.src = "http://127.0.0.1:8777/pages/course.html?course=demo-skin-barrier&r=3";
@@ -104,6 +105,16 @@ function report() { $("#out").textContent = out.join("\n"); document.title = "HA
   ok("M5", "印章槽達標 class=awarded（課程模組 01 已達標）", $("#m5-seal-demo-skin-barrier", d).classList.contains("awarded"));
   ok("M11b", "收藏架反映收藏狀態（li 脫離 empty 態）", $('#m11-bookmark-shelf li[data-module="demo-skin-barrier"]', d) && !$('#m11-bookmark-shelf li[data-module="demo-skin-barrier"]', d).classList.contains("empty"));
   // M13：全課程達標前 cert-entry 隐藏（demo 課程只達標一半）
+  // --- M14/M14b：neofilera 媒體渲染＋逐檔實測解碼（人眼判催生的斷言，雙殼同表） ---
+  f.src = "http://127.0.0.1:8777/pages/course.html?course=neofilera-pdlla-cmc&r=9";
+  await new Promise(r => f.onload = r); await sleep(800); d = f.contentDocument;
+  { const blocks = $$("figure[data-mid='M14']", d);
+    const vids = $$("figure[data-mid='M14'] video", d), imgs = $$("figure[data-mid='M14'] img", d);
+    const badges = $$("figure[data-mid='M14'] .tier-badge", d);
+    ok("M14", "媒體區塊渲染：blocks>0＋video/img＋tier 標識", blocks.length>0 && vids.length>0 && imgs.length>0 && badges.length===blocks.length, `blocks=${blocks.length} video=${vids.length} img=${imgs.length} badges=${badges.length}`);
+    let decoded=0;
+    for (const el of [...imgs,...vids]) { el.scrollIntoView(); await sleep(400); if ((el.naturalWidth||el.videoWidth)>0) decoded++; }
+    ok("M14b", "媒體實測判：逐檔解碼 naturalWidth>0（10/10）", decoded===10, `decoded=${decoded}/10`); }
   f.src = "http://127.0.0.1:8777/pages/course.html?course=demo-course-two&r=4";
   await new Promise(r => f.onload = r); await sleep(600); d = f.contentDocument;
   { const el0 = $("#m1-check-unit-demo-two-a", d); (el0.matches("input") ? el0 : el0.querySelector("input")).click(); } await sleep(200);

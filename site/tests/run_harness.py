@@ -115,9 +115,14 @@ async def main():
         cards = await page.locator("#m10-path-cards .card").count()
         c2 = await page.locator("#m10-path-cards .card", has_text="擴充演示").count()
         ok("M10", "註冊表驅動路徑卡：第二門課未經框架改動自動渲染（擴充斷言實測）", cards >= 3 and c2 >= 1, f"cards={cards} course2_cards={c2}")
+        # 競態修復（聯署工單）：圓點是渲染後狀態，讀取前明確等待，不靠 page load 運氣
+        try:
+            await page.wait_for_selector(".streak-dots i.on", state="attached", timeout=5000)
+        except Exception:
+            pass
         dots_on = await page.locator(".streak-dots i.on").count()
         sc = await page.inner_text(".streak-count")
-        ok("M6", "連擊數字＋7 格圓點：今日點亮", dots_on == 1 and sc == "1", f"count={sc} dots_on={dots_on}")
+        ok("M6", "連擊數字＋7 格圓點：今日點亮（等待補齊後讀取）", dots_on == 1 and sc == "1", f"count={sc} dots_on={dots_on}")
         shelf = page.locator('#m11-bookmark-shelf li[data-module="demo-skin-barrier"]')
         ok("M11", "首頁收藏架反映收藏狀態（li 非 empty）", (await shelf.count()) == 1 and not await shelf.evaluate("e => e.classList.contains('empty')"))
         seal = page.locator("#m5-seal-demo-skin-barrier")
