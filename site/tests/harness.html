@@ -102,7 +102,7 @@ function report() { $("#out").textContent = out.join("\n"); document.title = "HA
   ok("M11", "書籤點擊→class 狀態變＋localStorage 寫入", bmBefore === false && bm.classList.contains("saved") && (f.contentWindow.localStorage.getItem("mats-bookmarks") || "").includes("demo-skin-barrier"));
   f.src = "http://127.0.0.1:8777/pages/index.html?r=2";
   await new Promise(r => f.onload = r); await sleep(600); d = f.contentDocument;
-  ok("M5", "印章槽達標 class=awarded（課程模組 01 已達標）", $("#m5-seal-demo-skin-barrier", d).classList.contains("awarded"));
+  ok("M5b", "印章槽達標 class=awarded（課程模組 01 已達標）", $("#m5-seal-demo-skin-barrier", d).classList.contains("awarded"));
   ok("M11b", "收藏架反映收藏狀態（li 脫離 empty 態）", $('#m11-bookmark-shelf li[data-module="demo-skin-barrier"]', d) && !$('#m11-bookmark-shelf li[data-module="demo-skin-barrier"]', d).classList.contains("empty"));
   // M13：全課程達標前 cert-entry 隐藏（demo 課程只達標一半）
   // --- M14/M14b：neofilera 媒體渲染＋逐檔實測解碼（人眼判催生的斷言，雙殼同表） ---

@@ -34,7 +34,7 @@ async def main():
         await page.click(f"#m2-submit-{q1}")
         await asyncio.sleep(.3)
         fb = await page.evaluate(f"(()=>{{const f=document.querySelector('[data-feedback-for=\"{q1}\"]');return [f.textContent,f.dataset.result||''].join('|')}})()")
-        ok("M2", "答對：回饋 DOM 狀態由空變「正確」（點擊前後可測）", fb.endswith("|correct") and "正確" in fb and "不正確" not in fb, f"feedback={fb}")
+        ok("M2a", "答對：回饋 DOM 狀態由空變「正確」（點擊前後可測）", fb.endswith("|correct") and "正確" in fb and "不正確" not in fb, f"feedback={fb}")
 
         # M2b：答錯→回饋變錯
         q2 = "demo-skin-barrier-q2"
@@ -42,7 +42,7 @@ async def main():
         await page.click(f"#m2-submit-{q2}")
         await asyncio.sleep(.3)
         fb2 = await page.evaluate(f"(()=>{{const f=document.querySelector('[data-feedback-for=\"{q2}\"]');return [f.textContent,f.dataset.result||''].join('|')}})()")
-        ok("M2", "答錯：回饋 DOM 狀態由空變「不正確」", "不正確" in fb2 and fb2.endswith("|wrong"), f"feedback={fb2}")
+        ok("M2b", "答錯：回饋 DOM 狀態由空變「不正確」", "不正確" in fb2 and fb2.endswith("|wrong"), f"feedback={fb2}")
 
         # M8：答錯自動展開 L1＋點擊提示二展開 L2
         l1 = await page.evaluate(f"document.querySelector('#m8-ladder-{q2} .hint[data-level=\"1\"]').classList.contains('shown')")
@@ -99,7 +99,7 @@ async def main():
         await page.reload()
         await page.wait_for_selector("#m1-progress-demo-skin-barrier", state="attached", timeout=5000)
         pct = await page.inner_text("#m1-progress-demo-skin-barrier .pct")
-        ok("M1", "reload 後進度條保留（localStorage 持久化）", pct not in ("0%", ""), f"pct={pct}")
+        ok("M1b", "reload 後進度條保留（localStorage 持久化）", pct not in ("0%", ""), f"pct={pct}")
 
         # M11：課程頁點書籤→class 變＋localStorage；回首頁收藏架狀態變
         bm = page.locator("#m11-bookmark-demo-skin-barrier")
@@ -124,9 +124,10 @@ async def main():
         sc = await page.inner_text(".streak-count")
         ok("M6", "連擊數字＋7 格圓點：今日點亮（等待補齊後讀取）", dots_on == 1 and sc == "1", f"count={sc} dots_on={dots_on}")
         shelf = page.locator('#m11-bookmark-shelf li[data-module="demo-skin-barrier"]')
-        ok("M11", "首頁收藏架反映收藏狀態（li 非 empty）", (await shelf.count()) == 1 and not await shelf.evaluate("e => e.classList.contains('empty')"))
+        ok("M11b", "首頁收藏架反映收藏狀態（li 非 empty）", (await shelf.count()) == 1 and not await shelf.evaluate("e => e.classList.contains('empty')"))
         seal = page.locator("#m5-seal-demo-skin-barrier")
         ok("M5", "印章槽：達標模組點亮（class awarded）", await seal.evaluate("e => e.classList.contains('awarded')"))
+        ok("M5b", "印章槽達標 class=awarded（書籤動作後複核）", await seal.evaluate("e => e.classList.contains('awarded')"))
 
         # M13（課程頁）：第二門課全達標→證書入口顯形
         await page.goto(BASE + "/pages/course.html?course=demo-course-two")
