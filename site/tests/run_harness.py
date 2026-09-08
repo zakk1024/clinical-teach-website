@@ -112,9 +112,17 @@ async def main():
         # 首頁：M10 註冊表驅動（第二門課自動出現＝擴充斷言）＋M6 連擊＋M11 收藏架＋M5 印章
         await page.goto(BASE + "/pages/index.html")
         await page.wait_for_selector("#m10-path-cards .card", state="attached", timeout=5000)
+        # 競態修復：渲染是逐課程 async append，count 前等「第二門課的卡出現」而非只等第一張
+        try:
+            await page.wait_for_function("() => [...document.querySelectorAll('#m10-path-cards .card')].some(c=>c.textContent.includes('擴充演示'))", timeout=5000)
+        except Exception:
+            pass
         cards = await page.locator("#m10-path-cards .card").count()
         c2 = await page.locator("#m10-path-cards .card", has_text="擴充演示").count()
         ok("M10", "註冊表驅動路徑卡：第二門課未經框架改動自動渲染（擴充斷言實測）", cards >= 3 and c2 >= 1, f"cards={cards} course2_cards={c2}")
+        gh = await page.locator("#m10-path-cards .group-header").count()
+        tl_ok = await page.evaluate("""() => { const h = [...document.querySelectorAll('#m10-path-cards .group-header')]; const idx = h.findIndex(x=>x.dataset.group==='thread-lift'); let el = idx>=0 ? h[idx].nextElementSibling : null; let found=false; while(el && !el.classList.contains('group-header')){ if(el.textContent.includes('鼻雕')||el.textContent.includes('臉部提升')){found=true;break;} el=el.nextElementSibling;} return found; }""")
+        ok("M15", "ADR-0004 分組渲染：三個 group 標題由註冊表長出＋埋線區課程落在埋線標題下", gh == 3 and tl_ok, f"group_headers={gh} thread_lift_grouped={tl_ok}")
         # 競態修復（聯署工單）：圓點是渲染後狀態，讀取前明確等待，不靠 page load 運氣
         try:
             await page.wait_for_selector(".streak-dots i.on", state="attached", timeout=5000)

@@ -341,18 +341,50 @@ document.addEventListener("DOMContentLoaded", () => {
 async function loadRegistry() {
   const txt = await (await fetch("/courses.yml")).text();
   const courses = [];
+  const groups = [];
+  let inGroups = false;
   for (const line of txt.split("\n")) {
+    if (/^groups:\s*$/.test(line)) { inGroups = true; continue; }
+    if (/^courses:\s*$/.test(line)) { inGroups = false; continue; }
+    if (inGroups) {
+      const g = line.match(/^\s*-\s*id:\s*(\S+)\s*$/);
+      const t = line.match(/^\s*title_zh:\s*(.+?)\s*$/);
+      if (g) groups.push({ id: g[1], title: t ? t[1] : g[1] });
+      else if (t && groups.length) groups[groups.length - 1].title = t[1];
+      continue;
+    }
     const m = line.match(/^\s*-\s*id:\s*(\S+)\s*$/);
     const f = line.match(/^\s*file:\s*(\S+)\s*$/);
-    if (m) courses.push({ id: m[1], file: null });
+    const g2 = line.match(/^\s*group:\s*(\S+)\s*$/);
+    if (m) courses.push({ id: m[1], file: null, group: null });
     else if (f && courses.length) courses[courses.length - 1].file = f[1];
+    else if (g2 && courses.length) courses[courses.length - 1].group = g2[1];
   }
-  return courses;
+  return { courses, groups };
 }
 
 /* ---------- 首頁渲染（註冊表驅動：M5 印章槽＋M10 路徑卡＋M6 連擊＋M11 收藏架） ---------- */
 async function renderHome() {
-  const registry = await loadRegistry();
+  const { courses, groups } = await loadRegistry();
+  const sealZone = document.getElementById("m5-seal-row");
+  const zone = document.getElementById("m10-path-cards");
+  const shelf = document.getElementById("m11-bookmark-shelf");
+  // ADR-0004: 按註冊表 group 分區——註冊表是單一事實源，分組標題由資料長出，不手寫 HTML
+  const order = groups.length ? groups : [{ id: null, title: null }];
+  for (const g of order) {
+    if (zone && g.title) {
+      const gh = document.createElement("h2");
+      gh.className = "group-header reveal"; gh.dataset.group = g.id; gh.textContent = g.title;
+      zone.appendChild(gh);
+    }
+    for (const entry of courses.filter(c => (g.id || null) === (c.group || null))) await renderCourseEntry(entry);
+  }
+  renderProgress();
+  renderBookmarksOnHome();
+  return;
+}
+async function renderCourseEntry(entry) {
+  const registry = [{ id: entry.id, file: entry.file, group: entry.group }];
   const sealZone = document.getElementById("m5-seal-row");
   const zone = document.getElementById("m10-path-cards");
   const shelf = document.getElementById("m11-bookmark-shelf");

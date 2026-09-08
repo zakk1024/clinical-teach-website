@@ -1,13 +1,29 @@
 courses:
-  - id: demo-skin-barrier
-    file: /content/courses/demo-skin-barrier.json
-  - id: demo-course-two
-    file: /content/courses/demo-course-two.json
-  - id: course-thread-lift
-    file: /content/courses/course-thread-lift.json
-  - id: nose-thread-lift
-    file: /content/courses/nose-thread-lift.json
-  - id: collagen-stimulator-full-face
-    file: /content/courses/collagen-stimulator-full-face.json
-  - id: neofilera-pdlla-cmc
-    file: /content/courses/neofilera-pdlla-cmc.json
+- id: demo-skin-barrier
+  file: /content/courses/demo-skin-barrier.json
+  group: demo
+- id: demo-course-two
+  file: /content/courses/demo-course-two.json
+  group: demo
+- id: course-thread-lift
+  file: /content/courses/course-thread-lift.json
+  group: thread-lift
+- id: nose-thread-lift
+  file: /content/courses/nose-thread-lift.json
+  group: thread-lift
+- id: collagen-stimulator-full-face
+  file: /content/courses/collagen-stimulator-full-face.json
+  group: collagen-stimulator
+- id: neofilera-pdlla-cmc
+  file: /content/courses/neofilera-pdlla-cmc.json
+  group: collagen-stimulator
+groups:
+- id: thread-lift
+  title_zh: 埋線區
+  title_en: Thread Lift
+- id: collagen-stimulator
+  title_zh: 膠原蛋白增生劑區
+  title_en: Collagen Biostimulator
+- id: demo
+  title_zh: 演示區
+  title_en: Demo

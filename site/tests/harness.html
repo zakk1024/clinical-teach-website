@@ -91,6 +91,11 @@ function report() { $("#out").textContent = out.join("\n"); document.title = "HA
   await new Promise(r => f.onload = r); await sleep(800); d = f.contentDocument;
   const cards = $$(d, "#m10-path-cards .card");
   ok("M10", "註冊表驅動路徑卡渲染（第二門課自動出現＝擴充斷言）", cards.length >= 3 && cards.some(c => c.textContent.includes("擴充演示")), `cards=${cards.length}`);
+  const _ghs = $$('#m10-path-cards .group-header', d);
+  const _ghIdx = _ghs.findIndex(x=>x.dataset.group==='thread-lift');
+  let _el = _ghIdx>=0 ? _ghs[_ghIdx].nextElementSibling : null; let _found=false;
+  while(_el && !_el.classList.contains('group-header')){ if(_el.textContent.includes("鼻雕")||_el.textContent.includes("臉部提升")){_found=true;break;} _el=_el.nextElementSibling; }
+  ok("M15", "ADR-0004 分組渲染：三個 group 標題由註冊表長出＋埋線區課程落在埋線標題下", _ghs.length===3 && _found, `group_headers=${_ghs.length} thread_lift_grouped=${_found}`);
   for (let i=0;i<50 && !$(".streak-dots i.on", d);i++) await sleep(100); // 競態修復：讀取前等待圓點
   ok("M6", "連擊數字＋7 圓點渲染且今日點亮（等待補齊後讀取）", $(".streak-dots i.on", d) !== null && $(".streak-count", d).textContent === "1", `count=${$(".streak-count", d).textContent}`);
   const shelfItem = $$(" #m11-bookmark-shelf li", d).length ? $('#m11-bookmark-shelf li[data-module="demo-skin-barrier"]', d) : null;
