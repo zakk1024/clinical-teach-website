@@ -390,6 +390,13 @@ async function renderCourseEntry(entry) {
   const shelf = document.getElementById("m11-bookmark-shelf");
   for (const entry of registry) {
     const course = await (await fetch(entry.file)).json();
+    // ADR-0004 層級：區(h2) → 課程(h3 課程標題) → 模組卡。課程標題由課程 JSON 長出，不手寫。
+    if (zone) {
+      const ch = document.createElement("h3");
+      ch.className = "course-header reveal"; ch.dataset.course = course.id;
+      ch.innerHTML = `<a href="course.html?course=${course.id}">${course.title}</a>`;
+      zone.appendChild(ch);
+    }
     // M5：每個模組一枚單色線條印章槽（達標時描邊動畫單次播放）
     course.modules.forEach(mod => {
       if (!sealZone) return;

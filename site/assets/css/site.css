@@ -149,3 +149,7 @@ a { color: var(--accent); text-decoration: none; }
 
 /* ADR-0004: 分區標題（註冊表 group 欄驅動） */
 .group-header{margin:2.2rem 0 1rem;padding-bottom:.5rem;border-bottom:2px solid var(--border, #333);font-size:1.3rem;letter-spacing:.05em}
+
+/* ADR-0004: 課程層標題（區→課程→模組三級） */
+.course-header{margin:1.4rem 0 .6rem;font-size:1.05rem;opacity:.95}
+.course-header a{color:inherit;text-decoration:none}
