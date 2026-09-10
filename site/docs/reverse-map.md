@@ -10,7 +10,7 @@
 | `m3-lock-*` 模組鏈硬門檻鎖提示（前一模組達標前顯示鎖＋剩餘題數） | M3 |
 | `content/progress.json` `points` 欄保留、UI 不渲染數值 | M4（棄·簡化落點） |
 | `m5-seal-*` 單色線條 SVG 印章槽，達標點亮＋單次 300ms 描邊 | M5 |
-| `m6-streak` 連擊數字＋7 格圓點日曆（localStorage `mats-streak`，無火焰無音效） | M6 |
+| ~~`m6-streak` 連擊日曆~~ → **Q10 裁決（2026-09-09）：砍除**——回訪假設不可觀測（使用者裁決，Feynman 不可觀測論＋Taleb 可逆性論）；測試燈 M6 連帶下架（Elon 記帳） | M6→下架 |
 | `content/progress.json` `users` 欄佔位、無排行榜 UI | M7（棄·落點） |
 | `m8-hint-*`／`m8-ladder-*` 三級提示階梯（L1 概念回顧錨點→L2 改述→L3 揭示），答錯自動展開 L1 | M8 |
 | `m9-drop-*`／`m9-tray-*` 拖曳配對＋單選/是非題型（`m2-input-*`），客戶端判定 | M9 |

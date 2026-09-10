@@ -123,19 +123,11 @@ async def main():
         gh = await page.locator("#m10-path-cards .group-header").count()
         tl_ok = await page.evaluate("""() => { const h = [...document.querySelectorAll('#m10-path-cards .group-header')]; const idx = h.findIndex(x=>x.dataset.group==='thread-lift'); let el = idx>=0 ? h[idx].nextElementSibling : null; let found=false; while(el && !el.classList.contains('group-header')){ if(el.textContent.includes('鼻雕')||el.textContent.includes('臉部提升')){found=true;break;} el=el.nextElementSibling;} return found; }""")
         ok("M15", "ADR-0004 分組渲染：三個 group 標題由註冊表長出＋埋線區課程落在埋線標題下", gh == 3 and tl_ok, f"group_headers={gh} thread_lift_grouped={tl_ok}")
-        # 競態修復（聯署工單）：圓點是渲染後狀態，讀取前明確等待，不靠 page load 運氣
-        try:
-            await page.wait_for_selector(".streak-dots i.on", state="attached", timeout=5000)
-        except Exception:
-            pass
-        dots_on = await page.locator(".streak-dots i.on").count()
-        sc = await page.inner_text(".streak-count")
-        ok("M6", "連擊數字＋7 格圓點：今日點亮（等待補齊後讀取）", dots_on == 1 and sc == "1", f"count={sc} dots_on={dots_on}")
+        # M16（Q9）：課程層狀態標籤——進度只畫一處；demo-skin-barrier 經 M1 打勾應為 In Progress，其餘未開始
+        badges = await page.evaluate("""() => { const b = {}; document.querySelectorAll('.course-row .status-badge').forEach(x => b[x.dataset.course] = x.textContent.trim()); return b; }""")
+        ok("M16", "課程層狀態標籤：有進度的課 In Progress、無進度的課 Not Started（狀態可測）", badges.get("demo-skin-barrier") == "In Progress" and all(v == "Not Started" for k, v in badges.items() if k != "demo-skin-barrier") and len(badges) == 6, f"badges={badges}")
         shelf = page.locator('#m11-bookmark-shelf li[data-module="demo-skin-barrier"]')
         ok("M11b", "首頁收藏架反映收藏狀態（li 非 empty）", (await shelf.count()) == 1 and not await shelf.evaluate("e => e.classList.contains('empty')"))
-        seal = page.locator("#m5-seal-demo-skin-barrier")
-        ok("M5", "印章槽：達標模組點亮（class awarded）", await seal.evaluate("e => e.classList.contains('awarded')"))
-        ok("M5b", "印章槽達標 class=awarded（書籤動作後複核）", await seal.evaluate("e => e.classList.contains('awarded')"))
 
         # M13（課程頁）：第二門課全達標→證書入口顯形
         await page.goto(BASE + "/pages/course.html?course=demo-course-two")

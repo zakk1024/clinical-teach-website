@@ -23,8 +23,7 @@ function recordProgress(courseId, moduleId, unitId, checked) {
   lsSet(LS_PROGRESS, recs);
   renderProgress();
   renderLocks();
-  renderSealsForModule(courseId, moduleId);
-  renderCertEntryForCourse(courseId);
+    renderCertEntryForCourse(courseId);
 }
 function moduleDone(courseId, moduleId) {
   const bar = document.querySelector(`div[data-mid="M1"][data-module="${moduleId}"][data-total]`);
@@ -34,6 +33,18 @@ function moduleDone(courseId, moduleId) {
   return total != null ? done >= total : (recs.length > 0 && done === recs.length);
 }
 function renderProgress() {
+  // Q9: 課程層狀態標籤（每課一個 aggregation，進度只畫這一處＋課頁原本的模組卡）
+  document.querySelectorAll(".status-badge[data-course]").forEach(badge => {
+    const cid = badge.dataset.course;
+    const bars = [...document.querySelectorAll(`div[data-mid="M1"][data-course="${cid}"][data-total]`)];
+    let doneM = 0, totalM = 0;
+    bars.forEach(b => {
+      const t = Number(b.dataset.total) || 0;
+      const d = progressRecords().filter(r => r.courseId === cid && r.moduleId === b.dataset.module && r.checked).length;
+      totalM++; if (t > 0 && d >= t) doneM++;
+    });
+    badge.textContent = doneM === 0 ? "Not Started" : (doneM >= totalM && totalM > 0 ? "Complete" : "In Progress");
+  });
   document.querySelectorAll('div[data-mid="M1"][data-total]').forEach(bar => {
     const { course, module, total } = bar.dataset;
     const recs = progressRecords().filter(r => r.courseId === course && r.moduleId === module);
@@ -156,27 +167,7 @@ function renderBookmarksOnHome() {
 }
 
 /* ---------- M6：連擊（每日活躍日＋7 格圓點日曆，無懲罰無火焰） ---------- */
-function initStreak() {
-  const zone = document.getElementById("m6-streak");
-  if (!zone) return;
-  let st = lsGet(LS_STREAK, { days: [] });
-  const today = new Date().toISOString().slice(0, 10);
-  if (!st.days.includes(today)) {
-    const y = new Date(Date.now() - 864e5).toISOString().slice(0, 10);
-    st.days.push(today);
-    if (!st.days.includes(y)) st.days = [today]; // 斷一天即斷連（M14 棄＝無補救）
-    lsSet(LS_STREAK, st);
-  }
-  // streak = 以今天為終點的連續天數
-  let streak = 0, d = new Date();
-  while (st.days.includes(d.toISOString().slice(0, 10))) { streak++; d = new Date(d - 864e5); }
-  zone.querySelector(".streak-count").textContent = streak;
-  const dots = zone.querySelectorAll(".streak-dots i");
-  for (let i = 0; i < 7; i++) {
-    const day = new Date(Date.now() - (6 - i) * 864e5).toISOString().slice(0, 10);
-    dots[i].classList.toggle("on", st.days.includes(day));
-  }
-}
+/* Q10 裁決：連擊日曆砍除——回訪假設不可觀測（localStorage 無後端）；initStreak 死碼移除 */
 
 /* ---------- M12：捲動進度線（2px --accent 細線）＋章節單次淡入 ---------- */
 function initScrollProgress() {
@@ -193,11 +184,7 @@ function initScrollProgress() {
   window.__observeReveals();
 }
 
-/* ---------- M5：印章槽（模組達標→描邊動畫單次播放） ---------- */
-function renderSealsForModule(courseId, moduleId) {
-  const slot = document.getElementById("m5-seal-" + moduleId);
-  if (slot) slot.classList.toggle("awarded", moduleDone(courseId, moduleId));
-}
+/* M5 印章牆：Q9 裁決砍除——進度只畫一處（課程層 status-badge） */
 
 /* ---------- 內容渲染器（JSON → DOM；框架只認 data-mid，不認內容） ---------- */
 async function loadCourse(courseId) {
@@ -325,12 +312,11 @@ async function bootCoursePage() {
   const zone = document.getElementById("module-zone");
   course.modules.forEach(mod => zone.appendChild(renderModuleCard(course, mod)));
   window.__observeReveals(); // BUG-1 fix: observe injected .reveal elements (async boot — observer must run AFTER injection)
-  initBookmarks(); renderProgress(); renderLocks(); renderCertEntryForCourse(courseId); initStreak();
+  initBookmarks(); renderProgress(); renderLocks(); renderCertEntryForCourse(courseId);
 }
 async function bootHomePage() {
   await renderHome();
   window.__observeReveals(); // BUG-1 fix: observe injected .reveal elements
-  initStreak();
 }
 document.addEventListener("DOMContentLoaded", () => {
   initScrollProgress();
@@ -366,7 +352,6 @@ async function loadRegistry() {
 /* ---------- 首頁渲染（註冊表驅動：M5 印章槽＋M10 路徑卡＋M6 連擊＋M11 收藏架） ---------- */
 async function renderHome() {
   const { courses, groups } = await loadRegistry();
-  const sealZone = document.getElementById("m5-seal-row");
   const zone = document.getElementById("m10-path-cards");
   const shelf = document.getElementById("m11-bookmark-shelf");
   // ADR-0004: 按註冊表 group 分區——註冊表是單一事實源，分組標題由資料長出，不手寫 HTML
@@ -385,7 +370,6 @@ async function renderHome() {
 }
 async function renderCourseEntry(entry) {
   const registry = [{ id: entry.id, file: entry.file, group: entry.group }];
-  const sealZone = document.getElementById("m5-seal-row");
   const zone = document.getElementById("m10-path-cards");
   const shelf = document.getElementById("m11-bookmark-shelf");
   for (const entry of registry) {
@@ -397,17 +381,14 @@ async function renderCourseEntry(entry) {
       ch.innerHTML = `<a href="course.html?course=${course.id}">${course.title}</a>`;
       zone.appendChild(ch);
     }
-    // M5：每個模組一枚單色線條印章槽（達標時描邊動畫單次播放）
-    course.modules.forEach(mod => {
-      if (!sealZone) return;
-      const slot = document.createElement("div");
-      slot.className = "seal-slot";
-      slot.id = `m5-seal-${mod.id}`;
-      slot.dataset.module = mod.id;
-      slot.innerHTML = `<svg width="54" height="54" viewBox="0 0 60 60" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="30" cy="30" r="24"/><text x="30" y="36" text-anchor="middle" font-size="14" stroke="none" fill="currentColor">${mod.title.match(/\d+/)?.[0] || "•"}</text></svg>`;
-      sealZone.appendChild(slot);
-      renderSealsForModule(course.id, mod.id);
-    });
+    // Q9 決定：進度歸課程層——每課一行（课程名已在上）＋本课进度条＋状态标签（TryHackMe End-User Assignments 式）
+    if (zone) {
+      const row = document.createElement("div");
+      row.className = "course-row"; row.dataset.mid = "M16"; row.dataset.course = course.id;
+      row.innerHTML = `<span class="status-badge" data-course="${course.id}">Not Started</span><span class="course-progress">${course.modules.length} 個模組</span>`;
+      zone.appendChild(row);
+    }
+    // （M5 全局印章牆已於 Q9 裁決移除——進度只畫一處；M6 連擊 Q10 裁決拿掉）
     // M10：每條 path/模組一張卡＋整體進度條＋下一步按鈕
     course.modules.forEach((mod, i) => {
       if (!zone) return;

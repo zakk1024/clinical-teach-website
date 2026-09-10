@@ -77,8 +77,6 @@ function report() { $("#out").textContent = out.join("\n"); document.title = "HA
   await sleep(300);
   const lockedAfter = getComputedStyle(lock2).display !== "none";
   ok("M3", "前一模組達標→鎖 DOM 狀態翻轉（顯示→隱藏）", lockedBefore === true && lockedAfter === false, `before_locked=${lockedBefore} after_locked=${lockedAfter}`);
-  // M5 印章達標點亮
-  ok("M5", "模組達標→印章槽 class 變 awarded", $("#m5-seal-demo-skin-barrier", d) ? true : true, "（首頁驗，見 home 段）");
 
   // --- M1 持久化：reload 後進度條保留（localStorage） ---
   f.src = "http://127.0.0.1:8777/pages/course.html?course=demo-skin-barrier&r=2";
@@ -86,7 +84,7 @@ function report() { $("#out").textContent = out.join("\n"); document.title = "HA
   const pctAfterReload = $(d, barSel).textContent;
   ok("M1b", "reload 後進度條保留（純 localStorage 持久化）", pctAfterReload !== "0%", `pct=${pctAfterReload}`);
 
-  // --- 首頁：M6/M10/M11/M5 ---
+  // --- 首頁：M10/M15/M16/M11 ---
   f.src = "http://127.0.0.1:8777/pages/index.html";
   await new Promise(r => f.onload = r); await sleep(800); d = f.contentDocument;
   const cards = $$(d, "#m10-path-cards .card");
@@ -96,8 +94,11 @@ function report() { $("#out").textContent = out.join("\n"); document.title = "HA
   let _el = _ghIdx>=0 ? _ghs[_ghIdx].nextElementSibling : null; let _found=false;
   while(_el && !_el.classList.contains('group-header')){ if(_el.textContent.includes("鼻雕")||_el.textContent.includes("臉部提升")){_found=true;break;} _el=_el.nextElementSibling; }
   ok("M15", "ADR-0004 分組渲染：三個 group 標題由註冊表長出＋埋線區課程落在埋線標題下", _ghs.length===3 && _found, `group_headers=${_ghs.length} thread_lift_grouped=${_found}`);
-  for (let i=0;i<50 && !$(".streak-dots i.on", d);i++) await sleep(100); // 競態修復：讀取前等待圓點
-  ok("M6", "連擊數字＋7 圓點渲染且今日點亮（等待補齊後讀取）", $(".streak-dots i.on", d) !== null && $(".streak-count", d).textContent === "1", `count=${$(".streak-count", d).textContent}`);
+  // --- M16（Q9）：課程層狀態標籤——進度只畫一處 ---
+  {
+    const badges = {}; d.querySelectorAll('.course-row .status-badge').forEach(x => badges[x.dataset.course] = x.textContent.trim());
+    ok("M16", "課程層狀態標籤：有進度的課 In Progress、無進度的課 Not Started（狀態可測）", badges["demo-skin-barrier"] === "In Progress" && Object.entries(badges).every(([k,v]) => k === "demo-skin-barrier" ? v === "In Progress" : v === "Not Started") && Object.keys(badges).length === 6, JSON.stringify(badges));
+  }
   const shelfItem = $$(" #m11-bookmark-shelf li", d).length ? $('#m11-bookmark-shelf li[data-module="demo-skin-barrier"]', d) : null;
   // M11：回課程頁點書籤→首頁收藏架狀態變
   f.src = "http://127.0.0.1:8777/pages/course.html?course=demo-skin-barrier&r=3";
@@ -107,7 +108,6 @@ function report() { $("#out").textContent = out.join("\n"); document.title = "HA
   ok("M11", "書籤點擊→class 狀態變＋localStorage 寫入", bmBefore === false && bm.classList.contains("saved") && (f.contentWindow.localStorage.getItem("mats-bookmarks") || "").includes("demo-skin-barrier"));
   f.src = "http://127.0.0.1:8777/pages/index.html?r=2";
   await new Promise(r => f.onload = r); await sleep(600); d = f.contentDocument;
-  ok("M5b", "印章槽達標 class=awarded（課程模組 01 已達標）", $("#m5-seal-demo-skin-barrier", d).classList.contains("awarded"));
   ok("M11b", "收藏架反映收藏狀態（li 脫離 empty 態）", $('#m11-bookmark-shelf li[data-module="demo-skin-barrier"]', d) && !$('#m11-bookmark-shelf li[data-module="demo-skin-barrier"]', d).classList.contains("empty"));
   // M13：全課程達標前 cert-entry 隐藏（demo 課程只達標一半）
   // --- M14/M14b：neofilera 媒體渲染＋逐檔實測解碼（人眼判催生的斷言，雙殼同表） ---
