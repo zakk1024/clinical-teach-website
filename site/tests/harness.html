@@ -98,6 +98,11 @@ function report() { $("#out").textContent = out.join("\n"); document.title = "HA
   {
     const badges = {}; d.querySelectorAll('.course-row .status-badge').forEach(x => badges[x.dataset.course] = x.textContent.trim());
     ok("M16", "課程層狀態標籤：有進度的課 In Progress、無進度的課 Not Started（狀態可測）", badges["demo-skin-barrier"] === "In Progress" && Object.entries(badges).every(([k,v]) => k === "demo-skin-barrier" ? v === "In Progress" : v === "Not Started") && Object.keys(badges).length === 6, JSON.stringify(badges));
+  {
+    const a1 = d.querySelector('.next-step[data-next="demo-skin-barrier:demo-skin-barrier"] a');
+    const a2 = d.querySelector('.next-step[data-next="demo-course-two:demo-course-two-m1"] a');
+    ok("M17", "狀態驅動按鈕：有進度卡按鈕現形＋帶資訊文字；無進度卡無按鈕", a1 && a1.style.display !== "none" && (a1.textContent.includes("繼續") || a1.textContent.includes("已完成")) && (!a2 || a2.style.display === "none"), `progress_btn=${a1?a1.textContent.trim():null} no_progress_btn=${a2?a2.textContent.trim():null}`);
+  }
   }
   const shelfItem = $$(" #m11-bookmark-shelf li", d).length ? $('#m11-bookmark-shelf li[data-module="demo-skin-barrier"]', d) : null;
   // M11：回課程頁點書籤→首頁收藏架狀態變

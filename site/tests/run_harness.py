@@ -126,6 +126,10 @@ async def main():
         # M16（Q9）：課程層狀態標籤——進度只畫一處；demo-skin-barrier 經 M1 打勾應為 In Progress，其餘未開始
         badges = await page.evaluate("""() => { const b = {}; document.querySelectorAll('.course-row .status-badge').forEach(x => b[x.dataset.course] = x.textContent.trim()); return b; }""")
         ok("M16", "課程層狀態標籤：有進度的課 In Progress、無進度的課 Not Started（狀態可測）", badges.get("demo-skin-barrier") == "In Progress" and all(v == "Not Started" for k, v in badges.items() if k != "demo-skin-barrier") and len(badges) == 6, f"badges={badges}")
+        # M17（Q12）：狀態驅動按鈕——有進度的卡（demo-skin-barrier 經 M1 打勾）按鈕現形且文字帶資訊；無進度卡按鈕隱藏
+        nx1 = await page.evaluate("""() => { const a = document.querySelector('.next-step[data-next="demo-skin-barrier:demo-skin-barrier"] a'); return a && a.style.display !== 'none' ? a.textContent.trim() : null; }""")
+        nx2 = await page.evaluate("""() => { const a = document.querySelector('.next-step[data-next="demo-course-two:demo-course-two-m1"] a'); return a && a.style.display !== 'none' ? a.textContent.trim() : null; }""")
+        ok("M17", "狀態驅動按鈕：有進度卡按鈕現形＋帶資訊文字（繼續・剩下N 或 已完成・可重溫）；無進度卡無按鈕", nx1 is not None and ("繼續" in nx1 or "已完成" in nx1) and nx2 is None, f"progress_btn={nx1} no_progress_btn={nx2}")
         shelf = page.locator('#m11-bookmark-shelf li[data-module="demo-skin-barrier"]')
         ok("M11b", "首頁收藏架反映收藏狀態（li 非 empty）", (await shelf.count()) == 1 and not await shelf.evaluate("e => e.classList.contains('empty')"))
 

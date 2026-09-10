@@ -14,7 +14,7 @@
 | `content/progress.json` `users` 欄佔位、無排行榜 UI | M7（棄·落點） |
 | `m8-hint-*`／`m8-ladder-*` 三級提示階梯（L1 概念回顧錨點→L2 改述→L3 揭示），答錯自動展開 L1 | M8 |
 | `m9-drop-*`／`m9-tray-*` 拖曳配對＋單選/是非題型（`m2-input-*`），客戶端判定 | M9 |
-| `m10-path-cards` 註冊表驅動路徑卡＋編號＋下一步按鈕＋整體進度條 | M10 |
+| `m10-path-cards` 註冊表驅動路徑卡＋編號＋狀態驅動按鈕（Q12：無進度無按鈕整卡可點；有進度「繼續・剩下N項」/「已完成・可重溫」）＋整體進度條 | M10＋M17 |
 | `m11-bookmark-*` 細線書籤圖標（localStorage `mats-bookmarks`）＋首頁收藏架 `m11-bookmark-shelf` | M11 |
 | `m12-scroll-progress` 頂部 2px `--accent` 閱讀進度線＋章節單次淡入（150–300ms） | M12 |
 | `m13-cert-entry`／`m13-certificate` 全模組達標→證書入口（姓名 localStorage `mats-name`，列印為 PDF） | M13 |

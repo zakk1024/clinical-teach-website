@@ -52,6 +52,13 @@ function renderProgress() {
     const pct = total > 0 ? Math.round((done / total) * 100) : 0;
     bar.querySelector(".bar > span").style.width = pct + "%";
     bar.querySelector(".pct").textContent = pct + "%";
+    // Q12: 狀態驅動按鈕——有進度才出現，文字帶資訊（五家最大公約：第二元素不複誦標題）
+    const nx = document.querySelector(`.next-step[data-next="${course}:${module}"] a`);
+    if (nx) {
+      if (pct > 0 && pct < 100) { nx.style.display = ""; nx.textContent = `繼續・剩下 ${total - done} 項`; }
+      else if (pct >= 100) { nx.style.display = ""; nx.textContent = `已完成・可重溫`; }
+      else { nx.style.display = "none"; }
+    }
   });
 }
 
@@ -401,7 +408,8 @@ async function renderCourseEntry(entry) {
         <div class="m1-progress" id="m1-progress-${course.id}-${mod.id}" data-mid="M1" data-course="${course.id}" data-module="${mod.id}" data-total="${mod.units.length + mod.questions.length + (mod.match ? 1 : 0)}">
           <div class="bar"><span></span></div><div class="pct">0%</div>
         </div>
-        <div class="next-step"><a class="btn ghost" href="course.html?course=${course.id}&module=${mod.id}">下一步：${mod.title}</a></div>`;
+        <div class="next-step" data-next="${course.id}:${mod.id}"><a class="btn ghost" id="next-btn-${course.id}-${mod.id}" href="course.html?course=${course.id}&module=${mod.id}" style="display:none"></a></div>`;
+    card.onclick = (e) => { if (!e.target.closest("a")) location.href = `course.html?course=${course.id}&module=${mod.id}`; }; // Q12: 無進度時整卡可點
       zone.appendChild(card);
     });
     // M11 首頁收藏區
