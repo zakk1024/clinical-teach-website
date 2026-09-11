@@ -186,7 +186,7 @@ function initScrollProgress() {
   }, { passive: true });
   const io = new IntersectionObserver(entries => {
     entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add("revealed"); io.unobserve(e.target); } }); // 單次播放
-  }, { threshold: 0.18 });
+  }, { threshold: 0.02 }); // 修正：0.18 對高於視窗的卡片永不觸發（內容渲染了但 opacity:0＝視覺全白）
   window.__observeReveals = (root) => (root || document).querySelectorAll(".reveal:not(.revealed)").forEach(el => io.observe(el)); // BUG-1 fix：渲染器注入的內容也要被觀察
   window.__observeReveals();
 }
@@ -222,11 +222,12 @@ function renderModuleCard(course, mod, isFirst) {
   if (mod.match) card.appendChild(matchBlock(course, mod, mod.match));
   return card;
 }
+function mdLite(s){return s.replace(/\*\*([^*]+)\*\*/g,"<strong>$1</strong>");}
 function unitSection(course, mod, u) {
   const sec = document.createElement("section");
   sec.className = "unit reveal";
   if (u.anchors && u.anchors[0]) sec.id = u.anchors[0];
-  sec.innerHTML = `<h3 id="unit-${u.id}">${u.title}</h3>${(u.body || []).map(p => `<p>${p}</p>`).join("")}`;
+  sec.innerHTML = `<h3 id="unit-${u.id}">${u.title}</h3>${(u.body || []).map(p => `<p>${mdLite(p)}</p>`).join("")}`;
   (u.media || []).forEach(m => sec.appendChild(mediaBlock(m)));
   sec.appendChild(checkRow(course, mod, u.id, "讀完此單元"));
   return sec;
