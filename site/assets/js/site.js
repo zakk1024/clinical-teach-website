@@ -239,7 +239,10 @@ function mediaBlock(m) {
   fig.className = "media-block"; fig.dataset.mid = "M14"; fig.dataset.tier = m.tier || m.audience_tier || "";
   const src = m.site_path || m.src || m.file || "";
   let inner = "";
-  if (m.type === "before-after") {
+  if (m.note === "cc-by-pending-file") {
+    /* 授權佔位槽：真圖檔尚未入庫——渲染佔位框（caption+出處），不渲染 broken img */
+    inner = `<div class="media-pending">素材待補（CC-BY 原文圖，入庫後替換）<br>出處：${m.source_doi || ""}</div>`;
+  } else if (m.type === "before-after") {
     const parts = (m.images || [m.site_path, m.src_before, m.src_after].filter(Boolean));
     inner = `<div class="ba-pair">${parts.map(s => `<img src="${s}" loading="lazy" alt="before/after">`).join('<span class="ba-sep">→</span>')}</div>`;
   } else if (m.type === "video") {
