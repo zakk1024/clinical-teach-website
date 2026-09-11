@@ -1,62 +1,648 @@
 {
-  "$comment": "課程 1／3：鼻雕埋線衛教課。schema 照 demo-skin-barrier.json；互動點標註 M-ID（M2 測驗／M8 提示階梯／M9 配對）。",
+  "$comment": "課程 2／3：鼻雕埋線醫師課（本檔僅含已核准的 M2、M3 兩模組，內容逐字取自 deliverables/nose-m2-draft.md 與 deliverables/nose-m3-draft.md）。schema 照 neofilera-pdlla-cmc.json；media[] 為 12 張插圖佔位（nose_F1–nose_F12，10 張重畫＋2 張 CC-BY 待檔）；claims[] 逐字鏡像兩草稿的分層標籤與來源。",
   "id": "nose-thread-lift",
-  "title": "鼻雕埋線衛教（鼻部線雕）",
+  "title": "鼻雕埋線（Nose Thread Lift）——醫師課",
   "sources": [
-    { "id": "S1", "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC11997779/", "claim": "PDO 線材經水解於 4–6 個月內完全吸收，其刺激膠原蛋白效果可延續更久（隨機對照試驗背景章節）。" },
-    { "id": "S2", "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC11086642/", "claim": "埋線材料回顧：術後腫脹最常見；長期滿意度較術後即時明顯下降（88% vs 98%）。" },
-    { "id": "S3", "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC10069852/", "claim": "鼻部線雕屬微創、非手術的「暫時性」修整；技術缺乏標準化、結果變異大、持續期短。" },
-    { "id": "S4", "url": "https://pubmed.ncbi.nlm.nih.gov/25993611/", "claim": "PDO 無結線面部拉提：挑選合適患者時安全有效、併發症輕微。" },
-    { "id": "S5", "url": "https://dep.mohw.gov.tw/DOMA/cp-3240-15604-106.html", "claim": "衛福部醫事司美容醫學資訊專區：美容醫學處置（含針劑注射）同意書及說明書範本公告頁。" }
+    {
+      "id": "A1",
+      "url": "https://doi.org/10.1007/s00266-016-0756-0",
+      "tier": "文獻層（primary，50 具 latex 灌注尸體）",
+      "note": "Tansatit T, et al. Facing the Worst Risk: Confronting the Dorsal Nasal Artery. Aesthet Plast Surg 2017（pubmed 28032167）。單條大 dorsal nasal artery 可靠鼻正中線 1–2mm；插層要確認骨膜前層"
+    },
+    {
+      "id": "A2",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC8594662/",
+      "tier": "文獻層（primary，60 具層位解剖）",
+      "note": "Anatomical Study of the Dorsal Nasal Artery... PRS Global Open 2021。DNA 走在鼻背 SMAS 上脂肪層、雙側53%、叢状38%、單條正中8%"
+    },
+    {
+      "id": "A3",
+      "url": "https://doi.org/10.1093/asj/sjab432",
+      "tier": "文獻層（primary，postmortem CT）",
+      "note": "Cong LY, et al. 3D Arterial Distribution Over Midline of Nasal Bone. ASJ 2022;42(6)（pubmed 34971367）。鼻骨正中線動脈跨越率<12%"
+    },
+    {
+      "id": "A4",
+      "url": "https://doi.org/10.1097/PRS.0000000000009649",
+      "tier": "文獻層（primary，40 具＋modified Sihler；filler 研究，引用界線見 M2 §3）",
+      "note": "Tansatit T, et al. Lower Nose Arterial Plexus and Safe Filler Injections. PRS 2022;150(5)（pubmed 35994353）。下鼻＝8字形雙動脈環"
+    },
+    {
+      "id": "A5",
+      "url": "https://doi.org/10.1007/s00276-025-03659-z",
+      "tier": "文獻層（primary，40 具，Yonsei）",
+      "note": "Park HJ, Hur MS. Septal branches of superior labial artery in columella and nasal tip. Surg Radiol Anat 2025（pubmed 40439961）。深隔支90%上行入鼻小柱"
+    },
+    {
+      "id": "A6",
+      "url": "https://doi.org/10.3389/fmed.2026.1581406",
+      "tier": "文獻層（primary，Yonsei；CC-BY 圖可直用）",
+      "note": "Yi KH, Lee HJ, Lee JH. Anatomical layer analysis for safe thread insertion using micro-CT and US. Front Med 2026（PMC12890646）。插層地面真相"
+    },
+    {
+      "id": "A7",
+      "url": "https://doi.org/10.1002/ca.23726",
+      "tier": "文獻層（primary，Yonsei）",
+      "note": "Lee KW, et al. 3D topography of facial soft tissues for threading. Clin Anat 2021;34(7)（pubmed 33583088）。盲插厚度骨架"
+    },
+    {
+      "id": "A8",
+      "url": "https://doi.org/10.1055/s-0040-1712469",
+      "tier": "文獻層（primary，split-face cadaveric）",
+      "note": "Braun M, et al. Influence of Insertion Angle on Tissue-Mechanics... Facial Plast Surg 2020;36(3)（pubmed 32512601）。抓層力學"
+    },
+    {
+      "id": "A9",
+      "url": "https://doi.org/10.1111/jocd.13743",
+      "tier": "文獻層（secondary，引用前已標）",
+      "note": "Cannula versus needle in medical rhinoplasty: the nose knows. J Cosmet Dermatol 2020（pubmed 39760325）。鈍針vs尖針機制對照"
+    },
+    {
+      "id": "A10",
+      "url": "https://doi.org/10.1111/jocd.16745",
+      "tier": "文獻層（secondary 綜述；CC-BY 圖可直用）",
+      "note": "Yi KH, Park SY. Facial Thread Lifting Complications. J Cosmet Dermatol 2025;24(1)。線專用併發症目錄"
+    },
+    {
+      "id": "A11",
+      "url": "—",
+      "tier": "searched-and-absent",
+      "note": "無鼻專用插層尸體研究（Yonsei 鼻相關僅 A5）；檢索記錄見研究檔"
+    },
+    {
+      "id": "A12",
+      "url": "—",
+      "tier": "searched-and-absent",
+      "note": "無鼻 THREAD 專用尸體危險區研究；危險區解剖全來自 filler 文獻；檢索記錄見研究檔"
+    },
+    {
+      "id": "T1",
+      "url": "https://www.doi.org/10.1097/GOX.0000000000001967",
+      "tier": "文獻層（primary）",
+      "note": "Lee HY, Yang HJ. Rhinoplasty with Barbed Threads. PRS Global Open 2018;6:e1967（PMC6414097）。鼻尖線雕核心文：~1,200 例、雙端傘狀裂錐體線"
+    },
+    {
+      "id": "T2",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/pubmed/31517664",
+      "tier": "文獻層（primary）",
+      "note": "Kang SH, Moon SH, Kim HS. Nonsurgical Rhinoplasty With PDO Threads and Fillers. Dermatol Surg 2020;46(5):664-670。亞洲鼻 step-by-step＋cog ~190.7g vs mono ~22.4g 機械數據"
+    },
+    {
+      "id": "T3",
+      "url": "https://www.doi.org/10.1111/jocd.15894",
+      "tier": "文獻層（primary）",
+      "note": "Sulyman O, et al. Non-surgical rhinoplasty using PDO threads. J Cosmet Dermatol 2024;23(1):199-206。前瞻 n=10、FACE-Q＋盲評"
+    },
+    {
+      "id": "T4",
+      "url": "https://www.doi.org/10.1111/srt.13590",
+      "tier": "文獻層（primary）",
+      "note": "Park SY, et al. Non-surgical rhinoplasty through minimal invasive nose thread: adverse effects and prevention. Skin Res Technol 2024;30(2):e13590。鼻線併發症圖鑑"
+    },
+    {
+      "id": "T6",
+      "url": "https://www.doi.org/10.21053/ceo.2022.00101",
+      "tier": "文獻層（primary）",
+      "note": "Jin HR, Kim SJ. Complications of Thread Rhinoplasty. Clin Exp Otorhinolaryngol 2022（PMC9441499）。手術救援對照"
+    },
+    {
+      "id": "T7",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/pubmed/20442093",
+      "tier": "文獻層（primary）",
+      "note": "Tiryaki KT. Shuttle Lifting of the Nose. ASJ 2010;30(2):176-183。鼻背向量歷史錨"
+    },
+    {
+      "id": "T8",
+      "url": "https://www.doi.org/10.1111/jocd.15041",
+      "tier": "文獻層（primary）",
+      "note": "Chen Y, et al. Complications following thread rhinoplasty. J Cosmet Dermatol 2022;21(10):4722-4726。多中心錐體線併發症系列"
+    },
+    {
+      "id": "T9",
+      "url": "https://jcrm.jams.pub/article/1/1/21",
+      "tier": "文獻層（primary）",
+      "note": "Thread Rhinoplasty: An Update and Literature Review. JCR-M/JAMS 2026。PDO 8–12月 vs PLLA-PCA 18–30月"
+    },
+    {
+      "id": "T10",
+      "url": "—",
+      "tier": "searched-and-absent",
+      "note": "搜了沒有：nasal tip thread lift cadaver study／cadaveric dissection nose thread insertion layer；檢索記錄見研究檔"
+    },
+    {
+      "id": "vendor",
+      "url": "—",
+      "tier": "廠商層（不入引用，僅結構參考）",
+      "note": "AAOPM／Empire Medical 等認證課網頁（流程結構參考）"
+    }
+  ],
+  "media": [
+    {
+      "id": "nose_F1",
+      "type": "illustration",
+      "site_path": "/assets/media/illustrations/nose_F1.svg",
+      "caption": "鼻背危險區總覽：正中線 1–2 mm 帶＋DNA 行走層位。來源：A1（DOI 10.1007/s00266-016-0756-0）。",
+      "source_doi": "10.1007/s00266-016-0756-0"
+    },
+    {
+      "id": "nose_F2",
+      "type": "illustration",
+      "site_path": "/assets/media/illustrations/nose_F2.svg",
+      "caption": "DNA 形態比例圖：雙側 53%／叢状 38%／單條正中 8%，標出按壓減壓法的失效族群。來源：A2（PMC8594662）。",
+      "source_doi": "PMC8594662"
+    },
+    {
+      "id": "nose_F3",
+      "type": "illustration",
+      "site_path": "/assets/media/illustrations/nose_F3.svg",
+      "caption": "鼻骨正中線動脈跨越率熱區圖（<12%），標 rhinion 單點鈍針進針點。來源：A3（DOI 10.1093/asj/sjab432）。",
+      "source_doi": "10.1093/asj/sjab432"
+    },
+    {
+      "id": "nose_F4",
+      "type": "illustration",
+      "site_path": "/assets/media/illustrations/nose_F4.svg",
+      "caption": "下鼻 8 字形動脈環（lateral nasal＋subalar 繞尖/翼）。來源：A4（DOI 10.1097/PRS.0000000000009649）。",
+      "source_doi": "10.1097/PRS.0000000000009649"
+    },
+    {
+      "id": "nose_F5",
+      "type": "illustration",
+      "site_path": "/assets/media/illustrations/nose_F5.svg",
+      "caption": "深隔支上行入 columella 路徑圖（90% 出現率）。來源：A5（DOI 10.1007/s00276-025-03659-z）。",
+      "source_doi": "10.1007/s00276-025-03659-z"
+    },
+    {
+      "id": "nose_F6",
+      "type": "illustration",
+      "site_path": "/assets/media/illustrations/nose_F6.svg",
+      "caption": "【核心圖】兩層位疊圖：面側區線路層（superficial fat/SMAS）vs 鼻背血管層（DNA 於 SMAS 上脂肪層），重疊區標紅。來源：A6＋A2。",
+      "source_doi": "10.3389/fmed.2026.1581406; 10.1007/s00266-016-0756-0"
+    },
+    {
+      "id": "nose_F7",
+      "type": "illustration",
+      "site_path": "/assets/media/illustrations/nose_F7.svg",
+      "caption": "插線實際佔層的 micro-CT／超音波實照（標出處：Yonsei, Front Med 2026）。來源：A6（DOI 10.3389/fmed.2026.1581406）。",
+      "source_doi": "10.3389/fmed.2026.1581406",
+      "note": "cc-by-pending-file"
+    },
+    {
+      "id": "nose_F8",
+      "type": "illustration",
+      "site_path": "/assets/media/illustrations/nose_F8.svg",
+      "caption": "盲插投影片骨架：面部各區 skin/脂肪厚度數據圖。來源：A7（DOI 10.1002/ca.23726）。",
+      "source_doi": "10.1002/ca.23726"
+    },
+    {
+      "id": "nose_F9",
+      "type": "illustration",
+      "site_path": "/assets/media/illustrations/nose_F9.svg",
+      "caption": "插入角 × 抓層 → 力學結果對照。來源：A8（DOI 10.1055/s-0040-1712469）。",
+      "source_doi": "10.1055/s-0040-1712469"
+    },
+    {
+      "id": "nose_F10",
+      "type": "illustration",
+      "site_path": "/assets/media/illustrations/nose_F10.svg",
+      "caption": "鈍針 vs 尖針通過血管的機轉對照簡圖（推開 vs 穿入）。來源：A9（DOI 10.1111/jocd.13743，secondary）。",
+      "source_doi": "10.1111/jocd.13743"
+    },
+    {
+      "id": "nose_F11",
+      "type": "illustration",
+      "site_path": "/assets/media/illustrations/nose_F11.svg",
+      "caption": "線雕專用併發症目錄圖（標出處：Yonsei, J Cosmet Dermatol 2025）。來源：A10（DOI 10.1111/jocd.16745）。",
+      "source_doi": "10.1111/jocd.16745",
+      "note": "cc-by-pending-file"
+    },
+    {
+      "id": "nose_F12",
+      "type": "illustration",
+      "site_path": "/assets/media/illustrations/nose_F12.svg",
+      "caption": "面部層位×鼻動脈拼圖：全鼻危險區＋插層總覽。數據來源：A1–A7（彙編圖，非單一來源）。",
+      "source_doi": "A1–A7 彙編"
+    }
+  ],
+  "claims": [
+    {
+      "id": "claim-dna-midline",
+      "claim": "鼻背正中線不是無血管區：單條優勢型 dorsal nasal artery（DNA）可可靠地走在鼻正中線旁 1–2 mm 內，插層須確認骨膜前層（preperiosteal）才算安全。",
+      "tier": "文獻層",
+      "source": [
+        "A1"
+      ]
+    },
+    {
+      "id": "claim-dna-course",
+      "claim": "DNA 行於鼻背 SMAS 表面脂肪層：雙側型 53%、叢状型 38%、單條正中型僅 8%——正中按壓減壓法在單條優勢型會失效。",
+      "tier": "文獻層",
+      "source": [
+        "A2"
+      ]
+    },
+    {
+      "id": "claim-midline-crossing",
+      "claim": "Postmortem CT 量到鼻骨正中線各點動脈跨越率 <12%，支持 rhinion 深層單點鈍針、其餘 sub-SMAS 逐點進針。",
+      "tier": "文獻層",
+      "source": [
+        "A3"
+      ]
+    },
+    {
+      "id": "claim-figure-eight",
+      "claim": "Lateral nasal artery 與 subalar artery 繞鼻尖／鼻翼構成 figure-of-eight 動脈環；鼻尖任何路徑預設會跨過這個環。",
+      "tier": "文獻層（filler 解剖借用，引用界線見 M2 §4）",
+      "source": [
+        "A4"
+      ]
+    },
+    {
+      "id": "claim-columellar",
+      "claim": "Superior labial artery 的深隔支 90% 上行進入鼻小柱——columella 路徑的深度就是動脈深度，不是安全空隙。",
+      "tier": "文獻層",
+      "source": [
+        "A5"
+      ]
+    },
+    {
+      "id": "claim-insertion-layer",
+      "claim": "Micro-CT＋超音波定義插線實際佔層（插層地面真相）；盲插目標層是 superficial fat/SMAS，進針深度依區域 skin/脂肪厚度數據。",
+      "tier": "文獻層",
+      "source": [
+        "A6",
+        "A7"
+      ]
+    },
+    {
+      "id": "claim-grip-mechanics",
+      "claim": "倒鉤線的效果取決於抓哪一層＋插入角（split-face cadaveric）；cog 抓持 ~190.7 g vs mono ~22.4 g 是「抓得深但不能抓到血管層」的量化理由。",
+      "tier": "文獻層",
+      "source": [
+        "A8",
+        "T2"
+      ]
+    },
+    {
+      "id": "claim-cannula-needle",
+      "claim": "鼻部血管事件出在盲打，論證精確深層操作應使用 sharp needle；thread 鈍針機轉不同（推開而非切開血管），不能把 filler 失明風險數字直接搬給 thread，只能借解剖地圖。",
+      "tier": "文獻層（secondary／A12 裁決界線）",
+      "source": [
+        "A9",
+        "A12"
+      ]
+    },
+    {
+      "id": "claim-no-nasal-atlas",
+      "claim": "不存在「鼻專用」的尸体層位解剖圖譜（檢索無命中）；本模組地圖是面部層位數據＋鼻動脈地圖的拼裝，坐標系未被單篇研究同時驗證。",
+      "tier": "searched-and-absent",
+      "source": [
+        "A11",
+        "T10"
+      ]
+    },
+    {
+      "id": "claim-material-duration",
+      "claim": "PDO 維持約 8–12 個月，PLLA-PCA 約 18–30 個月——選線即選復診週期。",
+      "tier": "文獻層",
+      "source": [
+        "T9"
+      ]
+    },
+    {
+      "id": "claim-barbed-vs-smooth",
+      "claim": "鼻部線雕幾乎全用錐體線；cadaver 測試 cog 抓持力約 190.7 g、mono 約 22.4 g——抓取力決定懸吊量上限。",
+      "tier": "文獻層",
+      "source": [
+        "T2"
+      ]
+    },
+    {
+      "id": "claim-pcl-position",
+      "claim": "無鼻專用 PCL 維持數據——教學上講 PCL 只能標臨床經驗層，不能引數。",
+      "tier": "臨床經驗層",
+      "source": [
+        "T9"
+      ]
+    },
+    {
+      "id": "claim-dorsal-vector",
+      "claim": "Shuttle lifting of the nose 是鼻背向量技術的歷史錨點：線體與 force multiplier 埋入鼻背起點、沿鼻背拉出懸吊向量。",
+      "tier": "文獻層",
+      "source": [
+        "T7"
+      ]
+    },
+    {
+      "id": "claim-tip-vector",
+      "claim": "約 1,200 例 barbed thread rhinoplasty 系列：雙端傘狀裂錐體線機械嵌合鼻尖支持下層，tip projection 改善統計顯著且維持 >6 個月；鼻尖向量從深層支持點向前下撐出。",
+      "tier": "文獻層",
+      "source": [
+        "T1"
+      ]
+    },
+    {
+      "id": "claim-columella-path",
+      "claim": "鼻小柱進線路徑會經過 superior labial artery 深隔支（90% 上行入 columella），路徑與層位深度照此校正。",
+      "tier": "文獻層",
+      "source": [
+        "A5"
+      ]
+    },
+    {
+      "id": "claim-anesthesia-tension",
+      "claim": "局麻體積會影響鼻尖軟組織張量判讀——術前照片要在腫脹前拍。",
+      "tier": "臨床經驗層",
+      "source": []
+    },
+    {
+      "id": "claim-tension-extrusion",
+      "claim": "張力校驗在材料極限內；過張是鼻尖 skin 壓迫與 extrusion 的共因。",
+      "tier": "文獻層",
+      "source": [
+        "T8"
+      ]
+    },
+    {
+      "id": "claim-followup",
+      "claim": "術後即刻照＋1／3／6／12 個月追蹤；建議採用 prospective cohort 的 FACE-Q＋盲評作為課程標準追蹤工具。",
+      "tier": "文獻層",
+      "source": [
+        "T3"
+      ]
+    },
+    {
+      "id": "claim-complication-table",
+      "claim": "併發症速查：extrusion、位移、感染／肉芽腫、凹陷、口腔黏膜受犯、手術救援案例均有文獻記錄；血管事件數據來自 filler 解剖文獻，thread 引用界線照 F5 標註。",
+      "tier": "文獻層",
+      "source": [
+        "T4",
+        "T6",
+        "T8",
+        "A1",
+        "A2",
+        "A3",
+        "A4"
+      ]
+    }
   ],
   "modules": [
     {
-      "id": "nose-thread-lift-m1",
-      "title": "模組 01｜鼻雕埋線是什麼",
+      "id": "nose-m2",
+      "title": "模組 M2｜解剖與危險區（Anatomy & Danger Zones）",
       "locked_by_default": false,
       "units": [
-        { "id": "unit-what-it-is", "title": "認識鼻雕埋線", "anchors": ["what-it-is"],
-          "body": ["鼻雕埋線（nose thread lift）是以倒鉤線材（如 PDO、PLLA-PCL 等可吸收線）經注射針／套管針穿入鼻部皮下與軟組織，靠倒鉤倒掛固定產生機械性提拉與支撐，用於鼻型缺陷的微創修整（S3）。", "線材不是永久的：PDO 線經水解在約 4–6 個月內被身體完全吸收，刺激膠原蛋白的效果可延續更久（S1）；文獻對鼻部線雕的定位是「暫時性改善」，技術尚未標準化、效果變異大、持續期較短（S3）。"] },
-        { "id": "unit-risks-consent", "title": "風險、恢復與知情同意", "anchors": ["risks-consent"],
-          "body": ["文獻顯示：挑選合適患者時，可吸收線材拉提屬安全有效、併發症輕微（S4）；但材料回顧統計術後最常見的不良反應是腫脹，且長期滿意度明顯低於術後即時（88% vs 98%，S2）。", "因此術前務必依衛福部美容醫學處置同意書及說明書範本完成知情告知與簽署（S5）——效果既然是暫時的，恢復期、腫脹與再治療預期都應在同意書範疇內講清楚。"] }
-      ],
-      "questions": [
         {
-          "id": "q1",
-          "type": "multiple_choice",
-          "m_id": "M2",
-          "prompt": "關於鼻雕埋線的效果持續性，下列何者正確？",
-          "options": ["效果是暫時的：可吸收線材會被身體分解，效果持續期有限", "效果永久，線材終生留在體內", "線材一被吸收，效果立刻完全消失", "只要線材不吸收，效果就不會減退"],
-          "answer": 0,
-          "hints": [
-            "回想段落 §認識鼻雕埋線：線材材質與吸收窗口是關鍵（站內錨點 #what-it-is）。",
-            "PDO 約 4–6 個月水解吸收（S1），文獻把鼻部線雕定調為「暫時性改善」（S3）。",
-            "答案：效果是暫時的，可吸收線材會被分解，持續期有限（膠原刺激效果可延續一會，但不等於永久）。"
+          "id": "unit-objectives",
+          "title": "學習目標",
+          "anchors": [
+            "objectives"
+          ],
+          "media": [],
+          "body": [
+            "背出鼻部三大危險區：鼻背 dorsal nasal artery 靠近正中線、下鼻 8 字形動脈環、columellar septal branch。",
+            "講得出「線走哪一層、血管走哪一層」的兩層位疊圖——本模組的核心圖。",
+            "說得清 thread（鈍針/cannula）與 filler（sharp needle）血管風險機轉的界線。"
           ]
         },
         {
-          "id": "q2",
-          "type": "true_false",
-          "m_id": "M2",
-          "prompt": "依衛福部公告，美容醫學處置術前應依同意書及說明書範本完成知情告知並簽署。",
-          "options": ["對", "錯"],
-          "answer": 0,
-          "hints": [
-            "回想段落 §風險、恢復與知情同意（站內錨點 #risks-consent）。",
-            "衛福部醫事司美容醫學資訊專區公告有「美容醫學處置同意書及說明書範本」共 16 項（S5）。",
-            "答案：對。知情同意是術前必經程序，效果暫時的預期更要寫清楚。"
+          "id": "unit-danger-zones",
+          "title": "§1 危險區地圖（先記三處）",
+          "anchors": [
+            "danger-zones"
+          ],
+          "media": [
+            {
+              "id": "nose_F1",
+              "type": "illustration",
+              "site_path": "/assets/media/illustrations/nose_F1.svg",
+              "caption": "鼻背危險區總覽：正中線 1–2 mm 帶＋DNA 行走層位。來源：A1（DOI 10.1007/s00266-016-0756-0）。",
+              "source_doi": "10.1007/s00266-016-0756-0"
+            },
+            {
+              "id": "nose_F2",
+              "type": "illustration",
+              "site_path": "/assets/media/illustrations/nose_F2.svg",
+              "caption": "DNA 形態比例圖：雙側 53%／叢状 38%／單條正中 8%，標出按壓減壓法的失效族群。來源：A2（PMC8594662）。",
+              "source_doi": "PMC8594662"
+            },
+            {
+              "id": "nose_F3",
+              "type": "illustration",
+              "site_path": "/assets/media/illustrations/nose_F3.svg",
+              "caption": "鼻骨正中線動脈跨越率熱區圖（<12%），標 rhinion 單點鈍針進針點。來源：A3（DOI 10.1093/asj/sjab432）。",
+              "source_doi": "10.1093/asj/sjab432"
+            },
+            {
+              "id": "nose_F4",
+              "type": "illustration",
+              "site_path": "/assets/media/illustrations/nose_F4.svg",
+              "caption": "下鼻 8 字形動脈環（lateral nasal＋subalar 繞尖/翼）。來源：A4（DOI 10.1097/PRS.0000000000009649）。",
+              "source_doi": "10.1097/PRS.0000000000009649"
+            },
+            {
+              "id": "nose_F5",
+              "type": "illustration",
+              "site_path": "/assets/media/illustrations/nose_F5.svg",
+              "caption": "深隔支上行入 columella 路徑圖（90% 出現率）。來源：A5（DOI 10.1007/s00276-025-03659-z）。",
+              "source_doi": "10.1007/s00276-025-03659-z"
+            }
+          ],
+          "body": [
+            "**D1｜鼻背正中線不是無血管區。** latex 灌注解剖（50 具）顯示單條優勢型 dorsal nasal artery（DNA）可可靠地走在鼻正中線旁 1–2 mm 內，插層須確認骨膜前層（preperiosteal）才算安全【文獻層｜A1】。60 具層位解剖補充其走向：DNA 行於鼻背 SMAS 表面脂肪層，雙側型 53%、叢状型 38%、單條正中型僅 8%——臨床上常用的「正中按壓減壓法」在單條優勢型會失效【文獻層｜A2】。但 postmortem CT（雙世代）量到鼻骨正中線各點動脈跨越率 <12%，因此 rhinion 深層採單點鈍針、其餘採 sub-SMAS 逐點進針，仍有數據支持【文獻層｜A3】。",
+            "**D2｜下鼻＝8 字形雙動脈環。** modified Sihler 灌注（40 具）定義了下鼻危險區的解剖本體：lateral nasal artery 與 subalar artery 繞鼻尖／鼻翼構成 figure-of-eight 動脈環（A4，filler 解剖研究）【文獻層｜A4（filler 解剖借用，引用界線見 §4）】。鼻尖任何路徑——含 retension 線路徑——都預設會跨過這個環。",
+            "**D3｜Columellar septal branch。** Yonsei 解剖組（40 具）：superior labial artery 的深隔支 90% 上行進入鼻小柱——走 columella 的 retension 線路徑，這個深度就是動脈深度，不是「安全空隙」。"
+          ]
+        },
+        {
+          "id": "unit-insertion-layers",
+          "title": "§2 插入層位——兩層位疊圖（本模組核心圖）",
+          "anchors": [
+            "insertion-layers"
+          ],
+          "media": [
+            {
+              "id": "nose_F6",
+              "type": "illustration",
+              "site_path": "/assets/media/illustrations/nose_F6.svg",
+              "caption": "【核心圖】兩層位疊圖：面側區線路層（superficial fat/SMAS）vs 鼻背血管層（DNA 於 SMAS 上脂肪層），重疊區標紅。來源：A6＋A2。",
+              "source_doi": "10.3389/fmed.2026.1581406; 10.1007/s00266-016-0756-0"
+            },
+            {
+              "id": "nose_F7",
+              "type": "illustration",
+              "site_path": "/assets/media/illustrations/nose_F7.svg",
+              "caption": "插線實際佔層的 micro-CT／超音波實照（標出處：Yonsei, Front Med 2026）。來源：A6（DOI 10.3389/fmed.2026.1581406）。",
+              "source_doi": "10.3389/fmed.2026.1581406",
+              "note": "cc-by-pending-file"
+            },
+            {
+              "id": "nose_F8",
+              "type": "illustration",
+              "site_path": "/assets/media/illustrations/nose_F8.svg",
+              "caption": "盲插投影片骨架：面部各區 skin/脂肪厚度數據圖。來源：A7（DOI 10.1002/ca.23726）。",
+              "source_doi": "10.1002/ca.23726"
+            },
+            {
+              "id": "nose_F9",
+              "type": "illustration",
+              "site_path": "/assets/media/illustrations/nose_F9.svg",
+              "caption": "插入角 × 抓層 → 力學結果對照。來源：A8（DOI 10.1055/s-0040-1712469）。",
+              "source_doi": "10.1055/s-0040-1712469"
+            }
+          ],
+          "body": [
+            "線要抓的層與血管走的層不是同一張地圖，本模組把兩張拼起來講：",
+            "**線走哪層**：micro-CT＋超音波定義插線實際佔層，插層地面真相以 Yonsei 數據為準【文獻層｜A6，CC-BY 圖可直用】；盲插條件下的目標層是 superficial fat/SMAS，進針深度依區域 skin/脂肪厚度數據【文獻層｜A7】。",
+            "**血管走哪層**：鼻背 DNA 就在 SMAS 表面脂肪層【文獻層｜A2】——也就是「面部通則的安全層」在鼻背與血管層重疊；鼻背深層要壓到骨膜前層才乾淨【文獻層｜A1】。",
+            "**抓層＝力學**：倒鉤線的效果取決於抓哪一層＋插入角（split-face cadaveric）【文獻層｜A8】；T2 嵌入的尸體機械數據——cog 抓持 ~190.7 g vs mono ~22.4 g——是「為什麼要抓得深、卻不能抓到血管層」的量化理由【文獻層｜T2】。"
+          ]
+        },
+        {
+          "id": "unit-thread-vs-filler",
+          "title": "§3 Thread vs Filler——鈍針與尖針的機轉界線",
+          "anchors": [
+            "thread-vs-filler"
+          ],
+          "media": [
+            {
+              "id": "nose_F10",
+              "type": "illustration",
+              "site_path": "/assets/media/illustrations/nose_F10.svg",
+              "caption": "鈍針 vs 尖針通過血管的機轉對照簡圖（推開 vs 穿入）。來源：A9（DOI 10.1111/jocd.13743，secondary）。",
+              "source_doi": "10.1111/jocd.13743"
+            },
+            {
+              "id": "nose_F11",
+              "type": "illustration",
+              "site_path": "/assets/media/illustrations/nose_F11.svg",
+              "caption": "線雕專用併發症目錄圖（標出處：Yonsei, J Cosmet Dermatol 2025）。來源：A10（DOI 10.1111/jocd.16745）。",
+              "source_doi": "10.1111/jocd.16745",
+              "note": "cc-by-pending-file"
+            }
+          ],
+          "body": [
+            "鼻部血管事件文獻的教訓：出事出在「盲打」——論證鼻部精確深層操作應使用 sharp needle【文獻層（secondary，先核文章類型再引）｜A9】。但注意引用界線：本模組的血管地圖與風險數據全部來自 filler／注射解剖研究；thread 用鈍針／cannula，機轉不同（鈍針推開而非切開血管），不能把 filler 的失明風險數字直接搬給 thread 用，只能借解剖地圖【文獻層｜A12 裁決】。線材專用的併發症目錄（突出、位移、感染、凹陷、肉芽）另見 A10/A4（T4 併發症圖鑑）——併發症全貌留給 M3，本模組只取解剖座標。"
+          ]
+        },
+        {
+          "id": "unit-puzzle-disclaimer",
+          "title": "§4 拼圖 Disclaimer——這是一張拼圖，不是一本地圖",
+          "anchors": [
+            "puzzle-disclaimer"
+          ],
+          "media": [
+            {
+              "id": "nose_F12",
+              "type": "illustration",
+              "site_path": "/assets/media/illustrations/nose_F12.svg",
+              "caption": "面部層位×鼻動脈拼圖：全鼻危險區＋插層總覽。數據來源：A1–A7（彙編圖，非單一來源）。",
+              "source_doi": "A1–A7 彙編"
+            }
+          ],
+          "body": [
+            "明確告訴學員：**不存在「鼻專用」的尸体層位解剖圖譜**——PubMed／web 檢索 'nasal tip thread lift cadaver study'、'cadaveric dissection nose thread insertion layer' 皆無命中【searched-and-absent｜T10、A11】。Yonsei 的鼻相關解剖只到 columellar artery 層級（A5），插層研究是面部級（A6/A7）。所以本模組的地圖是拼裝的：**面部層位數據（A6/A7）＋鼻動脈地圖（A1–A5）**，兩張圖的坐標系沒有被任何單篇研究同時驗證過——這是本課程承認的邊界，不是文獻疏漏。"
+          ]
+        },
+        {
+          "id": "unit-owner-materials",
+          "title": "待業主素材",
+          "anchors": [
+            "owner-materials"
+          ],
+          "media": [],
+          "body": [
+            "（佔位）業主自有臨床併發症數據（證照層 > 文獻層 > 臨床經驗層）——併發症真實發生率與案例待補，補入後本節升為本模組收頭。"
           ]
         }
       ],
-      "match": {
-        "id": "match-1",
-        "m_id": "M9",
-        "pairs": [
-          { "left": "PDO 線材", "right": "水解 4–6 個月吸收（S1）" },
-          { "left": "術後最常見不良反應", "right": "腫脹（S2）" },
-          { "left": "衛福部公告範本", "right": "知情同意書及說明書（S5）" }
-        ]
-      }
+      "questions": [],
+      "match": null
+    },
+    {
+      "id": "nose-m3",
+      "title": "模組 M3｜線材技術（Thread Technique）——含鼻尖重點",
+      "locked_by_default": false,
+      "units": [
+        {
+          "id": "unit-materials",
+          "title": "3.1 線材材料學（Materials）",
+          "anchors": [
+            "materials"
+          ],
+          "media": [],
+          "body": [
+            "**材質與維持久度。** 系統綜述（T9）：PDO 維持約 8–12 個月，PLLA-PCA 約 18–30 個月。選線即選復診週期——給 PDO 就要談 1 年上下的補線預期，給 PLLA-PCA 是把承諾拉長到 2 年。【文獻層｜T9】",
+            "**錐體線（barbed/cog）vs 平滑線（smooth）。** 鼻部線雕幾乎全用錐體線——靠錐齒咬住組織產生 vectors，平滑線在鼻部無有效懸吊。機械數據：cadaver 測試 cog 線抓持力約 190.7 g、mono 線約 22.4 g（T2）。抓取力決定懸吊量上限，也決定 force multipliers 為何存在。【文獻層｜T2】",
+            "**線材力學的層位前提。** 錐體線抓持力取決於抓在哪一層、以什麼角度插入（A8）。鼻部沒有鼻專用 cadaver 層位圖譜（T10）——層位數據只能由面部層位研究（A6/A7）＋鼻動脈地圖拼裝，此為本課誠實聲明。【文獻層｜A6、A7、A8、T10】",
+            "**PCL 的定位。** T9 的主對照軸是 PDO vs PLLA-PCA，無鼻專用 PCL 維持數據——教學上如要講 PCL 只能標【臨床經驗層】，不能引數。【文獻層｜T9】"
+          ]
+        },
+        {
+          "id": "unit-vectors-fixation",
+          "title": "3.2 向量與固定點（Vectors & Fixation Points）",
+          "anchors": [
+            "vectors-fixation"
+          ],
+          "media": [],
+          "body": [
+            "**鼻背（dorsal）向量。** Shuttle lifting of the nose（T7）是鼻背向量技術的歷史錨點：線體與 force multiplier 埋入鼻背起點、沿鼻背拉出懸吊向量。【文獻層｜T7】",
+            "**鼻尖（tip）向量——本模組重點。** Lee & Yang（T1）約 1,200 例 barbed thread rhinoplasty 系列是鼻尖技術主骨：雙端傘狀裂錐體線（umbrella-split tip barbed threads）於近鼻尖端分裂散開如傘骨，機械嵌合鼻尖支持下層，tip projection 改善統計顯著且維持 >6 個月。鼻尖向量不是向上提，而是從深層支持點向前下撐出，與鼻背向量形成力偶。【文獻層｜T1】",
+            "**columella 線路徑。** 鼻小柱進線路徑會經過 superior labial artery 深隔支——該動脈 90% 上行入 columella（A5）。路徑與層位深度照此校正。【文獻層｜A5】",
+            "**安全線與血管。** 鼻正中線不是真的無血管區：單條大 dorsal nasal artery 可靠鼻正中線 1–2 mm 走（A1）；DNA 走在鼻背 SMAS 上脂肪層、正中單條僅 8%（A2）。對照組建議 sub-SMAS 逐點進針＋rhinion 深層單點鈍針（A3）。下鼻是 8 字形的雙動脈環（lateral nasal＋subalar）——鼻尖危險區的解剖定義（A4）。引用界線：A1–A4 數據來自 filler 解剖研究，thread 鈍針機轉不同——課件引用時要標註此界線（F5 裁決）。【文獻層｜A1–A4，界線按 F5】"
+          ]
+        },
+        {
+          "id": "unit-step-by-step",
+          "title": "3.3 Step-by-step 流程",
+          "anchors": [
+            "step-by-step"
+          ],
+          "media": [],
+          "body": [
+            "以下流程骨架取自 T2（亞洲鼻 step-by-step：鼻梁／鼻背／鼻尖／鼻小柱）＋ T1（鼻尖技術），並採廠商認證課的教學文案結構（諮詢→標記向量→麻醉→置線→收尾；廠商層，僅供結構參考）。",
+            "1. **標記與向量規劃。** 坐姿、頭正中，畫鼻背起點、鼻尖支持點、columella 進線點，預先標出血管危險區（見 3.2 末段）。",
+            "2. **麻醉。** 表麻＋局麻；注意局麻體積會影響鼻尖軟組織張量判讀——術前照片要在腫脹前拍。【臨床經驗層】",
+            "3. **進針深度與層位。** 按 A6/A7 的面部層位數據執行（目標層 superficial fat/SMAS、盲插要參考區域 skin/脂肪厚度），鼻部無專用 cadaver 圖譜（T10），拼裝數據時保守取淺、鈍針。",
+            "4. **置線與線數。** 鼻背依 shuttle 技術（T7）；鼻尖用雙端傘狀裂錐體線（T1）；線數依材料與目標弧度，T2 協議的線型與數量逐步照其 figure。",
+            "5. **張力（tension）。** 張力校驗在材料極限內——cog 抓持力上限數據見 3.1；過張是鼻尖 skin 壓迫與 extrusion 的共因（T8）。",
+            "6. **收尾與photodocumentation。** 術後即刻照＋ 1／3／6／12 個月追蹤（T3 prospective cohort 用 FACE-Q＋盲評——建議跟進作為課程標準追蹤工具）。【文獻層｜T3】"
+          ]
+        },
+        {
+          "id": "unit-failure-modes",
+          "title": "3.4 併發症速查（Failure-mode table）",
+          "anchors": [
+            "failure-modes"
+          ],
+          "media": [],
+          "body": [
+            "| 失敗模式 | 表現 | 成因／機轉 | 處置 | 出處 |",
+            "|---|---|---|---|---|",
+            "| 線體突出／extrusion | 鼻尖或鼻背 skin 頂出線頭 | 張力過大、層位過淺 | 修剪線頭；必要時拔除 | T8（多中心錐體線系列）【文獻層】 |",
+            "| 線體位移 | 線體觸及移位、外形變形 | 抓持層層位不對、早期表情活動 | 重-placement／拔除 | T4【文獻層】 |",
+            "| 感染／肉芽腫 | 紅腫、結節、瘻管 | 無菌程序、異物反應 | 抗感染；不退者拔線 | T4【文獻層】 |",
+            "| 凹陷／irregularity | 鼻背凹凸、skin 凹陷 | 層位不均、fibrosis 收縮 | 按摩／填充補正 | T4【文獻層】 |",
+            "| 口腔黏膜受犯 | 牙齦側黏膜頂出／潰瘍 | 進線路徑穿越黏膜下層 | 修剪／拔除 | T4【文獻層】 |",
+            "| 手術救援案例 | 併發症呈現→需手術取出 | 上述失敗模式終局 | surgical rescue | T6【文獻層】 |",
+            "| 血管事件（失明風險） | 參考框架 | 數據來自 filler 解剖文獻（A1–A4），thread 鈍針機轉不同——引用界線照 F5 標註 | 見 M4 解剖／危險區模組 | A1–A4【文獻層＋界線】 |"
+          ]
+        },
+        {
+          "id": "unit-owner-media",
+          "title": "3.5 臨床圖／影音素材",
+          "anchors": [
+            "owner-media"
+          ],
+          "media": [],
+          "body": [
+            "【待業主素材】本節預留業主自有臨床圖與影音（置線過程、鼻尖傘狀裂實作、術前術後對照）。引用格式與授權分級照素材管理規則；無授權素材不得入站。"
+          ]
+        }
+      ],
+      "questions": [],
+      "match": null
     }
-  ]
+  ],
+  "claims_tier_field": "evidence_tier"
 }
