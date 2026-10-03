@@ -20,6 +20,15 @@
 2. landing 搬入本 repo 後，既有雙殼 17 斷言會紅至少一次（landing 是新增渲染面——基線預期）。
 3. 域名/部署決策會被「部署时限」反推鎖定（11/15 前上線＋GSC 手動請求收錄＝新域數週收錄慢），最終收斂到免費層方案（Cloudflare Pages／Netlify 級）——若收斂到需買域＋另購託管即落空。
 
+## 簽字輪結果（2026-10-01，使用者親眼）
+- **Run8 簽字：未過閘**——使用者判：解剖圖太粗糙。10 張重畫 SVG 退回；解剖圖正確性＋精美性另開 frontier（圖風 room 已有 Session-3 研究＋試管判決在 image model workspace：風格閘過、解剖閘全滅——死因＝任務錯配，非僅模型爛）。
+- **Bug BUG-1（本跑修）**：M3 模組鎖注記顯示 bug——pending 計數數「已建立未勾記錄」，零進度時顯示「剩餘 0 項」但鎖著（site.js renderLocks）。機制層正確（勾滿 M2 解鎖正常，Playwright 實測 locked→unlocked＋渲染 2666 字元）；只修顯示。新斷言：模組零進度時鎖注記數字＝該模組單元總數。
+
+## 已鎖（本輪使用者逐條答覆 2026-10-01）
+- Q2 鎖定：落地頁＝獨立 marketing 頁 `site/landing/tmias191/`，assets 整包搬入，courses.yml／框架層零改動。
+- Q3 鎖定：落地頁角色＝SEO/GEO 長期入口＋報名漏斗，課後為下一場課服務（ADR-0002 原確認）。
+- Q4 輸入：使用者無現成域名——域名＋註冊商為本輪開放決策。
+
 ## 機械判準（本跑範圍內可驗者）
 - 落地頁入站後 canonical/og:url/og:image 三者與實際部署 URL 一致（grep 可驗，搬入未改佔位＝紅）。
 - Event JSON-LD 搬入後不破（JSON parse 可驗）。
