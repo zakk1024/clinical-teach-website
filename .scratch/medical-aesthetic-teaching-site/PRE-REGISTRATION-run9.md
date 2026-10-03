@@ -35,7 +35,26 @@
 - **Q7 部署 KPI（防自欺條款）**：本場驗收＝域名註冊完成＋GSC 域名驗證＋sitemap 提交＋落地頁手動請求收錄各一次；排名與報名歸因計入下一場（ADR-0002 原句）。研究判死「11/15 前見效」——誰簽誰輸。
 - 落盤連動：ADR-0002「掛自建教學網站」由本 ADR 系列接住——落地頁 canonical 佔位（vesuyan.com/tmias191/）部署時必須改寫為 qqhairdoctor.com 實際路徑（判準已列）。
 
-## 機械判準（本跑範圍內可驗者）
+## Round 2 鎖定（2026-10-01，使用者逐條答覆）
+- **Q5 鎖定：域名＝qqhairdoctor.com**（本輪 RDAP 實測 404＝未註冊可買）。品牌判斷歸使用者；研究證據支持：域名不買排名買記憶點（Illyes，既有落盤）。
+- **Q6 鎖定：Cloudflare Registrar 註冊＋Cloudflare Pages 託管**（研究閘：法律軸上免費層無商業禁令；Registrar 成本價無加價＋同家 DNS 整合；註冊與 DNS 是使用者手，agent 不動註冊台）。
+- **Q7 鎖定：本場 KPI＝域名註冊完成＋GSC 域名驗證通過＋sitemap 提交＋落地頁手動請求收錄各一次（憑證＝截圖）；排名與報名歸因計入下一場（ADR-0002 原句）。**
+- 預測帳預帳：預測 3「收斂到免費層方案」——**中**（Cloudflare 免費層＋.com 成本價購買，非另購託管）。預測 2「landing 搬入後雙殼紅至少一次」預測將落空——Q2 鎖定獨立頁不進框架，雙殼不渲染它；落空照規矩不改寫。
+
+## 執行鏈（預登，開跑前寫死）
+1. **使用者手（agent 動不了註冊台）**：Cloudflare 註冊 qqhairdoctor.com → Nameserver 指 Cloudflare → GSC 域名驗證（TXT）。
+2. **派工單 A（frontend-developer）**：landing 整包搬入 site/landing/tmias191/（index.html＋assets 三檔），canonical/og:url/og:image 佔位改 qqhairdoctor.com 最終路徑；單檔零外部 JS/字體鎖照 promo-191 規格不破。
+3. **BUG-1 修復（執行官親手）**：site.js renderLocks pending 顯示改 total−checked；新斷言入雙殼表。
+4. **收尾（使用者手＋覆核）**：push＋Cloudflare Pages 部署（production branch）→ GSC 提交 sitemap＋手動請求收錄 landing URL → 截圖三張落 .scratch。
+- 預測觸碰（區間，跑前寫死）：派工單 A：2–4（中——搬移＋佔位改寫＋雙向核）；BUG-1：1–3。
+
+## Q5–Q7 锁定（2026-10-01，使用者逐條答覆）
+- **Q5 锁定：域名＝qqhairdoctor.com**（品牌决策归使用者；可用性双尺实测＝Verisign whois No match＋gTLD 无委派，2026-10-01）。
+- **Q6 锁定：Cloudflare Registrar 注册＋Cloudflare Pages 托管**（研究依据：免费层商业条款四家只有 CF/Netlify 干净；Registrar at cost；SEO 面四家等价）。
+- **Q7 锁定：本场部署 KPI＝可机械验四件**——注册完成＋GSC 域名验证＋sitemap 提交＋落地页手动请求收录各一次；排名与报名归因计入下一场（ADR-0002 原句不变）。
+- 落地页 canonical/og:url 占位 https://vesuyan.com/tmias191/ → 搬入时改为 https://qqhairdoctor.com/<路径>（三者一致＝机械判准，搬了不改＝红）。
+
+## 机械判準（本跑範圍內可驗者）
 - 落地頁入站後 canonical/og:url/og:image 三者與實際部署 URL 一致（grep 可驗，搬入未改佔位＝紅）。
 - Event JSON-LD 搬入後不破（JSON parse 可驗）。
 - 雙殼 17/17＋新面斷言連跑零紅才算修復。
