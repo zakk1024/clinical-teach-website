@@ -48,13 +48,7 @@
 4. **收尾（使用者手＋覆核）**：push＋Cloudflare Pages 部署（production branch）→ GSC 提交 sitemap＋手動請求收錄 landing URL → 截圖三張落 .scratch。
 - 預測觸碰（區間，跑前寫死）：派工單 A：2–4（中——搬移＋佔位改寫＋雙向核）；BUG-1：1–3。
 
-## Q5–Q7 锁定（2026-10-01，使用者逐條答覆）
-- **Q5 锁定：域名＝qqhairdoctor.com**（品牌决策归使用者；可用性双尺实测＝Verisign whois No match＋gTLD 无委派，2026-10-01）。
-- **Q6 锁定：Cloudflare Registrar 注册＋Cloudflare Pages 托管**（研究依据：免费层商业条款四家只有 CF/Netlify 干净；Registrar at cost；SEO 面四家等价）。
-- **Q7 锁定：本场部署 KPI＝可机械验四件**——注册完成＋GSC 域名验证＋sitemap 提交＋落地页手动请求收录各一次；排名与报名归因计入下一场（ADR-0002 原句不变）。
-- 落地页 canonical/og:url 占位 https://vesuyan.com/tmias191/ → 搬入时改为 https://qqhairdoctor.com/<路径>（三者一致＝机械判准，搬了不改＝红）。
-
-## 机械判準（本跑範圍內可驗者）
+## 機械判準（本跑範圍內可驗者）
 - 落地頁入站後 canonical/og:url/og:image 三者與實際部署 URL 一致（grep 可驗，搬入未改佔位＝紅）。
 - Event JSON-LD 搬入後不破（JSON parse 可驗）。
 - 雙殼 17/17＋新面斷言連跑零紅才算修復。
