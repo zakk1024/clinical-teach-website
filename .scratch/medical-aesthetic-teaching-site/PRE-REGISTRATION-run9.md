@@ -48,6 +48,13 @@
 4. **收尾（使用者手＋覆核）**：push＋Cloudflare Pages 部署（production branch）→ GSC 提交 sitemap＋手動請求收錄 landing URL → 截圖三張落 .scratch。
 - 預測觸碰（區間，跑前寫死）：派工單 A：2–4（中——搬移＋佔位改寫＋雙向核）；BUG-1：1–3。
 
+## 對帳（整跑跑完才讀數）
+- 派工單 A（frontend-developer，本機槽）：五條驗收獨立覆核全過（執行官自己跑，不採自報：雙向核 A−B/B−A 空、index.html 佔位零 vesuyan.com、JSON-LD parse OK @type=Event、外部 JS/字體 0=0、git 範圍只 site/landing/）。返工＝0。**預測落空：預測 2–4、實測 0**——照規矩不改寫；判決＝這尺寸任務不配這條管線，下次直走單兵。
+- 覆核裁示（子代理 self-issue）：spec.md 內 vesuyan.com 字樣屬文件本文（文件記載佔位歷史），派工單邊界限定 HTML——判過，不改。
+- .DS_Store 入 gitignore 範圍，搬入後清除，commit 樹＝5 檔（雙向核在清除前跑，過）。
+- BUG-1：斷言先紅（pending=0/total=5）→修→雙殼 18/18。預測 1–3＝中。
+
+
 ## 機械判準（本跑範圍內可驗者）
 - 落地頁入站後 canonical/og:url/og:image 三者與實際部署 URL 一致（grep 可驗，搬入未改佔位＝紅）。
 - Event JSON-LD 搬入後不破（JSON parse 可驗）。
