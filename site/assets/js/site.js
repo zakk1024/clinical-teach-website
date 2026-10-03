@@ -74,8 +74,10 @@ function renderLocks() {
     card.classList.toggle("locked", locked);
     const note = card.querySelector(".m3-lock-note");
     if (note && locked) {
-      const pending = progressRecords().filter(r => r.courseId === courseId && r.moduleId === prev && !r.checked).length;
-      note.querySelector(".m3-pending").textContent = pending;
+      // BUG-1 修：pending＝total−done（原實作只數已建立的未勾記錄，零進度時顯示 0 卻鎖著）
+      const bar = document.querySelector(`div[data-mid="M1"][data-module="${prev}"][data-total]`);
+      const done = progressRecords().filter(r => r.courseId === courseId && r.moduleId === prev && r.checked).length;
+      note.querySelector(".m3-pending").textContent = bar ? Number(bar.dataset.total) - done : done;
     }
   });
 }

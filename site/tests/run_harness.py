@@ -19,6 +19,16 @@ async def main():
         await page.goto(BASE + "/pages/course.html?course=demo-skin-barrier")
         await page.wait_for_selector("#m1-progress-demo-skin-barrier", state="attached", timeout=5000)
 
+        # M18 BUG-1：零進度時鎖注記數字＝前一模組單元總數（bug 版顯示 0——新斷言在壞程式碼上必紅）
+        m18 = await page.evaluate("""() => {
+          const note = document.querySelector('#m3-lock-demo-chemical-peel');
+          const bar = document.querySelector('#m1-progress-demo-skin-barrier');
+          return {pending: note ? note.querySelector('.m3-pending').textContent : null,
+                  total: bar ? Number(bar.dataset.total) : null,
+                  locked: note ? getComputedStyle(note).display : null};
+        }""")
+        ok("M18", "BUG-1：模組零進度時鎖注記數字＝該模組單元總數（非 0）", m18["locked"] == "block" and int(m18["pending"]) == m18["total"], f"pending={m18['pending']} total={m18['total']} locked={m18['locked']}")
+
         # M1：勾選→localStorage＋進度條即時重算（點擊前 0%）
         bar = page.locator("#m1-progress-demo-skin-barrier .pct")
         before = await bar.inner_text()
