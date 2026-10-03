@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<!-- ===== Meta（手寫，非 CMS 模板）=====
+     部署前必做：把下方所有 qqhairdoctor.com/landing/tmias191/ 佔位換成實際部署路徑（canonical／og:url 須與之一致）。 -->
+<title>薛乃維醫師親授・鼻埋線工作坊｜TMIAS 微整學院大師淬煉系列（2026/11/15 台北）</title>
+<meta name="description" content="TMIAS 微整學院大師淬煉系列：薛乃維醫師親授鼻埋線工作坊，授課時數 4 小時、名額限量、現場實作演示。2026/11/15（日）於台北市大安區信義路三段維序妍診所，即刻報名。">
+
+<!-- canonical＝self（本頁差異化內容自有 canonical,不 cross-domain 指回學會 CMS 頁——已定案:跨域 canonical 是單向 hint,會把 authority 倒貼給平台頁) -->
+<link rel="canonical" href="https://qqhairdoctor.com/landing/tmias191/">
+
+<!-- ===== Open Graph（社群分享預覽）=====
+     og:image 目前為佔位絕對 URL,上線後需置換實際上傳的 1200×630 圖檔,
+     且路徑不得落在被 robots.txt Disallow 的位置（社群爬蟲可抓路徑）。
+     ⚠ DOM 有 tag 只是代理指標——上線後務必用分享預覽調試工具實抓驗證（見規格 md「上線驗證」節）。 -->
+<meta property="og:title" content="薛乃維醫師親授・鼻埋線工作坊｜2026/11/15 台北・名額限量">
+<meta property="og:description" content="TMIAS 微整學院大師淬煉系列：薛乃維醫師親授鼻埋線工作坊，現場實作演示，授課時數 4 小時。立即佔名額。">
+<meta property="og:image" content="https://qqhairdoctor.com/landing/tmias191/og-image.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:url" content="https://qqhairdoctor.com/landing/tmias191/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="維序妍診所 Vesuyan">
+<meta property="og:locale" content="zh_TW">
+
+<!-- ===== Twitter/X Card（fallback 預覽）===== -->
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="薛乃維醫師親授・鼻埋線工作坊｜2026/11/15 台北">
+<meta name="twitter:description" content="TMIAS 微整學院大師淬煉系列,現場實作演示,4 小時授課時數,名額限量。">
+<meta name="twitter:image" content="https://qqhairdoctor.com/landing/tmias191/og-image.jpg">
+
+<!-- ===== Schema.org Event JSON-LD（本頁唯一自有槓桿:官方 CMS 頁加不了,本頁加得上）===== -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Event",
+  "name": "TMIAS 微整學院大師淬煉系列——薛乃維醫師鼻埋線工作坊",
+  "startDate": "2026-11-15T09:00:00+08:00",
+  "endDate": "2026-11-15T12:30:00+08:00",
+  "eventAttendanceMode": "OnsiteEventAttendanceMode",
+  "performerMaxAttendeeCount": 21,
+ "maximumAttendeeCapacity": 21,
+  "eventStatus": "EventScheduled",
+  "description": "薛乃維醫師親授鼻埋線工作坊,含現場實作演示,授課時數 4 小時（hands-on 6 名＋observer 15 名）。",
+  "organizer": {
+    "@type": "Organization",
+    "name": "台灣微整形美容醫學會（TMIAS）"
+  },
+  "performer": {
+    "@type": "Person",
+    "name": "薛乃維"
+  },
+  "location": {
+    "@type": "Place",
+    "name": "維序妍診所",
+    "address": {
+      "@type": "PostalAddress",
+      "addressRegion": "台灣台北市大安區",
+      "streetAddress": "信義路三段 151 號 7 樓"
+    }
+  },
+  "offers": {
+    "@type": "Offer",
+    "url": "https://www.surveycake.com/s/7m3mA",
+    "availability": "https://schema.org/InStock",
+    "validThrough": "2026-11-14T23:59:00+08:00"
+  }
+}
+</script>
+
+<style>
+  /* 行動優先・無框架・系統字體・内聯 CSS */
+  :root {
+    --color-bg: #faf8f5;
+    --color-accent: #b4553f;        /* 全站唯一強調色；CTA、稀缺數字、區塊標題線 */
+    --color-ink: #1a1a1a;
+    --color-muted: #6b6560;
+    --color-hairline: #e8e2d8;
+    --font-family: system-ui, -apple-system, "PingFang TC", "Microsoft JhengHei", "Noto Sans TC", sans-serif;
+    --fs-body: 1rem; --fs-sm: .875rem; --fs-h1: clamp(1.5rem, 6vw, 2rem); --fs-h2: 1.25rem;
+    --space-2: .5rem; --space-4: 1rem; --space-6: 1.5rem; --space-8: 2rem; --space-12: 3rem;
+    --transition-fast: 150ms ease; --transition-normal: 250ms ease; /* 只用 150–300ms 單發 */
+  }
+  *, *::before, *::after { box-sizing: border-box; }
+  html { font-size: 16px; }
+  body {
+    margin: 0;
+    font-family: var(--font-family);
+    color: var(--color-ink);
+    background: var(--color-bg);
+    line-height: 1.7;
+    -webkit-font-smoothing: antialiased;
+  }
+  .wrap { max-width: 640px; margin: 0 auto; padding: var(--space-8) 20px var(--space-12); }
+  section { margin-top: var(--space-12); } /* 區塊間＝--space-12（§2 鎖），留白分隔、不分隔線 */
+
+  /* L2 區塊標題：24×2px accent 標題線（token 註明「區塊標題線」唯一落點） */
+  h2 { font-size: var(--fs-h2); font-weight: 700; line-height: 1.5; margin: 0; }
+  h2::before { content: ""; display: block; width: 24px; height: 2px; background: var(--color-accent); margin-bottom: var(--space-4); }
+  h2 + * { margin-top: var(--space-6); } /* 區塊內元件間 --space-6 */
+
+  .eyebrow { font-size: var(--fs-sm); letter-spacing: .08em; color: var(--color-muted); margin: 0 0 var(--space-2); }
+  h1 { font-size: var(--fs-h1); line-height: 1.35; margin: 0 0 var(--space-4); font-weight: 700; }
+  .subtitle { font-size: var(--fs-body); margin: 0 0 var(--space-6); }
+  .keyinfo { list-style: none; padding: 0; margin: 0 0 var(--space-6); }
+  .keyinfo li { padding: var(--space-2) 0; border-bottom: 1px solid var(--color-hairline); display: flex; gap: var(--space-2); align-items: baseline; }
+  .keyinfo .k { flex: 0 0 4.5em; color: var(--color-muted); font-size: var(--fs-sm); }
+
+  /* CTA（§10）：頂＋尾同一元件；全站 destination 只有一條 */
+  .cta {
+    display: block;
+    text-align: center;
+    background: var(--color-accent);
+    color: #fff;
+    text-decoration: none;
+    font-size: 1.125rem;
+    font-weight: 700;
+    padding: 18px 24px; /* 觸控目標 ≥44px（§4 現值保持） */
+    border-radius: 12px;
+    margin: var(--space-4) 0 0;
+    transition: opacity var(--transition-fast);
+  }
+  .cta:hover { opacity: .94; }
+  .cta:active { opacity: .9; }
+  .cta:focus-visible { outline: 2px solid var(--color-accent); outline-offset: 3px; }
+  .cta:visited { color: #fff; }
+  .note { font-size: .8125rem; color: var(--color-muted); margin: var(--space-4) 0 0; }
+
+  /* 區塊 2・真實稀缺：keyinfo 語彙（hairline 細線分隔、baseline 對齊） */
+  .rows { list-style: none; padding: 0; margin: 0; }
+  .rows li { padding: var(--space-2) 0; border-bottom: 1px solid var(--color-hairline); display: flex; gap: var(--space-2); align-items: baseline; }
+  .big { font-size: var(--fs-h1); font-weight: 700; color: var(--color-accent); line-height: 1.35; } /* L5 稀缺大數字：全站只出現在區塊 2 的 hands-on */
+  .rows .plain { font-weight: 700; color: var(--color-ink); }
+
+  /* 區塊 3・講師資歷 */
+  .who-name { font-size: var(--fs-body); font-weight: 700; margin: 0 0 var(--space-2); }
+  .who-cred { list-style: none; padding: 0; margin: 0; }
+  .who-cred li { padding: var(--space-2) 0; border-bottom: 1px solid var(--color-hairline); }
+  .data-pending { color: var(--color-muted); font-size: var(--fs-sm); }
+
+  /* 區塊 4・社會證明（佔位狀態＝信任條） */
+  .trust { border: 1px solid var(--color-hairline); border-radius: 12px; padding: var(--space-6); margin-top: var(--space-6); }
+  .trust p { margin: 0; }
+  .trust p + p { margin-top: var(--space-2); }
+  .patent img { display: block; width: 100%; max-width: 380px; height: auto; border-radius: 8px; margin-top: var(--space-2); }
+
+  /* 區塊 5・議程：原生 ol marker、不自訂 counter；加重僅字重 700、不用 accent */
+  .agenda { padding-left: var(--space-6); margin: 0; }
+  .agenda li { padding: var(--space-4) 0; border-bottom: 1px solid var(--color-hairline); }
+
+  /* 動效（§3/§8 鎖）：區塊 2–5 單發淡入＋上移 12px；Hero 與尾 CTA 不動 */
+  @keyframes reveal-up {
+    from { opacity: 0; transform: translateY(12px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  @supports (animation-timeline: view()) {
+    .reveal { animation: reveal-up var(--transition-normal) both; animation-timeline: view(); }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after { animation: none !important; transition: none !important; }
+  }
+
+  /* 唯一 breakpoint（§11）：僅講師區塊轉雙欄，其餘不動 */
+  @media (min-width: 640px) {
+    .who-grid { display: grid; grid-template-columns: 144px 1fr; gap: var(--space-6); align-items: center; }
+    .who-photo img { width: 144px; height: 144px; }
+  }
+  .who-photo { margin: 0 0 var(--space-6); }
+  .who-photo img { display: block; width: 120px; height: 120px; border-radius: 50%; margin: 0 auto; }
+</style>
+</head>
+<body>
+<main class="wrap">
+
+  <!-- 區塊 1・Hero（主視口，不動效）：眉標 → H1 → 副標 → 關鍵資訊 → 報名鈕 -->
+  <header class="hero">
+    <p class="eyebrow">TMIAS 微整學院・大師淬煉系列</p>
+    <h1>薛乃維醫師親授<br>鼻埋線工作坊</h1>
+    <p class="subtitle">特管時數 4 小時・現場實作演示・醫師限定</p>
+
+    <ul class="keyinfo">
+      <li><span class="k">日期</span><span>2026 年 11 月 15 日（週日）09:00–12:30（08:30 報到）</span></li>
+      <li><span class="k">地點</span><span>台北市大安區信義路三段 151 號 7 樓（維序妍診所）</span></li>
+      <li><span class="k">主辦</span><span>台灣微整形美容醫學會</span></li>
+      <li><span class="k">時數</span><span>特管時數 4 小時</span></li>
+      <li><span class="k">名額</span><span>限量——hands-on 6 名＋ observer 15 名</span></li>
+    </ul>
+
+    <!-- 全站唯一 destination：直接流量,不帶 UTM（按鈕實例可重複,同字同連結） -->
+    <a class="cta" href="https://www.surveycake.com/s/7m3mA">立即報名 ＋</a>
+  </header>
+
+  <!-- 區塊 2・真實稀缺（緊貼首屏下緣；375px 下 h2 標題線露出折線下） -->
+  <section class="reveal">
+    <h2>限量名額</h2>
+    <ul class="rows">
+      <li><span class="big">6</span><span>hands-on 實作名額（先報先得）</span></li>
+      <li><span class="plain">15</span><span>observer 觀摩名額</span></li>
+      <li><span>已報名 2 名<span class="data-pending">（截至 2026-09-30・每週更新）</span></span></li><!-- 每週更新位（素材輪 Q3 鎖）：現況 2 單＝秘書確認鎖定單（Q16）；上線日填最終實數,不做假倒數、不做動態計數器 -->
+    </ul>
+    <p class="note">名額數字即報名表實際名額。</p>
+  </section>
+
+  <!-- 區塊 3・講師資歷（具名＋可驗證；無數據列不渲染、不留灰框） -->
+  <section class="reveal">
+    <h2>講師</h2>
+    <div class="who-grid">
+      <div class="who-photo">
+        <!-- 素材輪鎖定（2026-09-30 晚）：素材已到、DATA PENDING 解除——720×720 JPEG 63KB（規格內）；alt 按 §9 模板填滿 -->
+        <img src="assets/doctor-720.jpg" alt="薛乃維醫師——維序妍診所顏面整形外科專科，學會講師的照片" width="120" height="120" loading="lazy" decoding="async">
+      </div>
+      <div>
+        <p class="who-name">薛乃維醫師</p>
+        <ul class="who-cred">
+          <li>專科別：顏面整形外科專科</li>
+          <li>診所：維序妍診所</li>
+          <li>學會角色：學會講師</li>
+          <li>手術量：5,000+ 例</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- 區塊 4・社會證明（素材輪鎖定：無往期學員＝第一屆！改「第一屆・首發場」稀缺正向包裝，與限量區塊同向；內容＝講師實績條＋專利證書展示位） -->
+  <section class="reveal">
+    <h2>第一屆・首發場</h2>
+    <div class="trust">
+      <p>大師淬煉系列第一屆——本場即首發，您的回饋將是下一屆的證明。</p>
+      <p>講師實績：顏面整形外科專科・學會講師・5,000+ 例</p>
+      <!-- 專利證書（素材已到：透視校正＋反光壓制＋≤250KB；380px 顯示尺寸 vision 驗收 PASS） -->
+      <p class="patent"><img src="assets/patent-certificate.jpg" alt="中華民國專利證書——新型第M643699號，新型名稱4D金字塔鼻雕架，專利權人薛乃維" loading="lazy" decoding="async"></p>
+    </div>
+  </section>
+
+<!-- 區塊 5・議程：原學會頁九條＋Zack 加的 hands-on（第9）；Q&A 移末；加重僅字重 700、不用 accent -->
+  <section class="reveal">
+    <h2>課程議程</h2>
+    <ol class="agenda">
+      <li>埋線觀點下的鼻部解剖結構</li>
+      <li>各種鼻型臨床評估與預判決策</li>
+      <li>鼻背埋線各式技巧</li>
+      <li>各種鼻型的設計</li>
+      <li>鼻埋線搭配玻尿酸的套組可行性</li>
+      <li><strong>埋線併發症與處理技巧</strong></li>
+      <li>行銷端的應用以及諮詢</li>
+      <li>高階鼻埋線的觀念</li>
+      <li><strong>hands-on</strong></li>
+      <li><strong>Q&amp;A</strong></li>
+    </ol>
+  </section>
+
+  <!-- 區塊 6・尾 CTA（與頂部同元件同字同連結；不動效） -->
+  <section>
+    <a class="cta" href="https://www.surveycake.com/s/7m3mA">立即報名 ＋</a>
+    <p class="note">報名後由主辦單位確認名額;hands-on 名額先到先獲得。</p>
+  </section>
+
+</main>
+</body>
+</html>
