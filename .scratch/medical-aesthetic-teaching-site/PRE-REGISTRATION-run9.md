@@ -29,6 +29,12 @@
 - Q3 鎖定：落地頁角色＝SEO/GEO 長期入口＋報名漏斗，課後為下一場課服務（ADR-0002 原確認）。
 - Q4 輸入：使用者無現成域名——域名＋註冊商為本輪開放決策。
 
+## Round 2 鎖定（2026-10-01，使用者逐條答覆）
+- **Q5 域名＝qqhairdoctor.com**（使用者拍板）。實測（本輪 whois＋NS）：NXDOMAIN＋registrar "No match"＝**可註冊**。商標面一句備註：QQ 字標在騰訊商標地盤，註冊商註冊不等於商標 clearance——使用者品牌決策，風險已告知。
+- **Q6 註冊商＝Cloudflare Registrar＋站掛 Cloudflare Pages**（研究閘：註冊商不影響 SEO；Cloudflare 成本價無加價、同帳號整合；TLD 支援 430+，下單前查 .com  obviously 在）。
+- **Q7 部署 KPI（防自欺條款）**：本場驗收＝域名註冊完成＋GSC 域名驗證＋sitemap 提交＋落地頁手動請求收錄各一次；排名與報名歸因計入下一場（ADR-0002 原句）。研究判死「11/15 前見效」——誰簽誰輸。
+- 落盤連動：ADR-0002「掛自建教學網站」由本 ADR 系列接住——落地頁 canonical 佔位（vesuyan.com/tmias191/）部署時必須改寫為 qqhairdoctor.com 實際路徑（判準已列）。
+
 ## 機械判準（本跑範圍內可驗者）
 - 落地頁入站後 canonical/og:url/og:image 三者與實際部署 URL 一致（grep 可驗，搬入未改佔位＝紅）。
 - Event JSON-LD 搬入後不破（JSON parse 可驗）。
