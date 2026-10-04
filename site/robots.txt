@@ -1,0 +1,5 @@
+# robots.txt — clinical teaching site
+User-agent: *
+Allow: /
+
+Sitemap: https://qqhairdoctor.com/sitemap.xml
