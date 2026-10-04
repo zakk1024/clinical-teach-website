@@ -48,3 +48,14 @@
 3. seo-specialist：GSC TXT 驗證＋sitemap＋請求收錄。
 4. devops-automator：Pages 專案（部署路徑等 Round 1 拍）。
 5. 執行官覆核：dig/curl 獨立覆核（不採自報）＋截圖三張落 .scratch/run10-。
+
+
+## 執行結果（2026-10-04 收單）
+- **註冊**：qqhairdoctor.com ACTIVE、auto-renew ON、到期 2027-10-04（使用者付款）。
+- **部署**：GitHub `zakk1024/clinical-teach-website`（Public）→ Cloudflare Pages Git integration（production=main、build 空、output=site）→ custom domain `qqhairdoctor.com` **Active＋SSL**（Cloudflare dashboard 截圖為證）。
+- **獨立覆核（不採自報）**：`dig TXT` 1.1.1.1/8.8.8.8 雙 resolver 一致＝Google 經 Domain Connect 親手寫入的 `google-site-verification=zcRJ0f8w…`；`curl` 落地頁/sitemap/robots 全 200。
+- **GSC**：Domain property `sc-domain:qqhairdoctor.com` 驗證通過（GSC 介面解鎖完整功能、顯示「資料處理中，請等約一天」）。
+- **Sitemap 提交**：`https://qqhairdoctor.com/sitemap.xml` →「已成功提交 Sitemap」toast＋列表列出現（狀態列初始顯示「無法擷取 0/0」——新提交常態，等 Google 排程抓取）。
+- **手動請求收錄**：landing URL 網址審查 →「已要求建立索引，已將網址加入優先檢索佇列」。
+- **截圖憑證**：screenshots/2026-10-04_live-landing-qqhairdoctor.png（落地頁本體）、gsc-pending-txt-live.png、gsc-sitemap-submitted.png、gsc-index-requested.png（四張，多一張不罰）。
+- **預測對帳**：R2 價格預測命中（$10.46 落在 $9–12 區間）；返工預測落空（GSC 驗證對話框重跑 3 次才算數——但最終全靠 Domain Connect＋背景驗證，手動流程是繞路）。
