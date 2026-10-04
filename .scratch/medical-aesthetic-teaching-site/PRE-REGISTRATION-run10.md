@@ -23,9 +23,21 @@
 2. 返工迴路是否真的打回過東西（未測格結果變數）：預測＝沒有（三交付物皆機械可驗、人對口）。
 3. 註冊費用落在 US$9–12/年成本價區間（Cloudflare at-cost 宣稱；whois 註冊商欄最終為準——若註冊商非 Cloudflare 即落空）。
 
-## 執行鏈（研究閘關門＋使用者 Round 1 答完才開跑）
+## 研究閘對帳（2026-10-04，三委派首跑完成後讀數）
+- 預測 1（觸碰各＝1；基線＝首寫含未驗證 URL 即兌現）：觸碰各 1 兌現；基線落空（三檔抽驗無 unverified 條目）——照規矩不改寫。
+- 預測 2（返工迴路打回過東西）：預測＝沒有；實測＝零打回——**落空**，照規矩不改寫。
+- 預測 3（US$9–12/年）：**中**——實測現價 $10.46（Verisign 批發 $10.26＋ICANN $0.20，secondary 多源一致）；**新事實：2026-11-01 起 Verisign 調至 $11.17，合約允許 2027–2029 每年最多 +7%**。
+- 研究帶回的行動級發現：①R1＝免費層支援 private repo Git integration（Q1 已鎖 Public，路徑不受限）＋**Direct Upload 專案不能事後切 Git integration（單向門）**。②R2＝Cloudflare 註冊域名必須用 Cloudflare 權威 DNS（綁定，本案無成本——本來就選了 CF）；API 註冊 auto-renew 預設 off（dashboard 路徑預設 on——我們走 dashboard，用戶已拍 auto-renew 開）。③R3＝Domain property 涵蓋全子網域＋協定變體、TXT 加 apex、驗證後記錄不能刪；Cloudflare Pages 不自動產 sitemap——sitemap.xml 要自己進 repo；≤500 頁站可直接 request index，正路仍是 sitemap＋提交。
+- 執行鏈更新：seo-specialist 交付物加 sitemap.xml（＋robots.txt）進 repo 根；執行鏈 #4 的「push」語義＝Git integration（GitHub public repo 建 remote → Pages 連 GitHub → push 即部署）。
 
-## Round 1 鎖定（2026-10-03，使用者答覆）
+
+## Round 2 鎖定（2026-10-04，使用者答覆）
+- **Q9 重開後維持原案：註冊 1 年＋auto-renew**——R2 證據（2026-11-01 起 Verisign $10.46→$11.17、2027–2029 可逐年 +7%）打到「多年預付無折扣」前提，多年可鎖價；使用者知情後仍選 1 年（保轉出自由度，差價認了）。修正已傳播：預登預測 3 讀數不變。
+- **Q10 登帳＝vault 流程**：agent 發起，密碼/驗證碼/付款在隱藏式提示由使用者輸入，密碼不過對話。
+- **Q11 收尾歸執行方**：specialist 跑（GSC TXT 驗證、Pages 建專案、sitemap 提交、請求收錄、截圖憑證落檔）；使用者的手只出現在登入/付款/驗證碼步驟。
+- 研究判死題（非推薦，無剩餘 trade-off）：部署路徑＝Git integration（Direct Upload 不能事後切回——單向門）；GSC＝Domain property（TXT 加 apex，涵蓋全子網域，驗證後記錄不可刪）。
+## 執行鏈（研究閘關門＋Round 2 答完已開跑）
+
 - **GitHub repo 能見度＝Public**（課程站骨架＋落地頁都會在公開 repo；GitHub Pages 商業排除條款不適用——GitHub 只當 source repo，主機＝Cloudflare Pages，推論依據＝既有 research 檔 GitHub Pages 條款條目）。
 - **註冊年限＝1 年＋auto-renew 開**（成本價無預付折扣，隨時可轉出）。
 - 登入方式：使用者跳過未答——預設路徑＝使用者自己在瀏覽器登好 Cloudflare＋Google，登完說一聲（vault 流程為備援）。
