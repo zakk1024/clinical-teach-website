@@ -59,3 +59,8 @@
 - **手動請求收錄**：landing URL 網址審查 →「已要求建立索引，已將網址加入優先檢索佇列」。
 - **截圖憑證**：screenshots/2026-10-04_live-landing-qqhairdoctor.png（落地頁本體）、gsc-pending-txt-live.png、gsc-sitemap-submitted.png、gsc-index-requested.png（四張，多一張不罰）。
 - **預測對帳**：R2 價格預測命中（$10.46 落在 $9–12 區間）；返工預測落空（GSC 驗證對話框重跑 3 次才算數——但最終全靠 Domain Connect＋背景驗證，手動流程是繞路）。
+
+## 補查（同日稍晚，即時覆核）
+- **落地頁已編入索引**：GSC 網址審查回「網址在 Google 服務中／網頁已編入索引」＋HTTPS 檢查通過＋偵測到 1 個有效強化項目。憑證：screenshots/2026-10-04_gsc-url-indexed.png。
+- Sitemap 狀態欄仍「無法擷取 0/0」（已送出＝2026-10-04）——列表狀態滯後，網址層級已被索引，正常。
+- Cloudflare 複核：NS=alla/todd.ns.cloudflare.com、A record 指向 Pages proxy、TXT 驗證碼在（經 8.8.8.8 查得）、landing/sitemap/robots curl 全 200。
